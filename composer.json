@@ -1,5 +1,5 @@
 {
-  "name": "SSone/onecms",
+  "name": "ssone/cms-bundle",
   "type": "library",
   "description": "A content construction and management system CMMS for symfony by SSone.",
   "homepage": "https://github.com/SSone/onecms",
