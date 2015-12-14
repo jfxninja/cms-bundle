@@ -1,0 +1,155 @@
+body {
+    padding:0;
+    margin: 0;
+
+    font-family:Verdana, Arial, sans-serif;
+}
+
+.clr{
+    clear:both;
+}
+
+.noclick:hover{
+    cursor:default;
+}
+
+.row {min-width:100% !important;}
+
+
+
+#devNav{
+    display: none;
+}
+
+#mainNav{
+    background: #222;
+}
+
+#mainNav ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+#mainNav ul li{
+    float:right;
+    display: block;
+    background:#333;
+    padding: 5px;
+}
+
+#mainNav ul li a:link, #mainNav ul li a:visited{
+    color: #999
+}
+
+#mainNav ul li a:hover, #mainNav ul li a:active{
+    color: #fff
+}
+
+#subNav{
+    float: right;
+    width: 300px;
+}
+
+.language-menu{
+    margin:1.4em 0 0 0;
+
+}
+
+#stage{
+    padding: 0 0 40px;
+}
+
+
+/* Form Styling */
+
+
+
+form ul.properties{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+form dd.properties{
+    border-bottom: 1px #ccc dashed;
+    padding: 10px 0 10px 0;
+    margin: 0 0 10px 0;
+
+}
+
+form dd.ui-state-highlight {
+    height: 50px;
+}
+
+li.ui-non-sortable{
+    padding: 10px 0 10px 0;
+    list-style: none;
+}
+
+form dd.properties .handle{
+    cursor: move;
+    cursor: -webkit-grab;
+}
+
+button.tiny, .button.tiny {
+    margin: 0 0 0 0;
+}
+
+fieldset {
+    border: 1px solid #dddddd;
+    padding: 0.8rem;
+    margin: 0.8rem 0;
+}
+
+label{
+    font-weight: bold;
+}
+
+.button.expand-handle {
+    padding: 0.5em 0 !important;
+    margin: 22px 0;
+}
+
+ul.errors, ul.errors li{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.redactor_box {
+    margin: 0 0 1rem;
+    padding: 0.5rem 0 ;
+}
+
+/* Table */
+
+
+.standardListTable table{
+    width: 100%;
+    border:none;
+}
+
+.standardListTable table th{
+    text-align: left;
+    padding: 5px;
+}
+.standardListTable table td{
+    padding: 5px;
+
+}
+
+#footer {
+    position: fixed;
+    padding: 5px 0 0 0;
+    color: #fff;
+    bottom: 0;
+    width: 100%;
+    height: 35px;
+    background: #000;
+    border-top: 1px solid #fff;
+}
+#footer p{
+    font-size: 0.7em;
+}
+

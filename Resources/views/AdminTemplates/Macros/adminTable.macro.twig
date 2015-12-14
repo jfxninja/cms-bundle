@@ -1,0 +1,29 @@
+{% macro drawTable(data) %}
+    <table>
+        <thead>
+            {% for fieldtitle, column in data.columns %}
+                <th>{{ fieldtitle }}</th>
+            {% endfor %}
+                <th></th>
+        </thead>
+        <tbody>
+            {% for item in data.items %}
+                <tr>
+                    {% for column in data.columns %}
+                       <td>
+                           {% if item[column].timestamp is defined %}
+                               {{ item[column]|date('m/d/Y') }}
+                           {% else %}
+                               {{ item[column] }}
+                           {% endif %}
+                       </td>
+                    {% endfor %}
+                        <td width="160" class="text-right">
+                            <a class="button tiny" href="edit/{{ item.securekey }}">edit</a>
+                            <a class="button tiny" href="delete/{{ item.securekey }}">delete</a>
+                        </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endmacro %}

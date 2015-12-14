@@ -1,0 +1,16 @@
+<section class="top-bar-section">
+    <ul class="right">
+    {% for mm in menus.mmenus %}
+        {% if is_granted(mm.permission) %}
+            <li><a href="{{ path(mm.route) }}">{{ mm.name }}</a></li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+    <div class="clr"></div>
+
+</section>
+<div id="devNav">
+    {% for key, mm in menus.emenus %}
+        <a href="{{ path('ssone_cms_admin_entity_manager', {'entity' : mm}) }}">{{ mm }}</a>&nbsp;
+    {% endfor %}
+</div>

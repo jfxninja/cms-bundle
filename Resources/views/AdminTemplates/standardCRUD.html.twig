@@ -1,0 +1,15 @@
+{% extends 'SSoneCMSBundle::CMSAdmin.base.html.twig' %}
+
+
+
+{% block body %}
+
+    <h1>Entity: {{ title }}</h1>
+
+    {% if form.delete is defined %}
+        Are you sure you want to delete this content?
+    {% endif %}
+
+    {{ form(form) }}
+
+{% endblock %}

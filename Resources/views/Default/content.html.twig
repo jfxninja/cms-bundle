@@ -1,0 +1,18 @@
+<h1>Default content tempalte:</h1>
+
+
+{% if content is defined %}
+<p>
+    {% for key, field in content %}
+        {% if key not in ['contentSlug','attributes'] %}
+            {{ field|raw }}
+        {% endif %}
+    {% endfor %}
+</p>
+{% endif %}
+
+{% if content.items is defined %}
+    <p>
+list the items
+    </p>
+{% endif %}

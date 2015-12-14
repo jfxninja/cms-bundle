@@ -1,0 +1,45 @@
+{% extends 'SSoneCMSBundle::CMSAdmin.base.html.twig' %}
+
+{% block login %}
+
+{% if error %}
+
+{% endif %}
+<div class="row">
+<form id="login-form" action="{{ path('login_check') }}" method="post">
+    <div class="small-8 large-6">
+        <div class="column small-12"><h1>Content Management Login</h1></div>
+        <div class="column small-6">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="_username" value="{{ last_username }}" />
+        </div>
+
+        <div class="column small-6">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="_password" />
+        </div>
+
+
+
+            {#
+                If you want to control the URL the user
+                is redirected to on success (more details below)
+                <input type="hidden" name="_target_path" value="/account" />
+            #}
+        <div class="column small-12">
+            {% if error.message is defined %}
+                {% if error.message == "Bad credentials" %}
+                    <ul class="errors"><li><span class="error">Sorry that username password combination was not found.</span></li></ul>
+                {% else %}
+                    <p class="error">{{ error.message }}</p>
+                {% endif %}
+            {% endif %}
+            <button class="small" type="submit">login</button>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
+        </div>
+
+    </div>
+</form>
+</div>
+
+{% endblock %}

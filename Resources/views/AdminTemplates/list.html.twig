@@ -1,0 +1,14 @@
+{% extends 'SSoneCMSBundle::CMSAdmin.base.html.twig' %}
+{% import "SSoneCMSBundle:AdminTemplates:Macros/adminTable.macro.twig" as adminTable %}
+
+{% block body %}
+    <div class="block row">
+        <div class="column small-12">
+            <h1>{{ title }}</h1>
+            <p><a class="button" href="new">Add new "{{ title }}"</a></p>
+            <div class="standardListTable">
+                {{  adminTable.drawTable(items)  }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

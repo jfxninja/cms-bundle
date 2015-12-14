@@ -1,0 +1,41 @@
+@import "settings";
+
+//sassc scss/app.scss public/css/foundation_app.css
+
+// Or selectively include components
+ @import
+   "accordion",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/alert-boxes",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/block-grid",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/breadcrumbs",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/button-groups",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/buttons",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/clearing",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/dropdown",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/dropdown-buttons",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/flex-video",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/forms",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/grid",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/inline-lists",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/joyride",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/keystrokes",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/labels",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/magellan",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/orbit",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/pagination",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/panels",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/pricing-tables",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/progress-bars",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/reveal",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/side-nav",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/split-buttons",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/sub-nav",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/switch",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/tables",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/tabs",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/thumbs",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/tooltips",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/top-bar",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/type",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/offcanvas",
+   "../../../Foundation5Bundle/Resources/foundation/bower_components/foundation/scss/foundation/components/visibility";

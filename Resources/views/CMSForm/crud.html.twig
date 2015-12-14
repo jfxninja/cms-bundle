@@ -1,0 +1,110 @@
+{% extends 'SSoneCMSBundle::CMSAdmin.base.html.twig' %}
+
+
+{% block body %}
+    <div class="row">
+        <div class="column small-8">
+        {% if mode == 'delete' %}
+            <h1>Delete {{ formTitle }} From</h1>
+            <p>Are you sure you want to delete this domain?</p>
+        {% endif %}
+
+        {% if mode == 'new' %}
+            <h1>Create new form</h1>
+            <p>Changes are not saved until clicking the 'save new' button.</p>
+        {% endif %}
+
+        {% if mode == 'edit' %}
+            <h1>Editing {{ formTitle }} Form</h1>
+            <p>Changes are not saved until you commit changes.</p>
+        {% endif %}
+
+
+
+        {% if form.delete is defined %}
+            Are you sure you want to delete this domain?
+        {% endif %}
+        </div>
+    </div>
+
+
+    <div class="row column">
+
+
+        {{ form_start(form) }}
+        <fieldset>
+            <legend>Form Details</legend>
+            <div class="row">
+                <div class="column small-6">
+                    {{ form_row(form.name) }}
+                </div>
+                <div class="column small-6">
+                    {{ form_row(form.formTitle) }}
+                </div>
+                <div class="column small-4 left">
+                    {{ form_row(form.contentType) }}
+                </div>
+                <div class="column small-8 left">
+                    {{ form_row(form.successURL) }}
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Form content and display</legend>
+            <div class="row">
+                <div class="column small-6">
+                    {{ form_row(form.template) }}
+                </div>
+                <div class="column small-3">
+                    {{ form_row(form.file_template) }}
+                </div>
+                <div class="column small-3">
+                </div>
+            </div>
+            <div class="row">
+                <div class="column small-3 left">
+                    {{ form_row(form.buttonText) }}
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Admin E-mail Settings</legend>
+            <div class="row">
+                <div class="column small-5">
+                    {{ form_row(form.adminEmailToAddress) }}
+                </div>
+                <div class="column small-5">
+                    {{ form_row(form.adminEmailFromAddress) }}
+                </div>
+                <div class="column small-2">
+                    {{ form_row(form.sendAdminEmailOnSubmit) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="column small-6">
+                    {{ form_row(form.adminEmailText) }}
+                </div>
+
+                <div class="column small-6">
+                    {{ form_row(form.file_adminEmailText) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="column small-6">
+                    {{ form_row(form.adminEmailHTML) }}
+
+                </div>
+
+                <div class="column small-6">
+                    {{ form_row(form.file_adminEmailHTML) }}
+                </div>
+            </div>
+        </fieldset>
+
+        {{ form_end(form) }}
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,84 @@
+{% import _self as this %}
+
+<h1>Default navigation tempalte:</h1>
+
+<ul class="right">
+    {% for menuL1 in nav.children %}
+
+        <li class="{{ this.getLiClass(menuL1) }}">
+
+            {{ this.getMenuItem(menuL1) }}
+            {% if menuL1.children is defined %}
+                <ul>
+                    {% for menuL2 in menuL1.children %}
+                        <li>
+                            {% if menuL2.attributes.highlight %} > {% endif %}
+                            {% if menuL2.attributes.active %} -> {% endif %}
+                            {{ this.getMenuItem(menuL2) }}
+                            {% if menuL2.children is defined %}
+                                <ul>
+                                    {% for menuL3 in menuL2.children %}
+                                        <li>
+                                            {% if menuL3.attributes.highlight %} > {% endif %}
+                                            {% if menuL3.attributes.active %} -> {% endif %}
+                                            {{ this.getMenuItem(menuL3) }}
+                                            {% if menuL3.children is defined %}
+                                                <ul>
+                                                    {% for menuL4 in menuL3.children %}
+                                                        <li>
+                                                            {% if menuL4.attributes.highlight %} > {% endif %}
+                                                            {% if menuL4.attributes.active %} -> {% endif %}
+                                                            {{ this.getMenuItem(menuL4) }}                                                            {% if menuL4.children is defined %}
+                                                                <ul>
+                                                                    {% for menuL5 in menuL4.children %}
+                                                                        <li>
+                                                                            {% if menuL5.attributes.highlight %} > {% endif %}
+                                                                            {% if menuL5.attributes.active %} -> {% endif %}
+                                                                            {{ this.getMenuItem(menuL5) }}                                                                        </li>
+                                                                    {% endfor %}
+                                                                </ul>
+                                                            {% endif %}
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+
+
+    {% endfor %}
+
+
+</ul>
+
+
+{% macro getLiClass(item) %}
+    {% spaceless %}
+        {% if item.attributes.highlight %}
+            highlight active
+        {% elseif item.attributes.active %}
+            active
+        {%  else %}
+
+        {% endif %}
+    {% endspaceless %}
+{% endmacro %}
+
+{% macro getMenuItem(item) %}
+    {% spaceless %}
+        {% if item.attributes.highlight %}
+            <a class="" href="{{ item.attributes.url }}">{{ item.attributes.name }}</a>
+        {% elseif item.attributes.active %}
+            {{ item.attributes.name }}
+        {%  else %}
+            <a class="" href="{{ item.attributes.url }}">{{ item.attributes.name }}</a>
+        {% endif %}
+    {% endspaceless %}
+{% endmacro %}

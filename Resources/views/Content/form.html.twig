@@ -1,0 +1,93 @@
+
+{%  block form %}
+
+    {{ form_start(form) }}
+    <div class="row">
+    {% if form.name is defined %}
+        <div class="column small-4">
+            {{ form_row(form.name) }}
+        </div>
+        <div class="column small-4 left">
+            {{ form_row(form.slug) }}
+        </div>
+    {% endif %}
+    </div>
+    {% if mode == 'edit' or mode == 'delete'  %}
+
+
+        {# iterate over each existing property and group setup options #}
+
+        {% for block in form.blocks %}
+            <div class="block row">
+                <div class="column small-8">
+
+                {% for fields in block  %}
+
+                    {%  if fields.vars.prototype is defined %}
+
+                        <fieldset>
+                        <legend>{{ fields.vars.label }}</legend>
+
+                        <dl class="properties ui-sortable"
+                            data-prototype="
+                                {% filter escape %}
+                                    {% include
+                                    'SSoneCMSBundle:Content:content.collection.html.twig'
+                                    with {'form': fields.vars.prototype }
+                                    %}
+                                {% endfilter %}
+                        ">
+                            {# iterate over each existing property and group setup options #}
+
+                            {% for field in fields %}
+                                <dd class="properties row" id="vfield-{{ loop.index }}">
+
+                                    {% for input in field %}
+                                        {% include
+                                        'SSoneCMSBundle:Content:content.collection.html.twig'
+                                        with {'form': input}
+                                        %}
+                                    {% endfor %}
+                                </dd>
+                            {% endfor %}
+
+                        </dl>
+                    </fieldset>
+                    {% else %}
+                        {% for field in fields %}
+                            {{ form_widget(field) }}
+                        {% endfor %}
+
+                    {% endif %}
+
+                {% endfor %}
+
+                </div>
+            </div>
+        {% endfor %}
+
+    {% endif %}
+
+<div class="block row">
+    <div class="column small-8 text-right">
+
+    {{ form_end(form) }}
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block formscripts %}
+    <script type="text/javascript">
+        $(function()
+        {
+            $('.wysiwyg-field').each(function(){
+                $(this).redactor({
+                    imageUpload: '/admin/wysiwyg_image_upload/'+$(this).attr('sfid')
+                });
+            })
+        });
+    </script>
+{% endblock %}
+

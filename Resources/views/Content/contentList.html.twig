@@ -1,0 +1,55 @@
+{% extends 'SSoneCMSBundle::CMSAdmin.base.html.twig' %}
+{% import "SSoneCMSBundle:AdminTemplates:Macros/adminTable.macro.twig" as adminTable %}
+
+{% block body %}
+    <div class="block row">
+        <div class="column small-9">
+            <h1>Content Management</h1>
+        </div>
+        <div class="column small-3 text-right">
+            <h2><a class="button" href="new">Add new content</a></h2>
+        </div>
+    </div>
+
+    <div class="block row">
+        <div class="column small-12">
+
+            <nav class="top-bar" data-topbar>
+                <ul class="title-area">
+                    <li class="name">
+                        <h1><a class="noclick">{{ subTitle }}(s)</a></h1>
+                    </li>
+                    <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+                    <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+                </ul>
+
+                <section class="top-bar-section">
+                    <!-- Right Nav Section -->
+                    <ul class="right">
+                        <li class="has-dropdown">
+                            <a href="#">Content Menu</a>
+                            <ul class="dropdown">
+                                {% for item in menus %}
+                                    <li><a href="{{ item.link }}">{{ item.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    </ul>
+
+                </section>
+            </nav>
+        </div>
+    </div>
+
+<div class="row">
+<div class="column small-12">
+
+    <section class="main-section">
+        <div class="standardListTable">
+            {{  adminTable.drawTable(items)  }}
+        </div>
+    </section>
+
+</div>
+</div>
+{% endblock %}

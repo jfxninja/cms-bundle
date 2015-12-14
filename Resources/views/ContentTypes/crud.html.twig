@@ -1,0 +1,153 @@
+{% extends 'SSoneCMSBundle::CMSAdmin.base.html.twig' %}
+
+{% block scripts %}
+
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="column small-12">
+    {% if mode == 'delete' %}
+        <h1>Delete {{ contentType }}</h1>
+        <p>Are you sure you want to delete this content type?</p>
+    {% endif %}
+
+    {% if mode == 'new' %}
+        <h1>Create new content type</h1>
+        <p>Changes are not saved until clicking the 'save new' button.</p>
+    {% endif %}
+
+    {% if mode == 'edit' %}
+        <h1>Editing content type: {{ contentType }} ({{ locale }})</h1>
+        <p>Changes are not saved until you click "save changes".</p>
+    {% endif %}
+    </div>
+</div>
+{{ form_start(form) }}
+<div class="row column">
+    <fieldset>
+        <legend>General Setting</legend>
+        <div class="row">
+            <div class="column small-4">
+            {{ form_row(form.name) }}
+            </div>
+            <div class="column small-4">
+            {{ form_row(form.slug) }}
+            </div>
+            <div class="column small-3 left">
+            {{ form_row(form.hideFromMenus) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="column small-4">
+            {{ form_row(form.contentTemplatePath) }}
+
+            {{ form_row(form.file_contentTemplatePath) }}
+            </div>
+            <div class="column small-4">
+            {{ form_row(form.listTemplatePath) }}
+
+            {{ form_row(form.file_listTemplatePath) }}
+            </div>
+            <div class="column small-4">
+                {{ form_row(form.categoryPageTemplatePath) }}
+                {{ form_row(form.file_categoryPageTemplatePath) }}
+            </div>
+        </div>
+    </fieldset>
+</div>
+    {#
+    {{ form_row(form.categoryPageTemplatePath) }}
+    {{ form_row(form.file_categoryPageTemplatePath) }}
+    #}
+    <div class="row column">
+        <fieldset>
+            <legend>Attribute Fields</legend>
+                {% if form.attributeFields is defined %}
+                    <dl class="properties ui-sortable accordion"
+                        data-prototype="
+                            {% filter escape %}
+                                {% include
+                                        'SSoneCMSBundle:Form:contentTypeField.html.twig'
+                                        with {'id': 'aField', 'form': form.attributeFields.vars.prototype, 'index' : "__index__" }
+                                        %}
+                            {% endfilter %}
+                        "
+                        data-accordion>
+                        {% for aField in form.attributeFields %}
+                            <dd class="properties row" id="afield-{{ loop.index }}">
+                                {% include
+                                'SSoneCMSBundle:Form:contentTypeField.html.twig'
+                                with {'id': 'aField', 'form': aField, 'index' : loop.index }
+                                %}
+
+                            </dd>
+                        {% endfor %}
+
+                    </dl>
+                {% endif %}
+
+        </fieldset>
+    </div>
+
+    <div class="row column">
+        <fieldset>
+            <legend>Variable Fields</legend>
+
+            {% if form.variableFields is defined %}
+            {#<ul class="properties ui-sortable" data-prototype="{{ form_widget(form.variableFields.vars.prototype)|e}}">#}
+            <dl class="properties ui-sortable accordion"
+                data-prototype="
+                    {% filter escape %}
+                        {% include
+                            'SSoneCMSBundle:Form:contentTypeField.html.twig'
+                            with {'id': 'vField','form': form.variableFields.vars.prototype, 'index' : "__index__" }
+                        %}
+                    {% endfilter %}
+                "
+                data-accordion>
+                {# iterate over each existing property and group setup options #}
+
+                {% for vField in form.variableFields %}
+                    <dd class="properties row" id="vfield-{{ loop.index }}">
+
+                        {% include
+                        'SSoneCMSBundle:Form:contentTypeField.html.twig'
+                        with {'id': 'vField', 'form': vField, 'index' : loop.index}
+                        %}
+
+                    </dd>
+                {% endfor %}
+
+            </dl>
+            {% endif %}
+        </fieldset>
+    </div>
+    <div class="row">
+        <div class="column small-2 right text-right">
+            {% if mode == 'delete' %}
+                {{ form_row(form.save, { 'label': 'confirm delete' }) }}
+            {% endif %}
+
+            {% if mode == 'new' %}
+                {{ form_row(form.save, { 'label': 'create new content type' }) }}
+            {% endif %}
+
+            {% if mode == 'edit' %}
+                {{ form_row(form.save, { 'label': 'save changes' }) }}
+            {% endif %}
+        </div>
+    </div>
+
+
+
+
+    {{ form_end(form) }}
+
+
+    <script>
+
+
+    </script>
+
+{% endblock %}

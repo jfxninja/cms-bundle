@@ -1,0 +1,125 @@
+{% extends 'SSoneCMSBundle::CMSAdmin.base.html.twig' %}
+
+
+{% block body %}
+    <div class="row">
+        <div class="column small-8">
+        {% if mode == 'delete' %}
+            <h1>Delete {{ menuItemTitle }}</h1>
+            <p>Are you sure you want to delete this content type?</p>
+        {% endif %}
+
+        {% if mode == 'new' %}
+            <h1>Create new module</h1>
+            <p>Changes are not saved until clicking the 'save new' button.</p>
+        {% endif %}
+
+        {% if mode == 'edit' %}
+            <h1>Editing {{ menuItemTitle }} ({{ locale }})</h1>
+            <p>Changes are not saved until you commit changes.</p>
+        {% endif %}
+
+        </div>
+        <div class="language-menu column small-4">
+            {% if altLinks|length > 1 %}
+                <dl class="sub-nav">
+                    {% for link in altLinks %}
+                        {% if link.code == locale %}
+                            <dd class="active" ><a class="noclick">{{ link.name }}</a> |</dd>
+                        {% else %}
+                            <dd><a href="{{ link.link }}">{{ link.name }}</a> |</dd>
+                        {% endif %}
+                    {% endfor %}
+                </dl>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if form.delete is defined %}
+        Are you sure you want to delete this content?
+    {% endif %}
+
+
+    <div class="row column">
+
+
+        {{ form_start(form) }}
+        <fieldset>
+            <legend>Module Details</legend>
+            <div class="row">
+                <div class="column small-5">
+                    {{ form_row(form.name) }}
+                </div>
+                <div class="column small-5">
+                    {{ form_row(form.title) }}
+                </div>
+                <div class="column small-2">
+                    {{ form_row(form.sort) }}
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="column small-12">
+                    {{ form_row(form.description) }}
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Module Position and Attachment</legend>
+            <div class="row">
+                <div class="column small-12">
+                    {{ form_row(form.urlMatchExpression) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="column small-5">
+                    {{ form_row(form.templatePosition) }}
+                </div>
+                <div class="column small-4">
+                    {{ form_row(form.templatePath) }}
+                </div>
+                <div class="column small-3">
+                    {{ form_row(form.file_templatePath) }}
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Module Display</legend>
+            <div class="row">
+                <div class="column small-6">
+                    {{ form_row(form.type) }}
+                </div>
+                <div class="column small-6">
+                    {{ form_row(form.form) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="column small-3">
+                    {{ form_row(form.contentType) }}
+                </div>
+                <div class="column small-3">
+                    {{ form_row(form.singleContentItem) }}
+                </div>
+                <div class="column small-3">
+                    {{ form_row(form.contentFilterField) }}
+                </div>
+                <div class="column small-3">
+                    {{ form_row(form.contentFilterValue) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="column small-6">
+                    {{ form_row(form.contentOrderByField) }}
+                </div>
+                <div class="column small-6">
+                    {{ form_row(form.contentOrderByValue) }}
+                </div>
+            </div>
+        </fieldset>
+
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

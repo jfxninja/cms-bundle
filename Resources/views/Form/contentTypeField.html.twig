@@ -1,0 +1,45 @@
+
+
+
+<div class="column small-3">{{ form_row(form.name) }}</div>
+<div class="column small-3">{{ form_row(form.variableName) }}</div>
+<div class="column small-4">{{ form_row(form.label) }}</div>
+<a class="column small-2 button expand-handle" href="#{{ id }}panel{{ index }}">Expand/Collapse</a>
+
+
+<div id="{{ id }}panel{{ index }}" class="content">
+    <div class="row">
+        <div class="column small-6">{{ form_row(form.repeatableGroupLabel) }}</div>
+        <div class="column small-6">{{ form_row(form.isRepeatable) }}</div>
+    </div>
+
+    <div class="row">
+        <div class="column small-6">{{ form_row(form.requiredText) }}</div>
+        <div class="column small-6">{{ form_row(form.isRequired) }}</div>
+    </div>
+
+    <div class="row">
+        <div class="column small-6">{{ form_row(form.fieldType) }}</div>
+    </div>
+
+{# relies on the fieldsetup topions lookup sorting by field type name #}
+
+    {% set lastClass = ""%}
+    <div class="row">
+    {% for field in form.fieldTypeSettings %}
+
+        {% set thisClass = field.vars.attr.class|split(' ') %}
+
+        {% if lastClass|first !=  thisClass|first %}
+            </div>
+
+            <div class="row field-type-settings {{ thisClass|first }}">
+        {% endif %}
+
+        <div class="column small-3 left">{{ form_row(field) }}</div>
+
+        {% set lastClass = field.vars.attr.class|split(' ') %}
+    {% endfor %}
+    </div>
+</div>
+{{ form_row(form.sort) }}

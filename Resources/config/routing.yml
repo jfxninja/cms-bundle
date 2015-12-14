@@ -1,0 +1,274 @@
+
+ssone_cms_admin:
+    pattern:  /{admin}/
+    defaults: { _controller: SSoneCMSBundle:Default:index}
+    requirements:
+      admin: ^admin$
+
+#Content Controller
+ssone_cms_admin_content_attributes:
+    pattern:  /admin/content/attributes/{securekey}/{_locale}
+    defaults: { _controller: SSoneCMSBundle:ContentTypeAttributes:edit, mode: edit, _locale: %SSone.default_locale% }
+
+ssone_cms_admin_content_new:
+    pattern:  /admin/content/new
+    defaults: { _controller: SSoneCMSBundle:Content:new, mode: new }
+
+ssone_cms_admin_content_edit:
+    pattern:  /admin/content/edit/{securekey}/{_locale}
+    defaults: { _controller: SSoneCMSBundle:Content:edit, mode: edit, _locale: %SSone.default_locale% }
+
+ssone_cms_admin_content_delete:
+    pattern:  /admin/content/delete/{securekey}
+    defaults: { _controller: SSoneCMSBundle:Content:delete, mode: delete }
+
+
+ssone_cms_admin_content_list_default:
+    pattern:  /admin/content/
+    defaults: { _controller: SSoneCMSBundle:Content:index, mode: list, _locale: %SSone.default_locale%, securekey: not-specified }
+
+
+ssone_cms_admin_content_list:
+    pattern:  /admin/content/{securekey}/{_locale}
+    defaults: { _controller: SSoneCMSBundle:Content:index, mode: list, _locale: %SSone.default_locale%, securekey: not-specified }
+
+
+#CMS Admin Navigation
+ssone_cms_admin_wysiwyg_image_upload:
+    pattern:  /admin/wysiwyg_image_upload/{sfid}
+    defaults: { _controller: SSoneCMSBundle:WYSIWYGImageUpload:storeImage }
+
+
+#ContentType Controller
+ssone_cms_admin_contentTypes_list:
+    pattern:  /admin/content-types/
+    defaults: { _controller: SSoneCMSBundle:ContentTypes:index, mode: list }
+
+ssone_cms_admin_contentTypes_new:
+    pattern:  /admin/content-types/new
+    defaults: { _controller: SSoneCMSBundle:ContentTypes:new, mode: new }
+
+ssone_cms_admin_contentTypes_edit:
+    pattern:  /admin/content-types/edit/{securekey}/{_locale}
+    defaults: { _controller: SSoneCMSBundle:ContentTypes:edit, mode: edit, _locale: %SSone.default_locale% }
+
+ssone_cms_admin_contentTypes_delete:
+    pattern:  /admin/content-types/delete/{securekey}
+    defaults: { _controller: SSoneCMSBundle:ContentTypes:delete, mode: delete }
+
+
+#Domains Controller
+ssone_cms_admin_domains_list:
+    pattern:  /admin/domains/
+    defaults: { _controller: SSoneCMSBundle:Domains:index, mode: list }
+
+ssone_cms_admin_domains_new:
+    pattern:  /admin/domains/new
+    defaults: { _controller: SSoneCMSBundle:Domains:new, mode: new }
+
+ssone_cms_admin_domains_edit:
+    pattern:  /admin/domains/edit/{securekey}
+    defaults: { _controller: SSoneCMSBundle:Domains:edit, mode: edit }
+
+ssone_cms_admin_domains_delete:
+    pattern:  /admin/domains/delete/{securekey}
+    defaults: { _controller: SSoneCMSBundle:Domains:delete, mode: delete }
+
+
+#Languages Controller
+ssone_cms_admin_languages_list:
+    pattern:  /admin/languages/
+    defaults: { _controller: SSoneCMSBundle:Languages:index, mode: list }
+
+ssone_cms_admin_languages_new:
+    pattern:  /admin/languages/new
+    defaults: { _controller: SSoneCMSBundle:Languages:new, mode: new }
+
+ssone_cms_admin_languages_edit:
+    pattern:  /admin/languages/edit/{securekey}
+    defaults: { _controller: SSoneCMSBundle:Languages:edit, mode: edit }
+
+ssone_cms_admin_languages_delete:
+    pattern:  /admin/languages/delete/{securekey}
+    defaults: { _controller: SSoneCMSBundle:Languages:delete, mode: delete }
+
+
+#Menus Controller
+ssone_cms_admin_menus_list:
+    pattern:  /admin/menus/
+    defaults: { _controller: SSoneCMSBundle:Menus:index, mode: list }
+
+ssone_cms_admin_menus_new:
+    pattern:  /admin/menus/new
+    defaults: { _controller: SSoneCMSBundle:Menus:new, mode: new }
+
+ssone_cms_admin_menus_edit:
+    pattern:  /admin/menus/edit/{securekey}
+    defaults: { _controller: SSoneCMSBundle:Menus:edit, mode: edit }
+
+ssone_cms_admin_menus_delete:
+    pattern:  /admin/menus/delete/{securekey}
+    defaults: { _controller: SSoneCMSBundle:Menus:delete, mode: delete }
+
+
+#MenuItems Controller
+ssone_cms_admin_menuItems_list:
+    pattern:  /admin/menu-items/
+    defaults: { _controller: SSoneCMSBundle:MenuItems:index, mode: list }
+
+ssone_cms_admin_menuItems_new:
+    pattern:  /admin/menu-items/new
+    defaults: { _controller: SSoneCMSBundle:MenuItems:new, mode: new }
+
+ssone_cms_admin_menuItems_edit:
+    pattern:  /admin/menu-items/edit/{securekey}/{_locale}
+    defaults: { _controller: SSoneCMSBundle:MenuItems:edit, mode: edit, _locale: %SSone.default_locale% }
+
+ssone_cms_admin_menuItems_delete:
+    pattern:  /admin/menu-items/delete/{securekey}
+    defaults: { _controller: SSoneCMSBundle:MenuItems:delete, mode: delete }
+
+ssone_cms_admin_menuItems_ajax_contentTypeCategories:
+    pattern:  /admin/menu-items/ajax/contentTypeCategories
+    defaults: { _controller: SSoneCMSBundle:AjaxValueLists:getContentTypeCategoryFields }
+
+ssone_cms_admin_menuItems_ajax_contentTypeCategoryRelatedField:
+    pattern:  /admin/menu-items/ajax/ContentTypeCategoryRelatedFields
+    defaults: { _controller: SSoneCMSBundle:AjaxValueLists:getContentTypeCategoryRelatedFields }
+
+
+
+
+#Modules Controller
+ssone_cms_admin_modules_list:
+    pattern:  /admin/modules/
+    defaults: { _controller: SSoneCMSBundle:Modules:index, mode: list }
+
+ssone_cms_admin_modules_new:
+    pattern:  /admin/modules/new
+    defaults: { _controller: SSoneCMSBundle:Modules:new, mode: new }
+
+ssone_cms_admin_modules_edit:
+    pattern:  /admin/modules/edit/{securekey}/{_locale}
+    defaults: { _controller: SSoneCMSBundle:Modules:edit, mode: edit, _locale: %SSone.default_locale% }
+
+ssone_cms_admin_modules_delete:
+    pattern:  /admin/modules/delete/{securekey}
+    defaults: { _controller: SSoneCMSBundle:Modules:delete, mode: delete }
+
+ssone_cms_admin_modules_ajax_moduleContentDisplayOptions:
+    pattern:  /admin/modules/ajax/moduleContentDisplayOptions
+    defaults: { _controller: SSoneCMSBundle:AjaxValueLists:getModuleContentDisplayOptions }
+
+ssone_cms_admin_modules_ajax_getModuleFilterValueOptions:
+    pattern:  /admin/modules/ajax/getModuleFilterValueOptions
+    defaults: { _controller: SSoneCMSBundle:AjaxValueLists:getModuleFilterValueOptions }
+
+
+
+#CMS admin CMSForms Controller
+ssone_cms_admin_cmsforms_list:
+    pattern:  /admin/cmsforms/
+    defaults: { _controller: SSoneCMSBundle:CMSForms:index, mode: list }
+
+ssone_cms_admin_cmsforms_new:
+    pattern:  /admin/cmsforms/new
+    defaults: { _controller: SSoneCMSBundle:CMSForms:new, mode: new }
+
+ssone_cms_admin_cmsforms_edit:
+    pattern:  /admin/cmsforms/edit/{securekey}/{_locale}
+    defaults: { _controller: SSoneCMSBundle:CMSForms:edit, mode: edit, _locale: %SSone.default_locale%  }
+
+ssone_cms_admin_cmsforms_delete:
+    pattern:  /admin/cmsforms/delete/{securekey}
+    defaults: { _controller: SSoneCMSBundle:CMSForms:delete, mode: delete }
+
+#CMS admin User management Controller
+ssone_cms_admin_users_list:
+    pattern:  /admin/users/
+    defaults: { _controller: SSoneCMSBundle:Users:index, mode: list }
+
+ssone_cms_admin_users_new:
+    pattern:  /admin/users/new
+    defaults: { _controller: SSoneCMSBundle:Users:new, mode: new }
+
+ssone_cms_admin_users_edit:
+    pattern:  /admin/users/edit/{securekey}
+    defaults: { _controller: SSoneCMSBundle:Users:edit, mode: edit }
+
+ssone_cms_admin_users_delete:
+    pattern:  /admin/cmsforms/delete/{securekey}
+    defaults: { _controller: SSoneCMSBundle:Users:delete, mode: delete }
+
+
+#CMS Admin Navigation
+ssone_cms_admin_navigation:
+    pattern:  /admin/navigation
+    defaults: { _controller: SSoneCMSBundle:AdminNavigation:drawAdminNavigation }
+
+
+
+#Generic Entity Manager Controller
+ssone_cms_admin_entity_manager_index:
+    pattern:  /admin/entity-manager/{entity}/
+    defaults: { _controller: SSoneCMSBundle:EntityManager:crud, mode: list, sid: null }
+
+ssone_cms_admin_entity_manager:
+    pattern:  /admin/entity-manager/{entity}/{mode}/{sid}
+    defaults: { _controller: SSoneCMSBundle:EntityManager:crud, mode: list, sid: null }
+
+
+
+login:
+    path:   /login
+    defaults:  { _controller: SSoneCMSBundle:Security:login }
+
+login_check:
+    path:   /admin/login_check
+
+logout:
+    path:   /admin/logout
+
+ssone_cms_install:
+    pattern: /maintenance/install
+    defaults: { _controller: SSoneCMSBundle:Maintenance:cmsInstall }
+
+
+#Main CMS front controller
+ssone_cms_frontend:
+    pattern:  /{_locale}/{uri}
+    defaults: { _controller: SSoneCMSBundle:Front:index, _locale: %SSone.default_locale%}
+    methods:  [GET]
+    requirements:
+      uri: ^((?!(admin|login|logout)).)*$
+      _locale: en|fr|es
+
+
+ssone_cms_frontend_noloco:
+    pattern:  /{uri}
+    defaults: { _controller: SSoneCMSBundle:Front:index, _locale: %SSone.default_locale%}
+    methods: [GET]
+    requirements:
+      uri: ^((?!(admin|login|logout)).)*$
+
+
+#Main CMS front controller
+ssone_cms_frontend_post:
+    pattern:  /{_locale}/{uri}
+    defaults: { _controller: SSoneCMSBundle:Front:index, _locale: %SSone.default_locale%}
+    methods: [POST]
+    requirements:
+      _locale: en|fr|es
+      uri: (.+|)
+
+
+ssone_cms_frontend_noloco_post:
+    pattern:  /{uri}
+    defaults: { _controller: SSoneCMSBundle:Front:index, _locale: %SSone.default_locale%}
+    methods: [POST]
+    requirements:
+      _locale: en|fr|es
+      uri: (.+|)
+
+
+
