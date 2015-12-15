@@ -45,7 +45,7 @@ class Block {
     protected $createdAt;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(name="modifiedAt", type="datetime")
      */
     protected $modifiedAt;
 
