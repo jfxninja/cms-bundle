@@ -254,7 +254,6 @@ class BlockField {
 
         $c = $this->getFieldContent();
 
-        var_dump($fieldContent);
         //loop through field inputs
         foreach($fieldContent as $k=>$input)
         {
@@ -287,7 +286,6 @@ class BlockField {
                 }
                 else //The data is an array but not multilangage
                 {
-                    var_dump($input);
                     $c[$k] = $input;
                 }
 
