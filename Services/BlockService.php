@@ -257,7 +257,6 @@ class BlockService extends EntityRepository
 
                         $blockFieldContents[$params[0]] = $file;
                         unset($blockFieldContents[$input->getName()]);
-
                         $blockFieldObj->setFieldContent($blockFieldContents);
                         //update the record
 

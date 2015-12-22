@@ -40,7 +40,6 @@ class FileUploader
         if($file)
         {
 
-
             $fileName = $this->makeSafe($file->getClientOriginalName());
 
             $path  = __DIR__.'/../../../../web/assets/'.$folder;
@@ -48,8 +47,6 @@ class FileUploader
             $this->upload($file,$path,$fileName);
 
             $fp = '/'.$folder.'/'.$fileName;
-
-
 
             return $fp;
         }

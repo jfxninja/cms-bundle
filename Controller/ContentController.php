@@ -128,7 +128,6 @@ class ContentController extends Controller
 
                     $em->flush();
                     $this->cacheContent($content->getId(),$cs,$em);
-
                     break;
 
                 case "new":

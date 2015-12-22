@@ -254,6 +254,7 @@ class BlockField {
 
         $c = $this->getFieldContent();
 
+        var_dump($fieldContent);
         //loop through field inputs
         foreach($fieldContent as $k=>$input)
         {
@@ -264,7 +265,7 @@ class BlockField {
 
                 foreach(array_keys($input) as $arrayKey)
                 {
-                    if(!preg_match('/[a-z]{2}/', $arrayKey))
+                    if(strlen($arrayKey) > 2)
                     {
                         $isMultiLanguage = false;
                     }
@@ -286,6 +287,7 @@ class BlockField {
                 }
                 else //The data is an array but not multilangage
                 {
+                    var_dump($input);
                     $c[$k] = $input;
                 }
 
@@ -296,7 +298,6 @@ class BlockField {
                 $c[$k] = $input;
             }
         }
-
 
         $this->fieldContent = $c;
 
