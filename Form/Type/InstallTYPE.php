@@ -13,7 +13,7 @@ class InstallTYPE extends AbstractType
         $builder
             ->add('username', 'text')
             ->add('email', 'text')
-            ->add('password', 'text')
+            ->add('password', 'password')
             ->add('domain', 'text')
             ->add('dev_domain', 'text')
             ->add('save', 'submit', array('label'=> 'Install'));
