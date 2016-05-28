@@ -266,7 +266,7 @@ class BlockFieldInputsBuilder extends AbstractType
                 break;
 
             case "wysiwyg":
-
+/*
                 $form->add($variableName, 'textarea',
                     array(
                         'label'=>$label,
@@ -281,6 +281,40 @@ class BlockFieldInputsBuilder extends AbstractType
                 );
 
 
+                break;
+*/
+
+                if(isset($fieldSettings['wysiwyg']['wysiwygtrans']) && $fieldSettings['wysiwyg']['wysiwygtrans'])
+                {
+                    $form->add($variableName, 'multiLanguageTextarea',
+                        array(
+                            'label'=>$label,
+                            "locale"=>$this->locale,
+                            "required"=>false,
+                            'attr' => array(
+                                'class'=>'wysiwyg-field',
+                                'data-options'=> $fieldSettings['wysiwyg']['wysiwygsetupoptions'],
+                                'sfid'=> $securekey
+                            ),
+                            'constraints' => $constraints,
+
+                        ));
+                }
+                else
+                {
+                    $form->add($variableName, 'textarea',
+                        array(
+                            'label'=>$label,
+                            'attr' => array(
+                                'class'=>'wysiwyg-field',
+                                'data-options'=> $fieldSettings['wysiwyg']['wysiwygsetupoptions'],
+                                'sfid'=> $securekey
+                            ),
+                            "required"=>false,
+                            "constraints"=>$constraints
+                        )
+                    );
+                }
                 break;
 
             case "form":

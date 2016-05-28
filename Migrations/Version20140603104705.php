@@ -65,9 +65,20 @@ class Version20140603104705 extends AbstractMigration implements ContainerAwareI
             ->setVariableName("wysiwygsetupoptions")
             ->setFieldType($wysiwyg);
 
+        $wysiwygTrans= new FieldSetupOptions();
+        $wysiwygTrans
+            ->setCreatedBy("migration")
+            ->setModifiedBy("migration")
+            ->setName("WYSIWYG translatable")
+            ->setLabel("Is translatable")
+            ->setInputType("checkbox")
+            ->setVariableName("wysiwygtrans")
+            ->setFieldType($wysiwyg);
+
         $em->persist($wysiwyg);
         $em->persist($wysiwygOptions);
         $em->persist($wysiwygUploadPath);
+        $em->persist($wysiwygTrans);
         $em->flush();
     }
 

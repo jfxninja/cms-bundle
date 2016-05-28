@@ -26,7 +26,6 @@ class MaintenanceController extends Controller
     {
 
 
-
         $cmsMigrationService = $this->get('ssone.cms.migration');
 
         $em = $this->getDoctrine()->getManager();
@@ -35,7 +34,7 @@ class MaintenanceController extends Controller
             ->getRepository('SSoneCMSBundle:User')
             ->findAll();
 
-        if($users) return new RedirectResponse('/');
+        //if($users) return new RedirectResponse('/');
 
         $form = $this->createForm(new InstallTYPE());
 

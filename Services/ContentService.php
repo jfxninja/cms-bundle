@@ -738,6 +738,7 @@ class ContentService extends EntityRepository
                         $fieldIsTranslatable = false;
                         if(($bf['fieldType'] == "text" && $bf['fieldTypeSettings']['text']['texttrans'])) $fieldIsTranslatable = true;
                         if(($bf['fieldType'] == "textarea" && $bf['fieldTypeSettings']['textarea']['textareatrans'])) $fieldIsTranslatable = true;
+                        if(($bf['fieldType'] == "wysiwyg" && $bf['fieldTypeSettings']['wysiwyg']['wysiwygtrans'])) $fieldIsTranslatable = true;
                         if(($bf['fieldType'] == "form" && $bf['fieldTypeSettings']['form']['multilanguageform'])) $fieldIsTranslatable = true;
 
 
