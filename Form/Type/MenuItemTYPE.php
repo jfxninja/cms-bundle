@@ -40,8 +40,8 @@ class MenuItemTYPE extends AbstractType
         $builder
             ->add('name', 'multiLanguageText', array("locale"=>$this->locale))
             ->add('sort', 'text')
-            ->add('domain_template_override', 'text')
-            ->add('hide', 'checkbox', array('label' => 'Hide from menus'))
+            ->add('domain_template_override', 'text',array('required'=>false))
+            ->add('hide', 'checkbox', array('label' => 'Hide from menus'),array('required'=>false))
             ->add('slug', 'multiLanguageText', array("locale"=>$this->locale))
             ->add('pageClass', 'text', array('required'=>false))
             ->add('pageTitle', 'multiLanguageText', array("locale"=>$this->locale))
