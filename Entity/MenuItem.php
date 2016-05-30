@@ -35,6 +35,16 @@ class MenuItem {
     private $createdBy;
 
     /**
+     * @ORM\Column(name="domain_template_override", type="string", length=32)
+     */
+    private $domain_template_override;
+
+    /**
+     * @ORM\Column(name="hide", type="boolean")
+     */
+    private $hide;
+
+    /**
      * @ORM\Column(name="modifiedBy", type="string", length=120)
      */
     private $modifiedBy;
@@ -939,5 +949,53 @@ class MenuItem {
     public function getPageClass()
     {
         return $this->pageClass;
+    }
+
+    /**
+     * Set domainTemplateOverride
+     *
+     * @param string $domainTemplateOverride
+     *
+     * @return MenuItem
+     */
+    public function setDomainTemplateOverride($domainTemplateOverride)
+    {
+        $this->domain_template_override = $domainTemplateOverride;
+
+        return $this;
+    }
+
+    /**
+     * Get domainTemplateOverride
+     *
+     * @return string
+     */
+    public function getDomainTemplateOverride()
+    {
+        return $this->domain_template_override;
+    }
+
+    /**
+     * Set hide
+     *
+     * @param boolean $hide
+     *
+     * @return MenuItem
+     */
+    public function setHide($hide)
+    {
+        $this->hide = $hide;
+
+        return $this;
+    }
+
+    /**
+     * Get hide
+     *
+     * @return boolean
+     */
+    public function getHide()
+    {
+        return $this->hide;
     }
 }

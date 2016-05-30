@@ -87,7 +87,7 @@ class Navigation extends EntityRepository
             $stopwatch->stop('SSone::handleURL::formatNavigationForTemplate');
 
             $stopwatch->start('SSone::handleURL::getDomainTemplate');
-            $this->domainTemplate = $this->getDomainTemplate($host);
+            $this->domainTemplate = $this->getDomainTemplate($host,$this->activeMenuItem);
             $stopwatch->stop('SSone::handleURL::getDomainTemplate');
 
         }
@@ -98,7 +98,7 @@ class Navigation extends EntityRepository
             $this->activeMenuItem = $this->findActiveMenuItem($this->domainMenusItems,$uri,$host);
             $this->navigationMap = $this->buildNestedNavigationArray($host,$this->activeMenuItem);
             $this->templateNavigationMap = $this->formatNavigationForTemplate($this->navigationMap);
-            $this->domainTemplate = $this->getDomainTemplate($host);
+            $this->domainTemplate = $this->getDomainTemplate($host,$this->activeMenuItem);
 
         }
 
@@ -350,6 +350,8 @@ class Navigation extends EntityRepository
                   s0_.pageTitle,
                   s0_.pageClass,
                   s0_.metaDescription,
+                  s0_.domain_template_override,
+                  s0_.hide,
                   s0_.mode AS mode,
                   s0_.grandChildrenRelativePosition AS grandChildrenRelativePosition,
                   s0_.drawAllGrandChildren AS drawAllGrandChildren,
@@ -415,6 +417,8 @@ class Navigation extends EntityRepository
                         mi.slug,
                         mi.slug AS mlSlug,
                         mi.mode,
+                        mi.domain_template_override,
+                        mi.hide,
                         mi.grandChildrenRelativePosition,
                         mi.drawAllGrandChildren,
                         mi.grandChildrenTemplatePosition,
@@ -1130,6 +1134,7 @@ class Navigation extends EntityRepository
                         "id"=>$menuItem['id'],
                         'parentId' => $parentId,
                         "pageClass"=>$menuItem['pageClass'],
+                        "hide"=>$menuItem['hide'],
                         "cSlug"=>$menuItem['cSlug'],
                         "ctSlug"=>$menuItem['ctSlug'],
                         "mlSlug"=>$menuItem['mlSlug'],
@@ -1551,15 +1556,23 @@ class Navigation extends EntityRepository
     /**
      * function getDomainTemplate
      * @param $host
+     * @param $activeMenuItem
      * @return string
      */
-    private function getDomainTemplate($host)
+    private function getDomainTemplate($host,$activeMenuItem)
     {
-        $domain = $this->em
-            ->getRepository('SSoneCMSBundle:Domain')->getDomain($host);
-        if($domain->getThemeBundleName() && $domain->getDomainHTMLTemplate()) {
-            return $domain->getThemeBundleName() . ':' . $domain->getDomainHTMLTemplate();
+        if($activeMenuItem['domain_template_override'])
+        {
+            return $activeMenuItem['domain_template_override'];
         }
+        else{
+            $domain = $this->em
+                ->getRepository('SSoneCMSBundle:Domain')->getDomain($host);
+            if($domain->getThemeBundleName() && $domain->getDomainHTMLTemplate()) {
+                return $domain->getThemeBundleName() . ':' . $domain->getDomainHTMLTemplate();
+            }
+        }
+
     }
 
 

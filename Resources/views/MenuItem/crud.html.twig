@@ -69,7 +69,7 @@
             </div>
         </fieldset>
         <fieldset>
-            <legend>Menu positions and attachment</legend>
+            <legend>Display, menu positions and attachment</legend>
             <div class="row">
                 <div class="column small-4">
                     {{ form_row(form.mapAttached) }}
@@ -90,6 +90,14 @@
                 </div>
                 <div class="column small-4">
                     {{ form_row(form.drawAllGrandChildren) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="column small-8">
+                    {{ form_row(form.domain_template_override) }}
+                </div>
+                <div class="column small-4">
+                    {{ form_row(form.hide) }}
                 </div>
             </div>
 

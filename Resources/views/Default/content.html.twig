@@ -5,8 +5,7 @@
 <p>
     {% for key, field in content %}
         {% if key not in ['contentSlug','attributes'] %}
-
-            {{ dump(field) }}
+            {{ field|raw }}
         {% endif %}
     {% endfor %}
 </p>
