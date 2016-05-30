@@ -35,7 +35,7 @@ class MenuItem {
     private $createdBy;
 
     /**
-     * @ORM\Column(name="domain_template_override", type="string")
+     * @ORM\Column(name="domain_template_override", type="string", nullable=true)
      */
     private $domain_template_override;
 
