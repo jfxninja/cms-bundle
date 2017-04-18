@@ -1,12 +1,12 @@
 <?php
 
-namespace SSone\CMSBundle\Controller;
+namespace JfxNinja\CMSBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use SSone\CMSBundle\Entity\ContentType;
-use SSone\CMSBundle\Form\Type\ContentTypeTYPE;
+use JfxNinja\CMSBundle\Entity\ContentType;
+use JfxNinja\CMSBundle\Form\Type\ContentTypeTYPE;
 use Doctrine\Common\Collections\ArrayCollection;
 
 
@@ -17,12 +17,12 @@ class ContentTypesController extends Controller
     {
 
         $contentType = $this->getDoctrine()
-            ->getRepository('SSoneCMSBundle:ContentType')
+            ->getRepository('JfxNinjaCMSBundle:ContentType')
             ->getItemsForListTable();
 
 
         return $this->render(
-            'SSoneCMSBundle:AdminTemplates:standardList.html.twig',
+            'JfxNinjaCMSBundle:AdminTemplates:standardList.html.twig',
             array(
                 "items" => $contentType,
                 "title" => "Content Types"
@@ -67,7 +67,7 @@ class ContentTypesController extends Controller
         }
         else
         {
-            $contentType = $this->getDoctrine()->getRepository('SSoneCMSBundle:ContentType')->findBySecurekey($securekey);
+            $contentType = $this->getDoctrine()->getRepository('JfxNinjaCMSBundle:ContentType')->findBySecurekey($securekey);
 
 
             // Create an ArrayCollection of the current field variable objects in the database
@@ -96,7 +96,7 @@ class ContentTypesController extends Controller
         {
 
 
-            $auditor = $this->get('ssone.cms.recordauditor');
+            $auditor = $this->get('jfxninja.cms.recordauditor');
             $auditor->auditRecord($contentType);
 
 
@@ -167,12 +167,12 @@ class ContentTypesController extends Controller
 
 
             return $this->redirect(
-                $this->generateUrl('ssone_cms_admin_contentTypes_list')
+                $this->generateUrl('jfxninja_cms_admin_contentTypes_list')
             );
         }
 
 
-        return $this->render('SSoneCMSBundle:ContentTypes:crud.html.twig', array(
+        return $this->render('JfxNinjaCMSBundle:ContentTypes:crud.html.twig', array(
             'form' => $form->createView(),
             'mode' => $mode,
             'fieldOptions' => $fieldSetupOptions,
@@ -194,7 +194,7 @@ class ContentTypesController extends Controller
     {
 
         return $this->getDoctrine()
-            ->getRepository('SSoneCMSBundle:FieldSetupOptions')
+            ->getRepository('JfxNinjaCMSBundle:FieldSetupOptions')
             ->getAllFieldSetupOptions();
 
     }
@@ -217,7 +217,7 @@ class ContentTypesController extends Controller
     private function handleUploads($form,$fields,$contentType)
     {
 
-        $uploader = $this->get('ssone.cms.fileuploader');
+        $uploader = $this->get('jfxninja.cms.fileuploader');
 
         foreach($fields as $field=>$function)
         {

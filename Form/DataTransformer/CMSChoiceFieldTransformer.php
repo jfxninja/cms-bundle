@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Form\DataTransformer;
+namespace JfxNinja\CMSBundle\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
 

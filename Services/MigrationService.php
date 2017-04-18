@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Services;
+namespace JfxNinja\CMSBundle\Services;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -9,7 +9,7 @@ use Doctrine\DBAL\Migrations\Migration;
 use Doctrine\DBAL\Migrations\Configuration\Configuration;
 use Doctrine\ORM\EntityManager;
 
-use SSone\CMSBundle\SSoneCMSBundle;
+use JfxNinja\CMSBundle\JfxNinjaCMSBundle;
 
 /**
  * A simple service to audit record creation and modification with user and timestamp
@@ -35,11 +35,11 @@ class MigrationService
         $container = $this->container;
         $conn = $this->entityManager->getConnection();
 
-        $SSoneCMSbundle = new SSoneCMSBundle();
-        $dir = $SSoneCMSbundle->getPath() . "/Migrations";
+        $jfxninjaCMSbundle = new JfxNinjaCMSBundle();
+        $dir = $jfxninjaCMSbundle->getPath() . "/Migrations";
 
         $configuration = new Configuration($conn);
-        $configuration->setMigrationsNamespace('SSone\CMSBundle\Migrations');
+        $configuration->setMigrationsNamespace('jfxninja\CMSBundle\Migrations');
         $configuration->setMigrationsDirectory($dir);
         $configuration->registerMigrationsFromDirectory($dir);
         $configuration->setName('One CMS Migrations');

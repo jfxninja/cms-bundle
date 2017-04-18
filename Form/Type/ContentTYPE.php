@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Form\Type;
+namespace JfxNinja\CMSBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Doctrine\ORM\EntityRepository;
 
-use SSone\CMSBundle\Form\Type\Block\BlockTYPE;
+use JfxNinja\CMSBundle\Form\Type\Block\BlockTYPE;
 
 class ContentTYPE extends AbstractType
 {
@@ -49,7 +49,7 @@ class ContentTYPE extends AbstractType
         {
             $form
             ->add('contentType','entity',array(
-            'class' => 'SSoneCMSBundle:ContentType',
+            'class' => 'JfxNinjaCMSBundle:ContentType',
             'property' => 'name',
             'label' => 'Content Type',
             'query_builder' => function(EntityRepository $er) {
@@ -76,7 +76,7 @@ class ContentTYPE extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'SSone\CMSBundle\Entity\Content'
+            'data_class' => 'jfxninja\CMSBundle\Entity\Content'
         ));
     }
 

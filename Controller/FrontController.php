@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Controller;
+namespace JfxNinja\CMSBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,13 +28,13 @@ class FrontController extends Controller
         }
 
 
-        $navService = $this->get('ssone.cms.navigation');
-        $contentService = $this->get('ssone.cms.content');
-        $moduleService = $this->get('ssone.cms.module');
-        $blockService = $this->get('ssone.cms.block');
-        $CMSFormService = $this->get('ssone.cms.form');
+        $navService = $this->get('jfxninja.cms.navigation');
+        $contentService = $this->get('jfxninja.cms.content');
+        $moduleService = $this->get('jfxninja.cms.module');
+        $blockService = $this->get('jfxninja.cms.block');
+        $CMSFormService = $this->get('jfxninja.cms.form');
 
-        $localiser = $this->get('ssone.cms.localiser');
+        $localiser = $this->get('jfxninja.cms.localiser');
         $em = $this->getDoctrine()->getManager();
 
         //2)Resolve navigation request
@@ -68,13 +68,13 @@ class FrontController extends Controller
             {
 
                 return $this->redirect(
-                    $this->generateUrl('ssone_cms_frontend_noloco',$routeParams)
+                    $this->generateUrl('jfxninja_cms_frontend_noloco',$routeParams)
                 );
             }
             else
             {
                 return $this->redirect(
-                    $this->generateUrl('ssone_cms_frontend',$routeParams)
+                    $this->generateUrl('jfxninja_cms_frontend',$routeParams)
                 );
             }
 
@@ -93,11 +93,11 @@ class FrontController extends Controller
                 'Template: '. $navService->domainTemplate . ' was not found'
             );
 
-            $domainTemplate = 'SSoneCMSBundle:Default:domain.html.twig';
+            $domainTemplate = 'JfxNinjaCMSBundle:Default:domain.html.twig';
         }
         else
         {
-            $domainTemplate = 'SSoneCMSBundle:Default:domain.html.twig';
+            $domainTemplate = 'JfxNinjaCMSBundle:Default:domain.html.twig';
         }
 
         return $this->render(

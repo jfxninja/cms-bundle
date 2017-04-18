@@ -1,14 +1,14 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Util\SecureRandom;
 
 /**
- * @ORM\Entity(repositoryClass="SSone\CMSBundle\Entity\LanguageRepository")
+ * @ORM\Entity(repositoryClass="JfxNinja\CMSBundle\Entity\LanguageRepository")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="ssone_languages")
+ * @ORM\Table(name="ninjacms_languages")
  */
 class Language {
 

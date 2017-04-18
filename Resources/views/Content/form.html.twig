@@ -32,7 +32,7 @@
                             data-prototype="
                                 {% filter escape %}
                                     {% include
-                                    'SSoneCMSBundle:Content:content.collection.html.twig'
+                                    'JfxNinjaCMSBundle:Content:content.collection.html.twig'
                                     with {'form': fields.vars.prototype }
                                     %}
                                 {% endfilter %}
@@ -44,7 +44,7 @@
 
                                     {% for input in field %}
                                         {% include
-                                        'SSoneCMSBundle:Content:content.collection.html.twig'
+                                        'JfxNinjaCMSBundle:Content:content.collection.html.twig'
                                         with {'form': input}
                                         %}
                                     {% endfor %}

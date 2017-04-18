@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Form\Type;
+namespace JfxNinja\CMSBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,7 +20,7 @@ class MenuTYPE extends AbstractType
         $builder
             ->add('name', 'text')
             ->add('domain','entity',array(
-                'class' => 'SSoneCMSBundle:Domain',
+                'class' => 'JfxNinjaCMSBundle:Domain',
                 'property' => 'name',
                 'label' => 'Domain'
             ))
@@ -63,7 +63,7 @@ class MenuTYPE extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'SSone\CMSBundle\Entity\Menu'
+            'data_class' => 'jfxninja\CMSBundle\Entity\Menu'
         ));
     }
 

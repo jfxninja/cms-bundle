@@ -1,14 +1,14 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Util\SecureRandom;
 
 /**
- * @ORM\Entity(repositoryClass="SSone\CMSBundle\Entity\BlocksRepository")
+ * @ORM\Entity(repositoryClass="JfxNinja\CMSBundle\Entity\BlocksRepository")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="ssone_blocks")
+ * @ORM\Table(name="ninjacms_blocks")
  */
 class Block {
 
@@ -256,10 +256,10 @@ class Block {
     /**
      * Set field
      *
-     * @param \SSone\CMSBundle\Entity\field $field
+     * @param \jfxninja\CMSBundle\Entity\field $field
      * @return Block
      */
-    public function setField(\SSone\CMSBundle\Entity\field $field = null)
+    public function setField(\jfxninja\CMSBundle\Entity\field $field = null)
     {
         $this->field = $field;
 
@@ -269,7 +269,7 @@ class Block {
     /**
      * Get field
      *
-     * @return \SSone\CMSBundle\Entity\field
+     * @return \jfxninja\CMSBundle\Entity\field
      */
     public function getField()
     {
@@ -279,10 +279,10 @@ class Block {
     /**
      * Set contentType
      *
-     * @param \SSone\CMSBundle\Entity\ContentType $contentType
+     * @param \jfxninja\CMSBundle\Entity\ContentType $contentType
      * @return Block
      */
-    public function setContentType(\SSone\CMSBundle\Entity\ContentType $contentType = null)
+    public function setContentType(\jfxninja\CMSBundle\Entity\ContentType $contentType = null)
     {
         $this->contentType = $contentType;
 
@@ -292,7 +292,7 @@ class Block {
     /**
      * Get contentType
      *
-     * @return \SSone\CMSBundle\Entity\ContentType
+     * @return \jfxninja\CMSBundle\Entity\ContentType
      */
     public function getContentType()
     {
@@ -310,10 +310,10 @@ class Block {
     /**
      * Add blockField
      *
-     * @param \SSone\CMSBundle\Entity\BlockField $blockField
+     * @param \jfxninja\CMSBundle\Entity\BlockField $blockField
      * @return Block
      */
-    public function addBlockField(\SSone\CMSBundle\Entity\BlockField $blockField)
+    public function addBlockField(\jfxninja\CMSBundle\Entity\BlockField $blockField)
     {
 
         $blockField->setBlock($this);
@@ -326,9 +326,9 @@ class Block {
     /**
      * Remove blockField
      *
-     * @param \SSone\CMSBundle\Entity\BlockField $blockFields
+     * @param \jfxninja\CMSBundle\Entity\BlockField $blockFields
      */
-    public function removeBlockField(\SSone\CMSBundle\Entity\BlockField $blockFields)
+    public function removeBlockField(\jfxninja\CMSBundle\Entity\BlockField $blockFields)
     {
         $this->blockFields->removeElement($blockFields);
     }
@@ -369,10 +369,10 @@ class Block {
     /**
      * Set content
      *
-     * @param \SSone\CMSBundle\Entity\Content $content
+     * @param \jfxninja\CMSBundle\Entity\Content $content
      * @return Block
      */
-    public function setContent(\SSone\CMSBundle\Entity\Content $content = null)
+    public function setContent(\jfxninja\CMSBundle\Entity\Content $content = null)
     {
         $this->content = $content;
 
@@ -382,7 +382,7 @@ class Block {
     /**
      * Get content
      *
-     * @return \SSone\CMSBundle\Entity\Content
+     * @return \jfxninja\CMSBundle\Entity\Content
      */
     public function getContent()
     {

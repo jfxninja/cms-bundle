@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -17,7 +17,7 @@ class BlocksRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT c FROM SSoneCMSBundle:Block c WHERE c.securekey = :securekey'
+                'SELECT c FROM JfxNinjaCMSBundle:Block c WHERE c.securekey = :securekey'
             )->setParameter('securekey', $securekey)
             ->getSingleResult();
     }
@@ -32,7 +32,7 @@ class BlocksRepository extends EntityRepository
         );
         $data['items'] = $this->getEntityManager()
             ->createQuery(
-                'SELECT c.name, c.id, c.securekey FROM SSoneCMSBundle:Block c ORDER BY c.name ASC'
+                'SELECT c.name, c.id, c.securekey FROM JfxNinjaCMSBundle:Block c ORDER BY c.name ASC'
             )
             ->getResult();
         return $data;

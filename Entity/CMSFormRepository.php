@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -17,7 +17,7 @@ class CMSFormRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT c FROM SSoneCMSBundle:CMSForm c WHERE c.securekey = :securekey'
+                'SELECT c FROM JfxNinjaCMSBundle:CMSForm c WHERE c.securekey = :securekey'
             )->setParameter('securekey', $securekey)
             ->getSingleResult();
     }
@@ -44,7 +44,7 @@ class CMSFormRepository extends EntityRepository
                 c.sendAdminEmailOnSubmit,
                 c.adminEmailToAddress,
                 ct.name as contantType
-                FROM SSoneCMSBundle:CMSForm c
+                FROM JfxNinjaCMSBundle:CMSForm c
                 LEFT JOIN c.contentType ct
                 ORDER BY c.name ASC'
             )
@@ -83,7 +83,7 @@ class CMSFormRepository extends EntityRepository
                 f.adminEmailHTML,
                 f.formTitle,
                 ct.id AS contentTypeId
-                FROM SSoneCMSBundle:CMSForm f
+                FROM JfxNinjaCMSBundle:CMSForm f
                 LEFT JOIN f.contentType ct
                 WHERE f.id = :id'
             )->setParameter('id', $id)

@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -21,7 +21,7 @@ class menuItemsRepository extends EntityRepository
         $defaultLocale = $this->getEntityManager()
             ->createQuery(
                 'SELECT l.languageCode
-                FROM SSoneCMSBundle:Language l
+                FROM JfxNinjaCMSBundle:Language l
                 WHERE c.isDefault = 1'
             )
             ->getSingleResult();
@@ -33,7 +33,7 @@ class menuItemsRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT c FROM SSoneCMSBundle:MenuItem c WHERE c.securekey = :securekey'
+                'SELECT c FROM JfxNinjaCMSBundle:MenuItem c WHERE c.securekey = :securekey'
             )->setParameter('securekey', $securekey)
             ->getSingleResult();
     }
@@ -52,7 +52,7 @@ class menuItemsRepository extends EntityRepository
         $data['items'] = $this->getEntityManager()
             ->createQuery(
                 'SELECT c.name, c.id, c.slug, c.mode, c.mapAttached, c.securekey
-                FROM SSoneCMSBundle:MenuItem c
+                FROM JfxNinjaCMSBundle:MenuItem c
                 ORDER BY c.mapAttached, c.sort ASC'
             )
             ->getResult();
@@ -71,7 +71,7 @@ class menuItemsRepository extends EntityRepository
         return $this->getEntityManager()
             ->createQuery(
                 'SELECT m.id, m.mode, c.id AS contentId, ct.id AS contentTypeId, p.id AS parentId
-                FROM SSoneCMSBundle:MenuItem m
+                FROM JfxNinjaCMSBundle:MenuItem m
                 LEFT JOIN m.contentType ct
                 LEFT JOIN m.content c
                 LEFT JOIN m.parent p

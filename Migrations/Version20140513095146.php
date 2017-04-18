@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Migrations;
+namespace JfxNinja\CMSBundle\Migrations;
 
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-use SSone\CMSBundle\Entity\Language;
+use JfxNinja\CMSBundle\Entity\Language;
 
 /**
  * Auto-generated Migration: Please modify to your needs!

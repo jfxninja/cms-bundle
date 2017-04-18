@@ -1,14 +1,14 @@
 <?php
 
-namespace SSone\CMSBundle\Controller;
+namespace JfxNinja\CMSBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-use SSone\CMSBundle\Entity\Content;
+use JfxNinja\CMSBundle\Entity\Content;
 
-use SSone\CMSBundle\Form\Type\ContentTYPE;
+use JfxNinja\CMSBundle\Form\Type\ContentTYPE;
 
 
 
@@ -23,18 +23,18 @@ class ContentController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $content = $this->get('ssone.cms.content')->getItemsForListTable($ctSecurekey);
+        $content = $this->get('jfxninja.cms.content')->getItemsForListTable($ctSecurekey);
 
-        $contentType = $em->getRepository('SSoneCMSBundle:ContentType')->getContentListHeading($ctSecurekey);
+        $contentType = $em->getRepository('JfxNinjaCMSBundle:ContentType')->getContentListHeading($ctSecurekey);
 
         $subTitle = ($contentType) ? $contentType->getName() : 'No content type defined';
 
         //get content submenus
-        $smenus = $this->getDoctrine()->getRepository('SSoneCMSBundle:ContentType')->buildContentTypeMenu();
+        $smenus = $this->getDoctrine()->getRepository('JfxNinjaCMSBundle:ContentType')->buildContentTypeMenu();
 
 
         return $this->render(
-            'SSoneCMSBundle:Content:contentList.html.twig',
+            'JfxNinjaCMSBundle:Content:contentList.html.twig',
             array(
                 "items" => $content,
                 "menus" => $smenus,
@@ -72,12 +72,12 @@ class ContentController extends Controller
 
         $locale = $request->getLocale();
 
-        $ls = $this->get('ssone.cms.Localiser');
+        $ls = $this->get('jfxninja.cms.Localiser');
         $em = $this->getDoctrine()->getManager();
-        $cs = $this->get('ssone.cms.content');
+        $cs = $this->get('jfxninja.cms.content');
         $fieldsRepository = $this->getFieldsRepository();
-        $blockService = $this->get('ssone.cms.block');
-        $CMSFormService = $this->get('ssone.cms.form');
+        $blockService = $this->get('jfxninja.cms.block');
+        $CMSFormService = $this->get('jfxninja.cms.form');
 
         $altLinks = $ls->getAltAdminLangLinks($request->getUri());
 
@@ -101,7 +101,7 @@ class ContentController extends Controller
         $form->handleRequest($request);
         if ($form->isValid())
         {
-            $auditor = $this->get('ssone.cms.recordauditor');
+            $auditor = $this->get('jfxninja.cms.recordauditor');
             $auditor->auditRecord($content);
 
             switch($mode)
@@ -136,7 +136,7 @@ class ContentController extends Controller
                     $storedContent = $cs->findSecureKeyById($content->getId());
                     $this->cacheContent($content->getId(),$cs,$em);
                     return $this->redirect(
-                        $this->generateUrl('ssone_cms_admin_content_edit',array('securekey' => $storedContent['securekey']))
+                        $this->generateUrl('jfxninja_cms_admin_content_edit',array('securekey' => $storedContent['securekey']))
                     );
                     break;
 
@@ -150,12 +150,12 @@ class ContentController extends Controller
 
 
             return $this->redirect(
-                $this->generateUrl('ssone_cms_admin_content_list', array('securekey' => $content->getContentType()->getSecurekey()))
+                $this->generateUrl('jfxninja_cms_admin_content_list', array('securekey' => $content->getContentType()->getSecurekey()))
             );
         }
 
 
-        return $this->render('SSoneCMSBundle:Content:crud.html.twig', array(
+        return $this->render('JfxNinjaCMSBundle:Content:crud.html.twig', array(
             'form' => $form->createView(),
             'contentTitle' => $content->getName(),
             'mode' => $mode,
@@ -172,7 +172,7 @@ class ContentController extends Controller
     private function cacheContent($id,$cs,$em)
     {
 
-        $languages = $em->getRepository('SSoneCMSBundle:Language')->findAll();
+        $languages = $em->getRepository('JfxNinjaCMSBundle:Language')->findAll();
 
         foreach($languages as $l)
         {
@@ -180,7 +180,7 @@ class ContentController extends Controller
             $blocks[$lc] = $cs->getBlocks("content",$id,$lc);
         }
 
-        $content = $em->getRepository('SSoneCMSBundle:Content')->find($id);
+        $content = $em->getRepository('JfxNinjaCMSBundle:Content')->find($id);
 
         $content->setContent($blocks);
 
@@ -192,7 +192,7 @@ class ContentController extends Controller
     private function getFieldsRepository()
     {
         return $this->getDoctrine()
-            ->getRepository('SSoneCMSBundle:Field');
+            ->getRepository('JfxNinjaCMSBundle:Field');
     }
 
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
@@ -42,7 +42,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT c FROM SSoneCMSBundle:User c WHERE c.securekey = :securekey'
+                'SELECT c FROM JfxNinjaCMSBundle:User c WHERE c.securekey = :securekey'
             )->setParameter('securekey', $securekey)
             ->getSingleResult();
     }
@@ -66,7 +66,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
                 c.email,
                 c.modifiedAt,
                 c.modifiedBy
-                FROM SSoneCMSBundle:User c
+                FROM JfxNinjaCMSBundle:User c
                 ORDER BY c.username ASC'
             )
             ->getResult();

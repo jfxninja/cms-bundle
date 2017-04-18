@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Services;
+namespace JfxNinja\CMSBundle\Services;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,7 +22,7 @@ class Localiser
         $this->container = $container;
         $this->em = $em;
         $this->locale = $request->getLocale();
-        $this->defaultLocale = $this->container->getParameter("SSone.default_locale");
+        $this->defaultLocale = $this->container->getParameter("jfxninja.default_locale");
     }
 
 
@@ -79,7 +79,7 @@ class Localiser
         $languages = $this->em
             ->createQuery(
                 'SELECT l.languageCode, l.name
-                FROM SSoneCMSBundle:Language l'
+                FROM JfxNinjaCMSBundle:Language l'
             )
             ->getResult();
 

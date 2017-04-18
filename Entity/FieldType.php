@@ -1,15 +1,15 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Util\SecureRandom;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity(repositoryClass="SSone\CMSBundle\Entity\FieldTypesRepository")
+ * @ORM\Entity(repositoryClass="JfxNinja\CMSBundle\Entity\FieldTypesRepository")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="ssone_fieldTypes")
+ * @ORM\Table(name="ninjacms_fieldTypes")
  */
 class FieldType {
 
@@ -283,7 +283,7 @@ class FieldType {
     /**
      * Add fieldSetupOptions
      *
-     * @param \SSone\CMSBundle\Entity\FieldSetupOptions $fieldSetupOptions
+     * @param \jfxninja\CMSBundle\Entity\FieldSetupOptions $fieldSetupOptions
      * @return FieldType
      */
     public function addFieldSetupOption(FieldSetupOptions $fieldSetupOptions)
@@ -296,7 +296,7 @@ class FieldType {
     /**
      * Remove fieldSetupOptions
      *
-     * @param \SSone\CMSBundle\Entity\FieldSetupOptions $fieldSetupOptions
+     * @param \jfxninja\CMSBundle\Entity\FieldSetupOptions $fieldSetupOptions
      */
     public function removeFieldSetupOption(FieldSetupOptions $fieldSetupOptions)
     {
@@ -316,10 +316,10 @@ class FieldType {
     /**
      * Add fields
      *
-     * @param \SSone\CMSBundle\Entity\Field $fields
+     * @param \jfxninja\CMSBundle\Entity\Field $fields
      * @return FieldType
      */
-    public function addField(\SSone\CMSBundle\Entity\Field $fields)
+    public function addField(\jfxninja\CMSBundle\Entity\Field $fields)
     {
         $this->fields[] = $fields;
 
@@ -329,9 +329,9 @@ class FieldType {
     /**
      * Remove fields
      *
-     * @param \SSone\CMSBundle\Entity\Field $fields
+     * @param \jfxninja\CMSBundle\Entity\Field $fields
      */
-    public function removeField(\SSone\CMSBundle\Entity\Field $fields)
+    public function removeField(\jfxninja\CMSBundle\Entity\Field $fields)
     {
         $this->fields->removeElement($fields);
     }

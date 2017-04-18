@@ -1,14 +1,14 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Util\SecureRandom;
 
 /**
- * @ORM\Entity(repositoryClass="SSone\CMSBundle\Entity\modulesRepository")
+ * @ORM\Entity(repositoryClass="JfxNinja\CMSBundle\Entity\modulesRepository")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="ssone_modules")
+ * @ORM\Table(name="ninjacms_modules")
  */
 class Module {
 
@@ -453,10 +453,10 @@ class Module {
     /**
      * Set contentType
      *
-     * @param \SSone\CMSBundle\Entity\ContentType $contentType
+     * @param \jfxninja\CMSBundle\Entity\ContentType $contentType
      * @return Module
      */
-    public function setContentType(\SSone\CMSBundle\Entity\ContentType $contentType = null)
+    public function setContentType(\jfxninja\CMSBundle\Entity\ContentType $contentType = null)
     {
         $this->contentType = $contentType;
 
@@ -466,7 +466,7 @@ class Module {
     /**
      * Get contentType
      *
-     * @return \SSone\CMSBundle\Entity\Content
+     * @return \jfxninja\CMSBundle\Entity\Content
      */
     public function getContentType()
     {
@@ -638,10 +638,10 @@ class Module {
     /**
      * Set singleContentItem
      *
-     * @param \SSone\CMSBundle\Entity\Content $singleContentItem
+     * @param \jfxninja\CMSBundle\Entity\Content $singleContentItem
      * @return Module
      */
-    public function setSingleContentItem(\SSone\CMSBundle\Entity\Content $singleContentItem = null)
+    public function setSingleContentItem(\jfxninja\CMSBundle\Entity\Content $singleContentItem = null)
     {
         $this->singleContentItem = $singleContentItem;
 
@@ -651,7 +651,7 @@ class Module {
     /**
      * Get singleContentItem
      *
-     * @return \SSone\CMSBundle\Entity\Content
+     * @return \jfxninja\CMSBundle\Entity\Content
      */
     public function getSingleContentItem()
     {
@@ -684,10 +684,10 @@ class Module {
     /**
      * Set form
      *
-     * @param \SSone\CMSBundle\Entity\CMSForm $form
+     * @param \jfxninja\CMSBundle\Entity\CMSForm $form
      * @return Module
      */
-    public function setForm(\SSone\CMSBundle\Entity\CMSForm $form = null)
+    public function setForm(\jfxninja\CMSBundle\Entity\CMSForm $form = null)
     {
         $this->form = $form;
 
@@ -697,7 +697,7 @@ class Module {
     /**
      * Get form
      *
-     * @return \SSone\CMSBundle\Entity\CMSForm
+     * @return \jfxninja\CMSBundle\Entity\CMSForm
      */
     public function getForm()
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -17,7 +17,7 @@ class RolesRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT c FROM SSoneCMSBundle:Role c WHERE c.role = :role'
+                'SELECT c FROM JfxNinjaCMSBundle:Role c WHERE c.role = :role'
             )->setParameter('role', $roleName)
             ->getSingleResult();
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Form\Type;
+namespace JfxNinja\CMSBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Doctrine\ORM\EntityManager;
@@ -37,7 +37,7 @@ class fieldSetupOptionsTYPE extends AbstractType
 
             ->add('inputTypeVar', 'textarea', array('required'=>false))
             ->add('fieldType','entity',array(
-                'class' => 'SSoneCMSBundle:FieldType',
+                'class' => 'JfxNinjaCMSBundle:FieldType',
                 'property' => 'name',
                 'label' => 'Associated Field Type'
             ))
@@ -47,7 +47,7 @@ class fieldSetupOptionsTYPE extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'SSone\CMSBundle\Entity\FieldSetupOptions'
+            'data_class' => 'jfxninja\CMSBundle\Entity\FieldSetupOptions'
         ));
     }
 

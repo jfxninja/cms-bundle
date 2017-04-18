@@ -1,11 +1,11 @@
 <?php
 
-namespace SSone\CMSBundle\Services;
+namespace JfxNinja\CMSBundle\Services;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
-use SSone\CMSBundle\Entity\BlockField;
-use SSone\CMSBundle\Entity\Block;
+use JfxNinja\CMSBundle\Entity\BlockField;
+use JfxNinja\CMSBundle\Entity\Block;
 
 /**
  * BlockService
@@ -40,7 +40,7 @@ class BlockService extends EntityRepository
         $originalBlockFields = $this->em
             ->createQuery(
                 'SELECT bf.id, bf.securekey
-                FROM SSoneCMSBundle:BlockField bf
+                FROM JfxNinjaCMSBundle:BlockField bf
                 LEFT JOIN bf.block b
                 LEFT JOIN b.content c
                 WHERE c.id = :id'
@@ -66,7 +66,7 @@ class BlockService extends EntityRepository
             }
             if($found == false)
             {
-                $bfToRemove = $this->em->getReference('SSone\CMSBundle\Entity\BlockField', $obf['id']);
+                $bfToRemove = $this->em->getReference('jfxninja\CMSBundle\Entity\BlockField', $obf['id']);
                 $this->em->remove($bfToRemove);
             }
 
@@ -208,7 +208,7 @@ class BlockService extends EntityRepository
     public function handleUploadBlocks($form)
     {
 
-        $fieldsRepository = $this->em->getRepository('SSoneCMSBundle:Field');
+        $fieldsRepository = $this->em->getRepository('JfxNinjaCMSBundle:Field');
 
         foreach ($form['blocks']  as $block) {
 

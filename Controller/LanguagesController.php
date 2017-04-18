@@ -1,13 +1,13 @@
 <?php
 
-namespace SSone\CMSBundle\Controller;
+namespace JfxNinja\CMSBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-use SSone\CMSBundle\Entity\Language;
-use SSone\CMSBundle\Form\Type\LanguageTYPE;
+use JfxNinja\CMSBundle\Entity\Language;
+use JfxNinja\CMSBundle\Form\Type\LanguageTYPE;
 
 
 
@@ -18,12 +18,12 @@ class LanguagesController extends Controller
     {
 
         $languages = $this->getDoctrine()
-            ->getRepository('SSoneCMSBundle:Language')
+            ->getRepository('JfxNinjaCMSBundle:Language')
             ->getItemsForListTable();
 
 
         return $this->render(
-            'SSoneCMSBundle:AdminTemplates:standardList.html.twig',
+            'JfxNinjaCMSBundle:AdminTemplates:standardList.html.twig',
             array(
                 "items" => $languages,
                 "title" => "Languages"
@@ -66,7 +66,7 @@ class LanguagesController extends Controller
         }
         else
         {
-            $language = $this->getDoctrine()->getRepository('SSoneCMSBundle:Language')->findBySecurekey($securekey);
+            $language = $this->getDoctrine()->getRepository('JfxNinjaCMSBundle:Language')->findBySecurekey($securekey);
         }
 
         $form = $this->createForm(new LanguageTYPE($mode,$locale), $language);
@@ -75,7 +75,7 @@ class LanguagesController extends Controller
         if ($form->isValid())
         {
 
-            $this->get('ssone.cms.recordauditor')->auditRecord($language);
+            $this->get('jfxninja.cms.recordauditor')->auditRecord($language);
 
 
             switch($mode)
@@ -94,12 +94,12 @@ class LanguagesController extends Controller
             $em->flush();
 
             return $this->redirect(
-                $this->generateUrl('ssone_cms_admin_languages_list')
+                $this->generateUrl('jfxninja_cms_admin_languages_list')
             );
         }
 
 
-        return $this->render('SSoneCMSBundle:Language:crud.html.twig', array(
+        return $this->render('JfxNinjaCMSBundle:Language:crud.html.twig', array(
             'form' => $form->createView(),
             'title' => $language->getName(),
             'mode' => $mode,

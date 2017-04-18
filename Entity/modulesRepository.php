@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -13,7 +13,7 @@ class modulesRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT c FROM SSoneCMSBundle:Module c WHERE c.securekey = :securekey'
+                'SELECT c FROM JfxNinjaCMSBundle:Module c WHERE c.securekey = :securekey'
             )->setParameter('securekey', $securekey)
             ->getSingleResult();
     }
@@ -37,7 +37,7 @@ class modulesRepository extends EntityRepository
                 c.urlMatchExpression,
                 c.modifiedAt,
                 c.modifiedBy
-                FROM SSoneCMSBundle:Module c
+                FROM JfxNinjaCMSBundle:Module c
                 ORDER BY c.name ASC'
             )
             ->getResult();

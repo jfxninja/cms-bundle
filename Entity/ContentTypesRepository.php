@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -12,7 +12,7 @@ class ContentTypesRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT c FROM SSoneCMSBundle:ContentType c WHERE c.securekey = :securekey'
+                'SELECT c FROM JfxNinjaCMSBundle:ContentType c WHERE c.securekey = :securekey'
             )->setParameter('securekey', $securekey)
             ->getSingleResult();
     }
@@ -24,7 +24,7 @@ class ContentTypesRepository extends EntityRepository
             $firstCt = $this->getEntityManager()
                 ->createQuery(
                     'SELECT ct.securekey
-                    FROM SSoneCMSBundle:ContentType ct
+                    FROM JfxNinjaCMSBundle:ContentType ct
                     ORDER BY ct.name ASC'
                 )
                 ->setMaxResults(1)
@@ -38,7 +38,7 @@ class ContentTypesRepository extends EntityRepository
         try {
             $firstContentType = $this->getEntityManager()
                 ->createQuery(
-                    'SELECT c FROM SSoneCMSBundle:ContentType c WHERE c.securekey = :securekey'
+                    'SELECT c FROM JfxNinjaCMSBundle:ContentType c WHERE c.securekey = :securekey'
                 )->setParameter('securekey', $securekey)
                 ->getSingleResult();
         } catch (\Exception $e)
@@ -54,7 +54,7 @@ class ContentTypesRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT c FROM SSoneCMSBundle:ContentType c WHERE c.id = 24'
+                'SELECT c FROM JfxNinjaCMSBundle:ContentType c WHERE c.id = 24'
             )
             ->getResult("Query::HYDRATE_SINGLE_SCALAR");
     }
@@ -72,7 +72,7 @@ class ContentTypesRepository extends EntityRepository
         $data['columnTitles'] = array("Name", "Template Path", "ID");
         $data['items'] = $this->getEntityManager()
             ->createQuery(
-                'SELECT c.name, c.contentTemplatePath, c.id, c.securekey, c.modifiedBy,  c.modifiedAt FROM SSoneCMSBundle:ContentType c ORDER BY c.name ASC'
+                'SELECT c.name, c.contentTemplatePath, c.id, c.securekey, c.modifiedBy,  c.modifiedAt FROM JfxNinjaCMSBundle:ContentType c ORDER BY c.name ASC'
             )
             ->getResult();
         return $data;
@@ -89,7 +89,7 @@ class ContentTypesRepository extends EntityRepository
         $content = $this->getEntityManager()
             ->createQuery(
             'SELECT ct.id, ct.name, ct.securekey, c.id AS contentId
-            FROM SSoneCMSBundle:ContentType ct
+            FROM JfxNinjaCMSBundle:ContentType ct
             LEFT JOIN ct.content c
             WHERE ct.hideFromMenus != 1
             ORDER BY ct.name ASC'
@@ -121,7 +121,7 @@ class ContentTypesRepository extends EntityRepository
             $attributeFields = $this->getEntityManager()
                 ->createQuery(
                     'SELECT f.id
-                    FROM SSoneCMSBundle:Field f
+                    FROM JfxNinjaCMSBundle:Field f
                     LEFT JOIN f.contentTypeByAttribute ct
                     WHERE ct.id = :id'
                 )

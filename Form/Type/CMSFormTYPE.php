@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Form\Type;
+namespace JfxNinja\CMSBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -24,7 +24,7 @@ class CMSFormTYPE extends AbstractType
             ->add('name', 'text')
             ->add('formTitle', 'multiLanguageText', array("locale"=>$this->locale))
             ->add('contentType','entity',array(
-                'class' => 'SSoneCMSBundle:ContentType',
+                'class' => 'JfxNinjaCMSBundle:ContentType',
                 'property' => 'name',
                 'label' => 'Content Type',
                 'query_builder' => function(EntityRepository $er) {
@@ -72,7 +72,7 @@ class CMSFormTYPE extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'SSone\CMSBundle\Entity\CMSForm'
+            'data_class' => 'jfxninja\CMSBundle\Entity\CMSForm'
         ));
     }
 

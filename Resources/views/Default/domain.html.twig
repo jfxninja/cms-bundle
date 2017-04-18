@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ pageTitle }} | SSone digital</title>
+    <title>{{ pageTitle }} | JfxNinja digital</title>
     <meta name="description" content="{{ metaDescription }}"/>
 </head>
 
@@ -24,8 +24,8 @@
             {% if navigation.A is defined %}
                 {% for nav in navigation.A %}
                     {% include [
-                        'SSoneCMSThemeBundle:' ~ nav.attributes.menuTemplate,
-                        'SSoneCMSBundle:Default:navigation.html.twig']
+                        'jfxninjaCMSThemeBundle:' ~ nav.attributes.menuTemplate,
+                        'JfxNinjaCMSBundle:Default:navigation.html.twig']
                         with {'nav': nav }
                     %}
                 {% endfor %}
@@ -38,8 +38,8 @@
 
         {% if content is not empty %}
             {% include [
-            'SSoneCMSThemeBundle:' ~ content.attributes.template,
-            'SSoneCMSBundle:Default:content.html.twig']
+            'jfxninjaCMSThemeBundle:' ~ content.attributes.template,
+            'JfxNinjaCMSBundle:Default:content.html.twig']
             with {'content': content }
             %}
         {% endif %}
@@ -49,10 +49,10 @@
     <section>
         {% if modules.A is defined %}
         {% for module in modules.A %}
-        {{  include( 'SSoneCMSThemeBundle:' ~ module.settings.templatePath, {'module': module } )  }}
+        {{  include( 'jfxninjaCMSThemeBundle:' ~ module.settings.templatePath, {'module': module } )  }}
             {% include [
-            'SSoneCMSThemeBundle:' ~ module.settings.templatePath,
-            'SSoneCMSBundle:Default:module.html.twig']
+            'jfxninjaCMSThemeBundle:' ~ module.settings.templatePath,
+            'JfxNinjaCMSBundle:Default:module.html.twig']
             with {'module': module }
             %}
         {% endfor %}

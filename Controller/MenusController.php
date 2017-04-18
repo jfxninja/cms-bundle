@@ -1,14 +1,14 @@
 <?php
 
-namespace SSone\CMSBundle\Controller;
+namespace JfxNinja\CMSBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-use SSone\CMSBundle\Entity\Menu;
+use JfxNinja\CMSBundle\Entity\Menu;
 
-use SSone\CMSBundle\Form\Type\MenuTYPE;
+use JfxNinja\CMSBundle\Form\Type\MenuTYPE;
 use Doctrine\Common\Collections\ArrayCollection;
 
 
@@ -20,12 +20,12 @@ class MenusController extends Controller
     {
 
         $menus = $this->getDoctrine()
-            ->getRepository('SSoneCMSBundle:Menu')
+            ->getRepository('JfxNinjaCMSBundle:Menu')
             ->getItemsForListTable();
 
 
         return $this->render(
-            'SSoneCMSBundle:AdminTemplates:standardList.html.twig',
+            'JfxNinjaCMSBundle:AdminTemplates:standardList.html.twig',
             array(
                 "items" => $menus,
                 "title" => "Site Menus"
@@ -69,7 +69,7 @@ class MenusController extends Controller
         }
         else
         {
-            $menu = $this->getDoctrine()->getRepository('SSoneCMSBundle:Menu')->findBySecurekey($securekey);
+            $menu = $this->getDoctrine()->getRepository('JfxNinjaCMSBundle:Menu')->findBySecurekey($securekey);
         }
 
         $form = $this->createForm(new MenuTYPE($mode), $menu);
@@ -78,9 +78,9 @@ class MenusController extends Controller
         if ($form->isValid())
         {
 
-            $this->get('ssone.cms.recordauditor')->auditRecord($menu);
+            $this->get('jfxninja.cms.recordauditor')->auditRecord($menu);
 
-            $uploader = $this->get('ssone.cms.fileuploader');
+            $uploader = $this->get('jfxninja.cms.fileuploader');
 
             if($form['file_menuTemplate']->getData() && $fp = $uploader->templateUpload($form['file_menuTemplate']->getData(), "menu"))
             {
@@ -103,11 +103,11 @@ class MenusController extends Controller
             $em->flush();
 
             return $this->redirect(
-                $this->generateUrl('ssone_cms_admin_menus_list')
+                $this->generateUrl('jfxninja_cms_admin_menus_list')
             );
         }
 
-        return $this->render('SSoneCMSBundle:Menu:crud.html.twig', array(
+        return $this->render('JfxNinjaCMSBundle:Menu:crud.html.twig', array(
             'form' => $form->createView(),
             'menuTitle' => $menu->getName(),
             'mode' => $mode,

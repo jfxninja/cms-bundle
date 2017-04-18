@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Services;
+namespace JfxNinja\CMSBundle\Services;
 
 use Symfony\Component\Security\Core\SecurityContext;
 

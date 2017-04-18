@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Form\Type;
+namespace JfxNinja\CMSBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,12 +22,12 @@ class fieldTYPE extends AbstractType
             ->add('variableName', 'text')
             ->add('label', 'text')
             ->add('ContentType','entity',array(
-                'class' => 'SSoneCMSBundle:ContentType',
+                'class' => 'JfxNinjaCMSBundle:ContentType',
                 'property' => 'name',
                 'label' => 'Associated Content Type'
             ))
             ->add('fieldType','entity',array(
-                'class' => 'SSoneCMSBundle:FieldType',
+                'class' => 'JfxNinjaCMSBundle:FieldType',
                 'property' => 'name',
                 'label' => 'Associated Field Type',
                 'query_builder' => function(EntityRepository $er) {
@@ -41,7 +41,7 @@ class fieldTYPE extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'SSone\CMSBundle\Entity\Field'
+            'data_class' => 'jfxninja\CMSBundle\Entity\Field'
         ));
     }
 

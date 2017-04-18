@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -13,7 +13,7 @@ class FieldSetupOptionsRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT c FROM SSoneCMSBundle:FieldSetupOptions c WHERE c.securekey = :securekey'
+                'SELECT c FROM JfxNinjaCMSBundle:FieldSetupOptions c WHERE c.securekey = :securekey'
             )->setParameter('securekey', $securekey)
             ->getSingleResult();
     }
@@ -35,7 +35,7 @@ class FieldSetupOptionsRepository extends EntityRepository
         $data['items'] = $this->getEntityManager()
             ->createQuery(
                 'SELECT fs.name, fs.id, fs.securekey, fs.label, fs.variableName, fs.inputType, fs.inputTypeVar, ft.name AS fieldType
-                FROM SSoneCMSBundle:FieldSetupOptions fs
+                FROM JfxNinjaCMSBundle:FieldSetupOptions fs
                 LEFT JOIN fs.fieldType ft
                 ORDER BY ft.name ASC, fs.fieldVar ASC, fs.name ASC'
             )
@@ -50,7 +50,7 @@ class FieldSetupOptionsRepository extends EntityRepository
         $data = $this->getEntityManager()
             ->createQuery(
                 'SELECT fs.name, fs.id, fs.label, fs.variableName, fs.inputType, fs.inputTypeVar, ft.name AS fieldType, ft.id AS fieldTypeId, ft.variableName as fieldTypeVariableName
-                FROM SSoneCMSBundle:FieldSetupOptions fs
+                FROM JfxNinjaCMSBundle:FieldSetupOptions fs
                 LEFT JOIN fs.fieldType ft
                 ORDER BY ft.name ASC, fs.fieldVar ASC, fs.name ASC'
             )
@@ -68,7 +68,7 @@ class FieldSetupOptionsRepository extends EntityRepository
 
             if($option['inputType'] == "entity")
             {
-                $entity = "SSoneCMSBundle:".$option['inputTypeVar'];
+                $entity = "JfxNinjaCMSBundle:".$option['inputTypeVar'];
                 $query = 'SELECT i.name, i.id FROM '.$entity.' i ORDER BY i.name ASC';
                 $items = $this->getEntityManager()
                     ->createQuery($query)

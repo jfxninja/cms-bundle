@@ -1,5 +1,5 @@
 <?php
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
@@ -8,11 +8,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * SSone\CMSBundle\Entity\User
+ * JfxNinja\CMSBundle\Entity\User
  *
- * @ORM\Table(name="ssone_users")
+ * @ORM\Table(name="ninjacms_users")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Entity(repositoryClass="SSone\CMSBundle\Entity\UserRepository")
+ * @ORM\Entity(repositoryClass="JfxNinja\CMSBundle\Entity\UserRepository")
  */
 class User implements AdvancedUserInterface, \Serializable
 {
@@ -300,10 +300,10 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * Add roles
      *
-     * @param \SSone\CMSBundle\Entity\Role $roles
+     * @param \jfxninja\CMSBundle\Entity\Role $roles
      * @return User
      */
-    public function addRole(\SSone\CMSBundle\Entity\Role $roles)
+    public function addRole(\jfxninja\CMSBundle\Entity\Role $roles)
     {
         $this->roles[] = $roles;
 
@@ -313,9 +313,9 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * Remove roles
      *
-     * @param \SSone\CMSBundle\Entity\Role $roles
+     * @param \jfxninja\CMSBundle\Entity\Role $roles
      */
-    public function removeRole(\SSone\CMSBundle\Entity\Role $roles)
+    public function removeRole(\jfxninja\CMSBundle\Entity\Role $roles)
     {
         $this->roles->removeElement($roles);
     }

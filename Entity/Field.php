@@ -1,14 +1,14 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Util\SecureRandom;
 
 /**
- * @ORM\Entity(repositoryClass="SSone\CMSBundle\Entity\FieldsRepository")
+ * @ORM\Entity(repositoryClass="JfxNinja\CMSBundle\Entity\FieldsRepository")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="ssone_fields")
+ * @ORM\Table(name="ninjacms_fields")
  */
 class Field  {
 
@@ -338,10 +338,10 @@ class Field  {
     /**
      * Set fieldType
      *
-     * @param \SSone\CMSBundle\Entity\FieldType $fieldType
+     * @param \jfxninja\CMSBundle\Entity\FieldType $fieldType
      * @return Field
      */
-    public function setFieldType(\SSone\CMSBundle\Entity\FieldType $fieldType = null)
+    public function setFieldType(\jfxninja\CMSBundle\Entity\FieldType $fieldType = null)
     {
         $this->fieldType = $fieldType;
 
@@ -351,7 +351,7 @@ class Field  {
     /**
      * Get fieldType
      *
-     * @return \SSone\CMSBundle\Entity\FieldType
+     * @return \jfxninja\CMSBundle\Entity\FieldType
      */
     public function getFieldType()
     {
@@ -411,10 +411,10 @@ class Field  {
     /**
      * Set contentTypeByVariable
      *
-     * @param \SSone\CMSBundle\Entity\ContentType $contentTypeByVariable
+     * @param \jfxninja\CMSBundle\Entity\ContentType $contentTypeByVariable
      * @return Field
      */
-    public function setContentTypeByVariable(\SSone\CMSBundle\Entity\ContentType $contentTypeByVariable = null)
+    public function setContentTypeByVariable(\jfxninja\CMSBundle\Entity\ContentType $contentTypeByVariable = null)
     {
         $this->contentTypeByVariable = $contentTypeByVariable;
 
@@ -424,7 +424,7 @@ class Field  {
     /**
      * Get contentTypeByVariable
      *
-     * @return \SSone\CMSBundle\Entity\ContentType
+     * @return \jfxninja\CMSBundle\Entity\ContentType
      */
     public function getContentTypeByVariable()
     {
@@ -434,10 +434,10 @@ class Field  {
     /**
      * Set contentTypeByAttribute
      *
-     * @param \SSone\CMSBundle\Entity\ContentType $contentTypeByAttribute
+     * @param \jfxninja\CMSBundle\Entity\ContentType $contentTypeByAttribute
      * @return Field
      */
-    public function setContentTypeByAttribute(\SSone\CMSBundle\Entity\ContentType $contentTypeByAttribute = null)
+    public function setContentTypeByAttribute(\jfxninja\CMSBundle\Entity\ContentType $contentTypeByAttribute = null)
     {
         $this->contentTypeByAttribute = $contentTypeByAttribute;
 
@@ -447,7 +447,7 @@ class Field  {
     /**
      * Get contentTypeByAttribute
      *
-     * @return \SSone\CMSBundle\Entity\ContentType
+     * @return \jfxninja\CMSBundle\Entity\ContentType
      */
     public function getContentTypeByAttribute()
     {
@@ -533,10 +533,10 @@ class Field  {
     /**
      * Add blocks
      *
-     * @param \SSone\CMSBundle\Entity\Block $blocks
+     * @param \jfxninja\CMSBundle\Entity\Block $blocks
      * @return Field
      */
-    public function addBlock(\SSone\CMSBundle\Entity\Block $blocks)
+    public function addBlock(\jfxninja\CMSBundle\Entity\Block $blocks)
     {
         $this->blocks[] = $blocks;
 
@@ -546,9 +546,9 @@ class Field  {
     /**
      * Remove blocks
      *
-     * @param \SSone\CMSBundle\Entity\Block $blocks
+     * @param \jfxninja\CMSBundle\Entity\Block $blocks
      */
-    public function removeBlock(\SSone\CMSBundle\Entity\Block $blocks)
+    public function removeBlock(\jfxninja\CMSBundle\Entity\Block $blocks)
     {
         $this->blocks->removeElement($blocks);
     }

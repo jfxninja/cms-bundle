@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -17,7 +17,7 @@ class FieldsRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT c FROM SSoneCMSBundle:Field c WHERE c.securekey = :securekey'
+                'SELECT c FROM JfxNinjaCMSBundle:Field c WHERE c.securekey = :securekey'
             )->setParameter('securekey', $securekey)
             ->getSingleResult();
     }
@@ -27,7 +27,7 @@ class FieldsRepository extends EntityRepository
         return $this->getEntityManager()
             ->createQuery(
                 'SELECT f.id, f.fieldTypeSettings
-                FROM SSoneCMSBundle:Field f
+                FROM JfxNinjaCMSBundle:Field f
                 WHERE f.id = :id'
             )->setParameter('id', $id)
             ->getSingleResult();
@@ -43,7 +43,7 @@ class FieldsRepository extends EntityRepository
         );
         $data['items'] = $this->getEntityManager()
             ->createQuery(
-                'SELECT c.name, c.id, c.securekey FROM SSoneCMSBundle:Field c ORDER BY c.name ASC'
+                'SELECT c.name, c.id, c.securekey FROM JfxNinjaCMSBundle:Field c ORDER BY c.name ASC'
             )
             ->getResult();
         return $data;
@@ -54,7 +54,7 @@ class FieldsRepository extends EntityRepository
         return $this->getEntityManager()
             ->createQuery(
                 'SELECT f
-                FROM SSoneCMSBundle:Field f
+                FROM JfxNinjaCMSBundle:Field f
                 LEFT JOIN f.contentTypeByVariable ct
                 WHERE ct.id = :id'
             )->setParameter('id', $id)
@@ -69,7 +69,7 @@ class FieldsRepository extends EntityRepository
         return $this->getEntityManager()
             ->createQuery(
                 'SELECT f.id, f.name
-                FROM SSoneCMSBundle:Field f
+                FROM JfxNinjaCMSBundle:Field f
                 LEFT JOIN f.contentTypeByVariable ct
                 LEFT JOIN f.fieldType ft
                 WHERE ct.id = :id
@@ -88,7 +88,7 @@ class FieldsRepository extends EntityRepository
         return $this->getEntityManager()
             ->createQuery(
                 'SELECT f
-                FROM SSoneCMSBundle:Field f
+                FROM JfxNinjaCMSBundle:Field f
                 LEFT JOIN f.contentTypeByVariable ct
                 LEFT JOIN f.fieldType ft
                 WHERE ct.id = :id
@@ -115,7 +115,7 @@ class FieldsRepository extends EntityRepository
         $results = $this->getEntityManager()
             ->createQuery(
                 'SELECT f.id, f.name
-                FROM SSoneCMSBundle:Field f INDEX BY f.id
+                FROM JfxNinjaCMSBundle:Field f INDEX BY f.id
                 LEFT JOIN f.contentTypeByVariable ct
                 LEFT JOIN f.fieldType ft
                 WHERE ct.id = :id

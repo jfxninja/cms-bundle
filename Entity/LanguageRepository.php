@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -17,7 +17,7 @@ class LanguageRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT c FROM SSoneCMSBundle:Language c WHERE c.securekey = :securekey'
+                'SELECT c FROM JfxNinjaCMSBundle:Language c WHERE c.securekey = :securekey'
             )->setParameter('securekey', $securekey)
             ->getSingleResult();
     }
@@ -40,7 +40,7 @@ class LanguageRepository extends EntityRepository
                 c.securekey,
                 c.modifiedAt,
                 c.modifiedBy
-                FROM SSoneCMSBundle:Language c ORDER BY c.name ASC'
+                FROM JfxNinjaCMSBundle:Language c ORDER BY c.name ASC'
             )
             ->getResult();
         return $data;

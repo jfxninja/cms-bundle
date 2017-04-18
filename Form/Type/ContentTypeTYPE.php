@@ -1,12 +1,12 @@
 <?php
 
-namespace SSone\CMSBundle\Form\Type;
+namespace JfxNinja\CMSBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-use SSone\CMSBundle\Form\Type\Field\FieldTypeNested;
+use JfxNinja\CMSBundle\Form\Type\Field\FieldTypeNested;
 
 class ContentTypeTYPE extends AbstractType
 {
@@ -69,7 +69,7 @@ class ContentTypeTYPE extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'SSone\CMSBundle\Entity\ContentType'
+            'data_class' => 'jfxninja\CMSBundle\Entity\ContentType'
         ));
     }
 

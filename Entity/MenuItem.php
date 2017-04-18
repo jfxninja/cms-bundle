@@ -1,14 +1,14 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Util\SecureRandom;
 
 /**
- * @ORM\Entity(repositoryClass="SSone\CMSBundle\Entity\menuItemsRepository")
+ * @ORM\Entity(repositoryClass="JfxNinja\CMSBundle\Entity\menuItemsRepository")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="ssone_menuItems")
+ * @ORM\Table(name="ninjacms_menuItems")
  */
 class MenuItem {
 
@@ -40,7 +40,7 @@ class MenuItem {
     private $domain_template_override;
 
     /**
-     * @ORM\Column(name="hide", type="boolean")
+     * @ORM\Column(name="hide", type="boolean", nullable=true)
      */
     private $hide;
 
@@ -349,10 +349,10 @@ class MenuItem {
     /**
      * Set root
      *
-     * @param \SSone\CMSBundle\Entity\Menu $root
+     * @param \jfxninja\CMSBundle\Entity\Menu $root
      * @return MenuItem
      */
-    public function setRoot(\SSone\CMSBundle\Entity\Menu $root = null)
+    public function setRoot(\jfxninja\CMSBundle\Entity\Menu $root = null)
     {
         $this->root = $root;
 
@@ -362,7 +362,7 @@ class MenuItem {
     /**
      * Get root
      *
-     * @return \SSone\CMSBundle\Entity\Menu
+     * @return \jfxninja\CMSBundle\Entity\Menu
      */
     public function getRoot()
     {
@@ -372,10 +372,10 @@ class MenuItem {
     /**
      * Set parent
      *
-     * @param \SSone\CMSBundle\Entity\MenuItem $parent
+     * @param \jfxninja\CMSBundle\Entity\MenuItem $parent
      * @return MenuItem
      */
-    public function setParent(\SSone\CMSBundle\Entity\MenuItem $parent = null)
+    public function setParent(\jfxninja\CMSBundle\Entity\MenuItem $parent = null)
     {
         $this->parent = $parent;
 
@@ -385,7 +385,7 @@ class MenuItem {
     /**
      * Get parent
      *
-     * @return \SSone\CMSBundle\Entity\MenuItem
+     * @return \jfxninja\CMSBundle\Entity\MenuItem
      */
     public function getParent()
     {
@@ -395,10 +395,10 @@ class MenuItem {
     /**
      * Add children
      *
-     * @param \SSone\CMSBundle\Entity\MenuItem $children
+     * @param \jfxninja\CMSBundle\Entity\MenuItem $children
      * @return MenuItem
      */
-    public function addChild(\SSone\CMSBundle\Entity\MenuItem $children)
+    public function addChild(\jfxninja\CMSBundle\Entity\MenuItem $children)
     {
         $this->children[] = $children;
 
@@ -408,9 +408,9 @@ class MenuItem {
     /**
      * Remove children
      *
-     * @param \SSone\CMSBundle\Entity\MenuItem $children
+     * @param \jfxninja\CMSBundle\Entity\MenuItem $children
      */
-    public function removeChild(\SSone\CMSBundle\Entity\MenuItem $children)
+    public function removeChild(\jfxninja\CMSBundle\Entity\MenuItem $children)
     {
         $this->children->removeElement($children);
     }
@@ -520,10 +520,10 @@ class MenuItem {
     /**
      * Set content
      *
-     * @param \SSone\CMSBundle\Entity\Content $content
+     * @param \jfxninja\CMSBundle\Entity\Content $content
      * @return MenuItem
      */
-    public function setContent(\SSone\CMSBundle\Entity\Content $content = null)
+    public function setContent(\jfxninja\CMSBundle\Entity\Content $content = null)
     {
         $this->content = $content;
 
@@ -533,7 +533,7 @@ class MenuItem {
     /**
      * Get content
      *
-     * @return \SSone\CMSBundle\Entity\Content
+     * @return \jfxninja\CMSBundle\Entity\Content
      */
     public function getContent()
     {
@@ -543,10 +543,10 @@ class MenuItem {
     /**
      * Set contentType
      *
-     * @param \SSone\CMSBundle\Entity\ContentType $contentType
+     * @param \jfxninja\CMSBundle\Entity\ContentType $contentType
      * @return MenuItem
      */
-    public function setContentType(\SSone\CMSBundle\Entity\ContentType $contentType = null)
+    public function setContentType(\jfxninja\CMSBundle\Entity\ContentType $contentType = null)
     {
         $this->contentType = $contentType;
 
@@ -556,7 +556,7 @@ class MenuItem {
     /**
      * Get contentType
      *
-     * @return \SSone\CMSBundle\Entity\ContentType
+     * @return \jfxninja\CMSBundle\Entity\ContentType
      */
     public function getContentType()
     {
@@ -745,10 +745,10 @@ class MenuItem {
     /**
      * Set contentCategory1
      *
-     * @param \SSone\CMSBundle\Entity\Field $contentCategory1
+     * @param \jfxninja\CMSBundle\Entity\Field $contentCategory1
      * @return MenuItem
      */
-    public function setContentCategory1(\SSone\CMSBundle\Entity\Field $contentCategory1 = null)
+    public function setContentCategory1(\jfxninja\CMSBundle\Entity\Field $contentCategory1 = null)
     {
         $this->contentCategory1 = $contentCategory1;
 
@@ -758,7 +758,7 @@ class MenuItem {
     /**
      * Get contentCategory1
      *
-     * @return \SSone\CMSBundle\Entity\Field
+     * @return \jfxninja\CMSBundle\Entity\Field
      */
     public function getContentCategory1()
     {
@@ -768,10 +768,10 @@ class MenuItem {
     /**
      * Set contentCategory2
      *
-     * @param \SSone\CMSBundle\Entity\Field $contentCategory2
+     * @param \jfxninja\CMSBundle\Entity\Field $contentCategory2
      * @return MenuItem
      */
-    public function setContentCategory2(\SSone\CMSBundle\Entity\Field $contentCategory2 = null)
+    public function setContentCategory2(\jfxninja\CMSBundle\Entity\Field $contentCategory2 = null)
     {
         $this->contentCategory2 = $contentCategory2;
 
@@ -781,7 +781,7 @@ class MenuItem {
     /**
      * Get contentCategory2
      *
-     * @return \SSone\CMSBundle\Entity\Field
+     * @return \jfxninja\CMSBundle\Entity\Field
      */
     public function getContentCategory2()
     {
@@ -791,10 +791,10 @@ class MenuItem {
     /**
      * Set contentCategoryRelationship
      *
-     * @param \SSone\CMSBundle\Entity\Field $contentCategoryRelationship
+     * @param \jfxninja\CMSBundle\Entity\Field $contentCategoryRelationship
      * @return MenuItem
      */
-    public function setContentCategoryRelationship(\SSone\CMSBundle\Entity\Field $contentCategoryRelationship = null)
+    public function setContentCategoryRelationship(\jfxninja\CMSBundle\Entity\Field $contentCategoryRelationship = null)
     {
         $this->contentCategoryRelationship = $contentCategoryRelationship;
 
@@ -804,7 +804,7 @@ class MenuItem {
     /**
      * Get contentCategoryRelationship
      *
-     * @return \SSone\CMSBundle\Entity\Field
+     * @return \jfxninja\CMSBundle\Entity\Field
      */
     public function getContentCategoryRelationship()
     {

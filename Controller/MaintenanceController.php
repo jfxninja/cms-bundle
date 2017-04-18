@@ -1,22 +1,22 @@
 <?php
 
-namespace SSone\CMSBundle\Controller;
+namespace JfxNinja\CMSBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-use SSone\CMSBundle\Form\Type\InstallTYPE;
-use SSone\CMSBundle\Entity\Domain;
-use SSone\CMSBundle\Entity\ContentType;
-use SSone\CMSBundle\Entity\Field;
-use SSone\CMSBundle\Entity\Content;
-use SSone\CMSBundle\Entity\Block;
-use SSone\CMSBundle\Entity\BlockField;
-use SSone\CMSBundle\Entity\Menu;
-use SSone\CMSBundle\Entity\MenuItem;
-use SSone\CMSBundle\Entity\Role;
-use SSone\CMSBundle\Entity\User;
+use JfxNinja\CMSBundle\Form\Type\InstallTYPE;
+use JfxNinja\CMSBundle\Entity\Domain;
+use JfxNinja\CMSBundle\Entity\ContentType;
+use JfxNinja\CMSBundle\Entity\Field;
+use JfxNinja\CMSBundle\Entity\Content;
+use JfxNinja\CMSBundle\Entity\Block;
+use JfxNinja\CMSBundle\Entity\BlockField;
+use JfxNinja\CMSBundle\Entity\Menu;
+use JfxNinja\CMSBundle\Entity\MenuItem;
+use JfxNinja\CMSBundle\Entity\Role;
+use JfxNinja\CMSBundle\Entity\User;
 
 
 class MaintenanceController extends Controller
@@ -26,12 +26,12 @@ class MaintenanceController extends Controller
     {
 
 
-        $cmsMigrationService = $this->get('ssone.cms.migration');
+        $cmsMigrationService = $this->get('jfxninja.cms.migration');
 
         $em = $this->getDoctrine()->getManager();
 
         $users = $this->getDoctrine()
-            ->getRepository('SSoneCMSBundle:User')
+            ->getRepository('JfxNinjaCMSBundle:User')
             ->findAll();
 
         //if($users) return new RedirectResponse('/');
@@ -60,7 +60,7 @@ class MaintenanceController extends Controller
 
         }
 
-        return $this->render('SSoneCMSBundle:Maintenance:install.html.twig', array(
+        return $this->render('JfxNinjaCMSBundle:Maintenance:install.html.twig', array(
             'form' => $form->createView(),
         ));
 
@@ -141,7 +141,7 @@ class MaintenanceController extends Controller
         $em->persist($contentType);
 
         //Create Field
-        $wyswigFieldType = $this->getDoctrine()->getRepository('SSoneCMSBundle:FieldType')->findOneBy(array('variableName'=>'wysiwyg'));
+        $wyswigFieldType = $this->getDoctrine()->getRepository('JfxNinjaCMSBundle:FieldType')->findOneBy(array('variableName'=>'wysiwyg'));
 
         $wyswigField = new Field();
         $wyswigField->setName('WYSIWIG Content');
@@ -156,7 +156,7 @@ class MaintenanceController extends Controller
         $wyswigField->setFieldType($wyswigFieldType);
 
         $fieldTypeOptions = $this->getDoctrine()
-            ->getRepository('SSoneCMSBundle:FieldSetupOptions')
+            ->getRepository('JfxNinjaCMSBundle:FieldSetupOptions')
             ->getAllFieldSetupOptions();
 
         foreach($fieldTypeOptions as $fieldType)
@@ -249,10 +249,10 @@ class MaintenanceController extends Controller
     private function cacheContent($id,$em)
     {
 
-        $cs = $this->get('ssone.cms.content');
+        $cs = $this->get('jfxninja.cms.content');
 
 
-        $languages = $em->getRepository('SSoneCMSBundle:Language')->findAll();
+        $languages = $em->getRepository('JfxNinjaCMSBundle:Language')->findAll();
 
         foreach($languages as $l)
         {
@@ -260,7 +260,7 @@ class MaintenanceController extends Controller
             $blocks[$lc] = $cs->getBlocks("content",$id,$lc);
         }
 
-        $content = $em->getRepository('SSoneCMSBundle:Content')->find($id);
+        $content = $em->getRepository('JfxNinjaCMSBundle:Content')->find($id);
 
         $content->setContent($blocks);
 

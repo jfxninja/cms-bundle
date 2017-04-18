@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Twig\Extension;
+namespace JfxNinja\CMSBundle\Twig\Extension;
 
 /**
  * A simple twig extension that adds a to_array filter
@@ -28,6 +28,6 @@ class FormatTextToHTML extends \Twig_Extension
 
     public function getName()
     {
-        return 'SSone_formatTextToHTML_extension';
+        return 'jfxninja_formatTextToHTML_extension';
     }
 }

@@ -1,7 +1,7 @@
 <?php
-namespace SSone\CMSBundle\Listener;
+namespace JfxNinja\CMSBundle\Listener;
 
-use SSone\CMSBundle\Services\Navigation;
+use JfxNinja\CMSBundle\Services\Navigation;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,7 +34,7 @@ class ExceptionListener
             // exception object
             $exception = $event->getException();
 
-            $navService = $this->container->get('ssone.cms.navigation');
+            $navService = $this->container->get('jfxninja.cms.navigation');
             $logger = $this->container->get('logger');
 
             $logger->error($exception->getMessage());
@@ -48,7 +48,7 @@ class ExceptionListener
             $response->setContent(
 
                 $this->templating->render(
-                    'SSoneCMSThemeBundle:'.$navService->domainTemplate,
+                    'jfxninjaCMSThemeBundle:'.$navService->domainTemplate,
                     array(
                         'navigation'=>$navService->templateNavigationMap,
                         'pageClass'=>"notfound404",

@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Tests\Controller;
+namespace JfxNinja\CMSBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Services;
+namespace JfxNinja\CMSBundle\Services;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
@@ -53,7 +53,7 @@ class Navigation extends EntityRepository
     {
         return $this->em
             ->createQuery(
-                'SELECT c FROM SSoneCMSBundle:Menu c WHERE c.securekey = :securekey'
+                'SELECT c FROM JfxNinjaCMSBundle:Menu c WHERE c.securekey = :securekey'
             )->setParameter('securekey', $securekey)
             ->getSingleResult();
     }
@@ -70,25 +70,25 @@ class Navigation extends EntityRepository
 
         if($stopwatch)
         {
-            $stopwatch->start('SSone::handleURL::getDomainMenuItems');
+            $stopwatch->start('jfxninja::handleURL::getDomainMenuItems');
             $this->domainMenusItems = $this->getDomainMenuItems($host);
-            $stopwatch->stop('SSone::handleURL::getDomainMenuItems');
+            $stopwatch->stop('jfxninja::handleURL::getDomainMenuItems');
 
-            $stopwatch->start('SSone::handleURL::findActiveMenuItem');
+            $stopwatch->start('jfxninja::handleURL::findActiveMenuItem');
             $this->activeMenuItem = $this->findActiveMenuItem($this->domainMenusItems,$uri,$host);
-            $stopwatch->stop('SSone::handleURL::findActiveMenuItem');
+            $stopwatch->stop('jfxninja::handleURL::findActiveMenuItem');
 
-            $stopwatch->start('SSone::handleURL::buildNestedNavigationArray');
+            $stopwatch->start('jfxninja::handleURL::buildNestedNavigationArray');
             $this->navigationMap = $this->buildNestedNavigationArray($host,$this->activeMenuItem);
-            $stopwatch->stop('SSone::handleURL::buildNestedNavigationArray');
+            $stopwatch->stop('jfxninja::handleURL::buildNestedNavigationArray');
 
-            $stopwatch->start('SSone::handleURL::formatNavigationForTemplate');
+            $stopwatch->start('jfxninja::handleURL::formatNavigationForTemplate');
             $this->templateNavigationMap = $this->formatNavigationForTemplate($this->navigationMap);
-            $stopwatch->stop('SSone::handleURL::formatNavigationForTemplate');
+            $stopwatch->stop('jfxninja::handleURL::formatNavigationForTemplate');
 
-            $stopwatch->start('SSone::handleURL::getDomainTemplate');
+            $stopwatch->start('jfxninja::handleURL::getDomainTemplate');
             $this->domainTemplate = $this->getDomainTemplate($host,$this->activeMenuItem);
-            $stopwatch->stop('SSone::handleURL::getDomainTemplate');
+            $stopwatch->stop('jfxninja::handleURL::getDomainTemplate');
 
         }
         else
@@ -326,7 +326,7 @@ class Navigation extends EntityRepository
                 'SELECT
                     d.id,
                     d.metaDescription
-                FROM SSoneCMSBundle:Domain d
+                FROM JfxNinjaCMSBundle:Domain d
                 WHERE d.domain LIKE :host'
             )
             ->setParameter('host', '%'.$host.'%')
@@ -368,15 +368,15 @@ class Navigation extends EntityRepository
                   s6_.id AS parentId,
                   s7_.id AS rootID
                 FROM
-                  ssone_menuItems s0_
-                  LEFT JOIN ssone_menuItems s6_ ON s0_.fk_parentMenuItem_id = s6_.id
-                  LEFT JOIN ssone_menus s7_ ON s0_.fk_rootMenu_id = s7_.id
-                  LEFT JOIN ssone_domains s8_ ON s7_.fk_domain_id = s8_.id
-                  LEFT JOIN ssone_content s4_ ON s0_.fk_content_id = s4_.id
-                  LEFT JOIN ssone_contentTypes s5_ ON s0_.fk_contentType_id = s5_.id
-                  LEFT JOIN ssone_fields s1_ ON s0_.fk_field_id_category1 = s1_.id
-                  LEFT JOIN ssone_fields s2_ ON s0_.fk_field_id_category2 = s2_.id
-                  LEFT JOIN ssone_fields s3_ ON s0_.fk_field_id_categoryRelationship = s3_.id
+                  ninjacms_menuItems s0_
+                  LEFT JOIN ninjacms_menuItems s6_ ON s0_.fk_parentMenuItem_id = s6_.id
+                  LEFT JOIN ninjacms_menus s7_ ON s0_.fk_rootMenu_id = s7_.id
+                  LEFT JOIN ninjacms_domains s8_ ON s7_.fk_domain_id = s8_.id
+                  LEFT JOIN ninjacms_content s4_ ON s0_.fk_content_id = s4_.id
+                  LEFT JOIN ninjacms_contentTypes s5_ ON s0_.fk_contentType_id = s5_.id
+                  LEFT JOIN ninjacms_fields s1_ ON s0_.fk_field_id_category1 = s1_.id
+                  LEFT JOIN ninjacms_fields s2_ ON s0_.fk_field_id_category2 = s2_.id
+                  LEFT JOIN ninjacms_fields s3_ ON s0_.fk_field_id_categoryRelationship = s3_.id
                 WHERE
                   s8_.id = '{$domain['id']}'
                 ORDER BY
@@ -433,7 +433,7 @@ class Navigation extends EntityRepository
                         ct.slug AS ctSlug,
                         p.id AS parentId,
                         r.id AS rootID
-                    FROM SSoneCMSBundle:MenuItem mi INDEX BY mi.id
+                    FROM JfxNinjaCMSBundle:MenuItem mi INDEX BY mi.id
                     LEFT JOIN mi.parent p
                     LEFT JOIN mi.root r
                     LEFT JOIN r.domain d
@@ -472,7 +472,7 @@ class Navigation extends EntityRepository
         if($host)
         {
             $query ='SELECT m.name, m.id, m.sort, m.menuTemplate, m.menuTemplatePosition, m.grandChildrenRelativePosition, m.drawAllGrandChildren, m.grandChildrenTemplatePosition, d.domain AS domain
-                    FROM SSoneCMSBundle:Menu m
+                    FROM JfxNinjaCMSBundle:Menu m
                     LEFT JOIN m.domain d
                     WHERE d.domain LIKE :host
                     ORDER BY m.sort';
@@ -484,7 +484,7 @@ class Navigation extends EntityRepository
         else
         {
             $query ='SELECT m.name, m.id, m.sort, m.menuTemplate, m.menuTemplatePosition, m.grandChildrenRelativePosition, m.drawAllGrandChildren, m.grandChildrenTemplatePosition
-                    FROM SSoneCMSBundle:Menu m
+                    FROM JfxNinjaCMSBundle:Menu m
                     ORDER BY m.sort';
 
             $menus = $this->em
@@ -506,7 +506,7 @@ class Navigation extends EntityRepository
         return $this->em
                 ->createQuery(
                     'SELECT d.domain
-                    FROM SSoneCMSBundle:Menu m
+                    FROM JfxNinjaCMSBundle:Menu m
                     LEFT JOIN m.domain d
                     ORDER BY d.id')
                 ->getResult();
@@ -893,7 +893,7 @@ class Navigation extends EntityRepository
                   bf.fieldContent AS filter1,
                   c.id AS contentId,
                   c.slug
-                  FROM SSoneCMSBundle:Block b
+                  FROM JfxNinjaCMSBundle:Block b
                   LEFT JOIN b.blockFields bf
                   LEFT JOIN b.field f
                   LEFT JOIN b.content c
@@ -912,7 +912,7 @@ class Navigation extends EntityRepository
                       bf.fieldContent AS filter2,
                       c.id AS contentId,
                       c.slug
-                      FROM SSoneCMSBundle:Block b
+                      FROM JfxNinjaCMSBundle:Block b
                       LEFT JOIN b.blockFields bf
                       LEFT JOIN b.field f
                       LEFT JOIN b.content c
@@ -987,7 +987,7 @@ class Navigation extends EntityRepository
                   f.variableName,
                   f.fieldTypeSettings,
                   ft.variableName as fieldType
-                  FROM SSoneCMSBundle:Field f
+                  FROM JfxNinjaCMSBundle:Field f
                   LEFT JOIN f.fieldType ft
                   WHERE f.id = :id'
             )
@@ -1018,7 +1018,7 @@ class Navigation extends EntityRepository
                       c.id,
                       c.slug,
                       c.name
-                      FROM SSoneCMSBundle:Content c
+                      FROM JfxNinjaCMSBundle:Content c
                       LEFT JOIN c.contentType ct
                       WHERE ct.id = :id'
                 )
@@ -1046,7 +1046,7 @@ class Navigation extends EntityRepository
                       b.id,
                       bf.fieldContent,
                       c.id AS contentId
-                      FROM SSoneCMSBundle:Block b
+                      FROM JfxNinjaCMSBundle:Block b
                       LEFT JOIN b.blockFields bf
                       LEFT JOIN b.field f
                       LEFT JOIN b.content c
@@ -1201,7 +1201,7 @@ class Navigation extends EntityRepository
                     c.id AS childId,
                     c.sort,
                     c.slug
-                FROM SSoneCMSBundle:MenuItem mi
+                FROM JfxNinjaCMSBundle:MenuItem mi
                 LEFT JOIN mi.children c
                 WHERE mi.id = :menuItemId
                 ORDER BY mi.sort'
@@ -1504,7 +1504,7 @@ class Navigation extends EntityRepository
         $languages = $this->em
             ->createQuery(
                 'SELECT l.languageCode
-                FROM SSoneCMSBundle:Language l'
+                FROM JfxNinjaCMSBundle:Language l'
             )
             ->getResult();
 
@@ -1567,7 +1567,7 @@ class Navigation extends EntityRepository
         }
         else{
             $domain = $this->em
-                ->getRepository('SSoneCMSBundle:Domain')->getDomain($host);
+                ->getRepository('JfxNinjaCMSBundle:Domain')->getDomain($host);
             if($domain->getThemeBundleName() && $domain->getDomainHTMLTemplate()) {
                 return $domain->getThemeBundleName() . ':' . $domain->getDomainHTMLTemplate();
             }

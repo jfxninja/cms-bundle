@@ -1,14 +1,14 @@
 <?php
 
-namespace SSone\CMSBundle\Controller;
+namespace JfxNinja\CMSBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-use SSone\CMSBundle\Entity\Content;
+use JfxNinja\CMSBundle\Entity\Content;
 
-use SSone\CMSBundle\Form\Type\ContentTYPE;
+use JfxNinja\CMSBundle\Form\Type\ContentTYPE;
 
 
 class ModuleContentSubmissionController extends Controller
@@ -29,11 +29,11 @@ class ModuleContentSubmissionController extends Controller
         $locale = $request->getLocale();
         $mode = "module-submission";
         $em = $this->getDoctrine()->getManager();
-        $cs = $this->get('ssone.cms.content');
+        $cs = $this->get('jfxninja.cms.content');
         $fieldsRepository = $this->getFieldsRepository();
-        $blockService = $this->get('ssone.cms.block');
+        $blockService = $this->get('jfxninja.cms.block');
 
-        $contentType = $this->getDoctrine()->getRepository('SSoneCMSBundle:ContentType')->findBySecurekey($securekey);
+        $contentType = $this->getDoctrine()->getRepository('JfxNinjaCMSBundle:ContentType')->findBySecurekey($securekey);
 
         $content = new content();
 
@@ -54,7 +54,7 @@ class ModuleContentSubmissionController extends Controller
         {
 
 
-            $auditor = $this->get('ssone.cms.recordauditor');
+            $auditor = $this->get('jfxninja.cms.recordauditor');
             $auditor->auditRecord($content);
 
 
@@ -73,7 +73,7 @@ class ModuleContentSubmissionController extends Controller
                     }
 
                     //handle file uploads
-                    $uploader = $this->get('ssone.cms.fileuploader');
+                    $uploader = $this->get('jfxninja.cms.fileuploader');
 
                     foreach ($form['blocks'] as $block) {
 
@@ -117,14 +117,14 @@ class ModuleContentSubmissionController extends Controller
                     $storedContent = $cs->findSecureKeyById($content->getId());
                     $this->cacheContent($content->getId(),$cs,$em);
                     return $this->redirect(
-                        $this->generateUrl('ssone_cms_frontend',array('uri' => $redirect))
+                        $this->generateUrl('jfxninja_cms_frontend',array('uri' => $redirect))
                     );
 
 
         }
 
 
-        return $this->render('SSoneCMSBundle:Content:crud.html.twig', array(
+        return $this->render('JfxNinjaCMSBundle:Content:crud.html.twig', array(
             'form' => $form->createView(),
             'contentTitle' => $content->getName(),
             'mode' => $mode,
@@ -141,7 +141,7 @@ class ModuleContentSubmissionController extends Controller
     private function cacheContent($id,$cs,$em)
     {
 
-        $languages = $em->getRepository('SSoneCMSBundle:Language')->findAll();
+        $languages = $em->getRepository('JfxNinjaCMSBundle:Language')->findAll();
 
         foreach($languages as $l)
         {
@@ -149,7 +149,7 @@ class ModuleContentSubmissionController extends Controller
             $blocks[$lc] = $cs->getBlocks("content",$id,$lc);
         }
 
-        $content = $em->getRepository('SSoneCMSBundle:Content')->find($id);
+        $content = $em->getRepository('JfxNinjaCMSBundle:Content')->find($id);
 
         $content->setContent($blocks);
 
@@ -161,7 +161,7 @@ class ModuleContentSubmissionController extends Controller
     private function getFieldsRepository()
     {
         return $this->getDoctrine()
-            ->getRepository('SSoneCMSBundle:Field');
+            ->getRepository('JfxNinjaCMSBundle:Field');
     }
 
 

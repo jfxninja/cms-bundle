@@ -1,15 +1,15 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\Util\SecureRandom;
 
 /**
- * @ORM\Entity(repositoryClass="SSone\CMSBundle\Entity\ContentRepository")
+ * @ORM\Entity(repositoryClass="JfxNinja\CMSBundle\Entity\ContentRepository")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="ssone_content")
+ * @ORM\Table(name="ninjacms_content")
  */
 class Content
 {
@@ -270,10 +270,10 @@ class Content
     /**
      * Set contentType
      *
-     * @param \SSone\CMSBundle\Entity\ContentType $contentType
+     * @param \jfxninja\CMSBundle\Entity\ContentType $contentType
      * @return Content
      */
-    public function setContentType(\SSone\CMSBundle\Entity\ContentType $contentType = null)
+    public function setContentType(\jfxninja\CMSBundle\Entity\ContentType $contentType = null)
     {
         $this->contentType = $contentType;
 
@@ -283,7 +283,7 @@ class Content
     /**
      * Get contentType
      *
-     * @return \SSone\CMSBundle\Entity\ContentType
+     * @return \jfxninja\CMSBundle\Entity\ContentType
      */
     public function getContentType()
     {
@@ -316,10 +316,10 @@ class Content
     /**
      * Add blocks
      *
-     * @param \SSone\CMSBundle\Entity\Block $block
+     * @param \jfxninja\CMSBundle\Entity\Block $block
      * @return Content
      */
-    public function addBlock(\SSone\CMSBundle\Entity\Block $block)
+    public function addBlock(\jfxninja\CMSBundle\Entity\Block $block)
     {
         $this->blocks[] = $block;
 
@@ -329,9 +329,9 @@ class Content
     /**
      * Remove blocks
      *
-     * @param \SSone\CMSBundle\Entity\Block $block
+     * @param \jfxninja\CMSBundle\Entity\Block $block
      */
-    public function removeBlock(\SSone\CMSBundle\Entity\Block $block)
+    public function removeBlock(\jfxninja\CMSBundle\Entity\Block $block)
     {
         $this->blocks->removeElement($block);
     }
@@ -350,10 +350,10 @@ class Content
     /**
      * Add menuItems
      *
-     * @param \SSone\CMSBundle\Entity\MenuItem $menuItems
+     * @param \jfxninja\CMSBundle\Entity\MenuItem $menuItems
      * @return Content
      */
-    public function addMenuItem(\SSone\CMSBundle\Entity\MenuItem $menuItems)
+    public function addMenuItem(\jfxninja\CMSBundle\Entity\MenuItem $menuItems)
     {
         $this->menuItems[] = $menuItems;
 
@@ -363,9 +363,9 @@ class Content
     /**
      * Remove menuItems
      *
-     * @param \SSone\CMSBundle\Entity\MenuItem $menuItems
+     * @param \jfxninja\CMSBundle\Entity\MenuItem $menuItems
      */
-    public function removeMenuItem(\SSone\CMSBundle\Entity\MenuItem $menuItems)
+    public function removeMenuItem(\jfxninja\CMSBundle\Entity\MenuItem $menuItems)
     {
         $this->menuItems->removeElement($menuItems);
     }

@@ -1,16 +1,16 @@
 <?php
 
-namespace SSone\CMSBundle\Controller;
+namespace JfxNinja\CMSBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-use SSone\CMSBundle\Entity\MenuItem;
-use SSone\CMSBundle\Entity\Menu;
-use SSone\CMSBundle\Entity\Content;
+use JfxNinja\CMSBundle\Entity\MenuItem;
+use JfxNinja\CMSBundle\Entity\Menu;
+use JfxNinja\CMSBundle\Entity\Content;
 
-use SSone\CMSBundle\Form\Type\MenuItemTYPE;
+use JfxNinja\CMSBundle\Form\Type\MenuItemTYPE;
 use Doctrine\Common\Collections\ArrayCollection;
 
 
@@ -22,12 +22,12 @@ class MenuItemsController extends Controller
     {
 
         $menuItems = $this->getDoctrine()
-            ->getRepository('SSoneCMSBundle:MenuItem')
+            ->getRepository('JfxNinjaCMSBundle:MenuItem')
             ->getItemsForListTable();
 
 
         return $this->render(
-            'SSoneCMSBundle:AdminTemplates:standardList.html.twig',
+            'JfxNinjaCMSBundle:AdminTemplates:standardList.html.twig',
             array(
                 "items" => $menuItems,
                 "title" => "Menu Items"
@@ -62,9 +62,9 @@ class MenuItemsController extends Controller
     {
 
         $locale = $request->getLocale();
-        $defaultLocale = $this->container->getParameter("SSone.default_locale");
+        $defaultLocale = $this->container->getParameter("jfxninja.default_locale");
         $em = $this->getDoctrine()->getManager();
-        $ls = $this->get('ssone.cms.Localiser');
+        $ls = $this->get('jfxninja.cms.Localiser');
 
         $altLinks = $ls->getAltAdminLangLinks($request->getUri());
 
@@ -75,15 +75,15 @@ class MenuItemsController extends Controller
         }
         else
         {
-            $menuItem = $this->getDoctrine()->getRepository('SSoneCMSBundle:MenuItem')->findBySecurekey($securekey);
+            $menuItem = $this->getDoctrine()->getRepository('JfxNinjaCMSBundle:MenuItem')->findBySecurekey($securekey);
         }
 
 
-        $contentLibrary = $this->get('ssone.cms.content')->getAllForGroupedChoiceOptions();
+        $contentLibrary = $this->get('jfxninja.cms.content')->getAllForGroupedChoiceOptions();
 
-        $fieldsRepository = $this->getDoctrine()->getRepository('SSoneCMSBundle:Field');
+        $fieldsRepository = $this->getDoctrine()->getRepository('JfxNinjaCMSBundle:Field');
 
-        $menuItems = $this->get('ssone.cms.navigation');
+        $menuItems = $this->get('jfxninja.cms.navigation');
 
         $menuItems = $menuItems->buildFlatNavigationArray($menuItem->getId());
 
@@ -96,7 +96,7 @@ class MenuItemsController extends Controller
 
             $this->handleParentChoice($menuItem,$em);
             $this->handleContentChoice($menuItem,$em);
-            $this->get('ssone.cms.recordauditor')->auditRecord($menuItem);
+            $this->get('jfxninja.cms.recordauditor')->auditRecord($menuItem);
 
             switch($mode)
             {
@@ -114,11 +114,11 @@ class MenuItemsController extends Controller
             $em->flush();
 
             return $this->redirect(
-                $this->generateUrl('ssone_cms_admin_menuItems_list')
+                $this->generateUrl('jfxninja_cms_admin_menuItems_list')
             );
         }
 
-        return $this->render('SSoneCMSBundle:MenuItem:crud.html.twig', array(
+        return $this->render('JfxNinjaCMSBundle:MenuItem:crud.html.twig', array(
             'form' => $form->createView(),
             'menuItemTitle' => $menuItem->getName($defaultLocale),
             'mode' => $mode,
@@ -137,7 +137,7 @@ class MenuItemsController extends Controller
             //If a parent has been chosen and its not set to root set the parent menu
             if(isset($parent[1]) && $parent[1] != "root")
             {
-                $menuItem->setParent($em->getReference('SSone\CMSBundle\Entity\MenuItem', $parent[1]));
+                $menuItem->setParent($em->getReference('jfxninja\CMSBundle\Entity\MenuItem', $parent[1]));
             }
             elseif(isset($parent[1]) && $parent[1] == "root")
             {
@@ -148,7 +148,7 @@ class MenuItemsController extends Controller
             //TODO:JW test this should always be set
             if($parent[0])
             {
-                $menuItem->setRoot($em->getReference('SSone\CMSBundle\Entity\Menu', $parent[0]));
+                $menuItem->setRoot($em->getReference('jfxninja\CMSBundle\Entity\Menu', $parent[0]));
             }
     }
 
@@ -161,12 +161,12 @@ class MenuItemsController extends Controller
         $content = explode("_",$menuItem->getMapContent());
         if($content[0] == "single")
         {
-            $menuItem->setContent($em->getReference('SSone\CMSBundle\Entity\Content', $content[1]));
+            $menuItem->setContent($em->getReference('jfxninja\CMSBundle\Entity\Content', $content[1]));
             $menuItem->setMode('single');
         }
         elseif($content[0] == "list")
         {
-            $menuItem->setContentType($em->getReference('SSone\CMSBundle\Entity\ContentType', $content[1]));
+            $menuItem->setContentType($em->getReference('jfxninja\CMSBundle\Entity\ContentType', $content[1]));
             $menuItem->setMode('list');
         }
         elseif(count($content)<2)

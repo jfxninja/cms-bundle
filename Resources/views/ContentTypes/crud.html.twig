@@ -1,4 +1,4 @@
-{% extends 'SSoneCMSBundle::CMSAdmin.base.html.twig' %}
+{% extends 'JfxNinjaCMSBundle::CMSAdmin.base.html.twig' %}
 
 {% block scripts %}
 
@@ -68,7 +68,7 @@
                         data-prototype="
                             {% filter escape %}
                                 {% include
-                                        'SSoneCMSBundle:Form:contentTypeField.html.twig'
+                                        'JfxNinjaCMSBundle:Form:contentTypeField.html.twig'
                                         with {'id': 'aField', 'form': form.attributeFields.vars.prototype, 'index' : "__index__" }
                                         %}
                             {% endfilter %}
@@ -77,7 +77,7 @@
                         {% for aField in form.attributeFields %}
                             <dd class="properties row" id="afield-{{ loop.index }}">
                                 {% include
-                                'SSoneCMSBundle:Form:contentTypeField.html.twig'
+                                'JfxNinjaCMSBundle:Form:contentTypeField.html.twig'
                                 with {'id': 'aField', 'form': aField, 'index' : loop.index }
                                 %}
 
@@ -100,7 +100,7 @@
                 data-prototype="
                     {% filter escape %}
                         {% include
-                            'SSoneCMSBundle:Form:contentTypeField.html.twig'
+                            'JfxNinjaCMSBundle:Form:contentTypeField.html.twig'
                             with {'id': 'vField','form': form.variableFields.vars.prototype, 'index' : "__index__" }
                         %}
                     {% endfilter %}
@@ -112,7 +112,7 @@
                     <dd class="properties row" id="vfield-{{ loop.index }}">
 
                         {% include
-                        'SSoneCMSBundle:Form:contentTypeField.html.twig'
+                        'JfxNinjaCMSBundle:Form:contentTypeField.html.twig'
                         with {'id': 'vField', 'form': vField, 'index' : loop.index}
                         %}
 

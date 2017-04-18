@@ -1,14 +1,14 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Util\SecureRandom;
 
 /**
- * @ORM\Entity(repositoryClass="SSone\CMSBundle\Entity\DomainsRepository")
+ * @ORM\Entity(repositoryClass="JfxNinja\CMSBundle\Entity\DomainsRepository")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="ssone_domains")
+ * @ORM\Table(name="ninjacms_domains")
  */
 class Domain {
 
@@ -309,10 +309,10 @@ class Domain {
     /**
      * Add menus
      *
-     * @param \SSone\CMSBundle\Entity\Menu $menus
+     * @param \jfxninja\CMSBundle\Entity\Menu $menus
      * @return Domain
      */
-    public function addMenu(\SSone\CMSBundle\Entity\Menu $menus)
+    public function addMenu(\jfxninja\CMSBundle\Entity\Menu $menus)
     {
         $this->menus[] = $menus;
 
@@ -322,9 +322,9 @@ class Domain {
     /**
      * Remove menus
      *
-     * @param \SSone\CMSBundle\Entity\Menu $menus
+     * @param \jfxninja\CMSBundle\Entity\Menu $menus
      */
-    public function removeMenu(\SSone\CMSBundle\Entity\Menu $menus)
+    public function removeMenu(\jfxninja\CMSBundle\Entity\Menu $menus)
     {
         $this->menus->removeElement($menus);
     }

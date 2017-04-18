@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Controller;
+namespace JfxNinja\CMSBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('SSoneCMSBundle:Default:index.html.twig', array());
+        return $this->render('JfxNinjaCMSBundle:Default:index.html.twig', array());
     }
 }

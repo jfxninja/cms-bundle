@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Controller;
+namespace JfxNinja\CMSBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -11,9 +11,9 @@ class WYSIWYGImageUploadController extends Controller
     public function storeImageAction(Request $request, $sfid)
     {
         $em = $this->getDoctrine()->getManager();
-        $fieldsRepository = $em->getRepository('SSoneCMSBundle:Field');
+        $fieldsRepository = $em->getRepository('JfxNinjaCMSBundle:Field');
 
-        $uploader = $this->get('ssone.cms.fileuploader');
+        $uploader = $this->get('jfxninja.cms.fileuploader');
 
         //get the upload folder
 

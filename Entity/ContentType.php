@@ -1,15 +1,15 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\Util\SecureRandom;
 
 /**
- * @ORM\Entity(repositoryClass="SSone\CMSBundle\Entity\ContentTypesRepository")
+ * @ORM\Entity(repositoryClass="JfxNinja\CMSBundle\Entity\ContentTypesRepository")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="ssone_contentTypes")
+ * @ORM\Table(name="ninjacms_contentTypes")
  */
 class ContentType
 {
@@ -388,10 +388,10 @@ class ContentType
     /**
      * Add menuItems
      *
-     * @param \SSone\CMSBundle\Entity\MenuItem $menuItems
+     * @param \jfxninja\CMSBundle\Entity\MenuItem $menuItems
      * @return ContentType
      */
-    public function addMenuItem(\SSone\CMSBundle\Entity\MenuItem $menuItems)
+    public function addMenuItem(\jfxninja\CMSBundle\Entity\MenuItem $menuItems)
     {
         $this->menuItems[] = $menuItems;
 
@@ -401,9 +401,9 @@ class ContentType
     /**
      * Remove menuItems
      *
-     * @param \SSone\CMSBundle\Entity\MenuItem $menuItems
+     * @param \jfxninja\CMSBundle\Entity\MenuItem $menuItems
      */
-    public function removeMenuItem(\SSone\CMSBundle\Entity\MenuItem $menuItems)
+    public function removeMenuItem(\jfxninja\CMSBundle\Entity\MenuItem $menuItems)
     {
         $this->menuItems->removeElement($menuItems);
     }
@@ -421,10 +421,10 @@ class ContentType
     /**
      * Add content
      *
-     * @param \SSone\CMSBundle\Entity\Content $content
+     * @param \jfxninja\CMSBundle\Entity\Content $content
      * @return ContentType
      */
-    public function addContent(\SSone\CMSBundle\Entity\Content $content)
+    public function addContent(\jfxninja\CMSBundle\Entity\Content $content)
     {
         $this->content[] = $content;
 
@@ -434,9 +434,9 @@ class ContentType
     /**
      * Remove content
      *
-     * @param \SSone\CMSBundle\Entity\Content $content
+     * @param \jfxninja\CMSBundle\Entity\Content $content
      */
-    public function removeContent(\SSone\CMSBundle\Entity\Content $content)
+    public function removeContent(\jfxninja\CMSBundle\Entity\Content $content)
     {
         $this->content->removeElement($content);
     }
@@ -491,10 +491,10 @@ class ContentType
     /**
      * Add variableFields
      *
-     * @param \SSone\CMSBundle\Entity\Field $variableField
+     * @param \jfxninja\CMSBundle\Entity\Field $variableField
      * @return ContentType
      */
-    public function addVariableField(\SSone\CMSBundle\Entity\Field $variableField)
+    public function addVariableField(\jfxninja\CMSBundle\Entity\Field $variableField)
     {
         $variableField->setContentTypeByVariable($this);
 
@@ -506,9 +506,9 @@ class ContentType
     /**
      * Remove variableFields
      *
-     * @param \SSone\CMSBundle\Entity\Field $variableFields
+     * @param \jfxninja\CMSBundle\Entity\Field $variableFields
      */
-    public function removeVariableField(\SSone\CMSBundle\Entity\Field $variableFields)
+    public function removeVariableField(\jfxninja\CMSBundle\Entity\Field $variableFields)
     {
         $this->variableFields->removeElement($variableFields);
     }
@@ -526,10 +526,10 @@ class ContentType
     /**
      * Add attributeFields
      *
-     * @param \SSone\CMSBundle\Entity\Field $attributeField
+     * @param \jfxninja\CMSBundle\Entity\Field $attributeField
      * @return ContentType
      */
-    public function addAttributeField(\SSone\CMSBundle\Entity\Field $attributeField)
+    public function addAttributeField(\jfxninja\CMSBundle\Entity\Field $attributeField)
     {
         $attributeField->setContentTypeByAttribute($this);
 
@@ -541,9 +541,9 @@ class ContentType
     /**
      * Remove attributeFields
      *
-     * @param \SSone\CMSBundle\Entity\Field $attributeFields
+     * @param \jfxninja\CMSBundle\Entity\Field $attributeFields
      */
-    public function removeAttributeField(\SSone\CMSBundle\Entity\Field $attributeFields)
+    public function removeAttributeField(\jfxninja\CMSBundle\Entity\Field $attributeFields)
     {
         $this->attributeFields->removeElement($attributeFields);
     }
@@ -561,10 +561,10 @@ class ContentType
     /**
      * Add blocks
      *
-     * @param \SSone\CMSBundle\Entity\Block $blocks
+     * @param \jfxninja\CMSBundle\Entity\Block $blocks
      * @return ContentType
      */
-    public function addBlock(\SSone\CMSBundle\Entity\Block $blocks)
+    public function addBlock(\jfxninja\CMSBundle\Entity\Block $blocks)
     {
         $this->blocks[] = $blocks;
 
@@ -574,9 +574,9 @@ class ContentType
     /**
      * Remove blocks
      *
-     * @param \SSone\CMSBundle\Entity\Block $blocks
+     * @param \jfxninja\CMSBundle\Entity\Block $blocks
      */
-    public function removeBlock(\SSone\CMSBundle\Entity\Block $blocks)
+    public function removeBlock(\jfxninja\CMSBundle\Entity\Block $blocks)
     {
         $this->blocks->removeElement($blocks);
     }

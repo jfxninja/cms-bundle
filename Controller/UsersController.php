@@ -1,15 +1,15 @@
 <?php
 
-namespace SSone\CMSBundle\Controller;
+namespace JfxNinja\CMSBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-use SSone\CMSBundle\Entity\User;
-use SSone\CMSBundle\Entity\Role;
+use JfxNinja\CMSBundle\Entity\User;
+use JfxNinja\CMSBundle\Entity\Role;
 
-use SSone\CMSBundle\Form\Type\UserTYPE;
+use JfxNinja\CMSBundle\Form\Type\UserTYPE;
 use Doctrine\Common\Collections\ArrayCollection;
 
 
@@ -21,12 +21,12 @@ class UsersController extends Controller
     {
 
         $users = $this->getDoctrine()
-            ->getRepository('SSoneCMSBundle:User')
+            ->getRepository('JfxNinjaCMSBundle:User')
             ->getItemsForListTable();
 
 
         return $this->render(
-            'SSoneCMSBundle:AdminTemplates:standardList.html.twig',
+            'JfxNinjaCMSBundle:AdminTemplates:standardList.html.twig',
             array(
                 "items" => $users,
                 "title" => "Users"
@@ -63,7 +63,7 @@ class UsersController extends Controller
         $locale = $request->getLocale();
         $em = $this->getDoctrine()->getManager();
 
-        $roles = $this->getDoctrine()->getRepository('SSoneCMSBundle:Role');
+        $roles = $this->getDoctrine()->getRepository('JfxNinjaCMSBundle:Role');
 
         if($mode == "new")
         {
@@ -71,7 +71,7 @@ class UsersController extends Controller
         }
         else
         {
-            $user = $this->getDoctrine()->getRepository('SSoneCMSBundle:User')->findBySecurekey($securekey);
+            $user = $this->getDoctrine()->getRepository('JfxNinjaCMSBundle:User')->findBySecurekey($securekey);
         }
 
         $form = $this->createForm(new UserTYPE($mode,$locale), $user);
@@ -80,7 +80,7 @@ class UsersController extends Controller
         if ($form->isValid())
         {
 
-            $this->get('ssone.cms.recordauditor')->auditRecord($user);
+            $this->get('jfxninja.cms.recordauditor')->auditRecord($user);
 
 
             if($form['password']->getData())
@@ -109,12 +109,12 @@ class UsersController extends Controller
             $em->flush();
 
             return $this->redirect(
-                $this->generateUrl('ssone_cms_admin_users_list')
+                $this->generateUrl('jfxninja_cms_admin_users_list')
             );
         }
 
 
-        return $this->render('SSoneCMSBundle:User:crud.html.twig', array(
+        return $this->render('JfxNinjaCMSBundle:User:crud.html.twig', array(
             'form' => $form->createView(),
             'title' => $user->getUsername(),
             'mode' => $mode,

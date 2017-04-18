@@ -1,14 +1,14 @@
 <?php
 
-namespace SSone\CMSBundle\Controller;
+namespace JfxNinja\CMSBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-use SSone\CMSBundle\Entity\CMSForm;
+use JfxNinja\CMSBundle\Entity\CMSForm;
 
-use SSone\CMSBundle\Form\Type\CMSFormTYPE;
+use JfxNinja\CMSBundle\Form\Type\CMSFormTYPE;
 use Doctrine\Common\Collections\ArrayCollection;
 
 
@@ -20,12 +20,12 @@ class CMSFormsController extends Controller
     {
 
         $CMSForms = $this->getDoctrine()
-            ->getRepository('SSoneCMSBundle:CMSForm')
+            ->getRepository('JfxNinjaCMSBundle:CMSForm')
             ->getItemsForListTable();
 
 
         return $this->render(
-            'SSoneCMSBundle:AdminTemplates:standardList.html.twig',
+            'JfxNinjaCMSBundle:AdminTemplates:standardList.html.twig',
             array(
                 "items" => $CMSForms,
                 "title" => "Forms"
@@ -68,7 +68,7 @@ class CMSFormsController extends Controller
         }
         else
         {
-            $CMSForm = $this->getDoctrine()->getRepository('SSoneCMSBundle:CMSForm')->findBySecurekey($securekey);
+            $CMSForm = $this->getDoctrine()->getRepository('JfxNinjaCMSBundle:CMSForm')->findBySecurekey($securekey);
         }
 
         $form = $this->createForm(new CMSFormTYPE($mode,$locale), $CMSForm);
@@ -77,9 +77,9 @@ class CMSFormsController extends Controller
         if ($form->isValid())
         {
 
-            $this->get('ssone.cms.recordauditor')->auditRecord($CMSForm);
+            $this->get('jfxninja.cms.recordauditor')->auditRecord($CMSForm);
 
-            $uploader = $this->get('ssone.cms.fileuploader');
+            $uploader = $this->get('jfxninja.cms.fileuploader');
 
             if($fp = $uploader->templateUpload($form['file_template']->getData(), "form"))
             {
@@ -102,12 +102,12 @@ class CMSFormsController extends Controller
             $em->flush();
 
             return $this->redirect(
-                $this->generateUrl('ssone_cms_admin_cmsforms_list')
+                $this->generateUrl('jfxninja_cms_admin_cmsforms_list')
             );
         }
 
 
-        return $this->render('SSoneCMSBundle:CMSForm:crud.html.twig', array(
+        return $this->render('JfxNinjaCMSBundle:CMSForm:crud.html.twig', array(
             'form' => $form->createView(),
             'formTitle' => $CMSForm->getName(),
             'mode' => $mode,

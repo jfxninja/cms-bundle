@@ -1,10 +1,10 @@
 <?php
 
-namespace SSone\CMSBundle\Form\FieldType;
+namespace JfxNinja\CMSBundle\Form\FieldType;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use SSone\CMSBundle\Form\DataTransformer\CMSImageFieldPathTransformer;
+use JfxNinja\CMSBundle\Form\DataTransformer\CMSImageFieldPathTransformer;
 
 
 

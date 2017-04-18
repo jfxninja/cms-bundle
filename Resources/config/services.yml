@@ -1,8 +1,8 @@
 
 services:
 
-    ssone.cms.kernel.exception_listener:
-      class: SSone\CMSBundle\Listener\ExceptionListener
+    jfxninja.cms.kernel.exception_listener:
+      class: JfxNinja\CMSBundle\Listener\ExceptionListener
       arguments: [@templating, @kernel, "@request_stack", "@service_container"]
       tags:
           - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
@@ -10,82 +10,82 @@ services:
 
 
 
-    ssone.cms.fileuploader:
-        class: SSone\CMSBundle\Services\FileUploader
+    jfxninja.cms.fileuploader:
+        class: JfxNinja\CMSBundle\Services\FileUploader
 
-    ssone.cms.recordauditor:
-        class: SSone\CMSBundle\Services\RecordAuditor
+    jfxninja.cms.recordauditor:
+        class: JfxNinja\CMSBundle\Services\RecordAuditor
         arguments:    ["@=service('security.context')"]
 
-    ssone.cms.localiser:
-        class: SSone\CMSBundle\Services\Localiser
+    jfxninja.cms.localiser:
+        class: JfxNinja\CMSBundle\Services\Localiser
         arguments: ["@service_container","@request","@doctrine.orm.entity_manager"]
         scope: request
 
-    ssone.cms.helperFunctions:
-        class: SSone\CMSBundle\Services\HelperFunctions
+    jfxninja.cms.helperFunctions:
+        class: JfxNinja\CMSBundle\Services\HelperFunctions
         scope: request
 
-    ssone.cms.navigation:
-        class: SSone\CMSBundle\Services\Navigation
-        arguments: ["@ssone.cms.localiser","@doctrine.orm.entity_manager","@ssone.cms.helperFunctions","@ssone.cms.content"]
+    jfxninja.cms.navigation:
+        class: JfxNinja\CMSBundle\Services\Navigation
+        arguments: ["@jfxninja.cms.localiser","@doctrine.orm.entity_manager","@jfxninja.cms.helperFunctions","@jfxninja.cms.content"]
         scope: request
 
-    ssone.cms.module:
-        class: SSone\CMSBundle\Services\ModuleService
-        arguments: ["@ssone.cms.localiser","@doctrine.orm.entity_manager","@ssone.cms.helperFunctions","@ssone.cms.content","@ssone.cms.block","@request_stack","@mailer","@templating"]
+    jfxninja.cms.module:
+        class: JfxNinja\CMSBundle\Services\ModuleService
+        arguments: ["@jfxninja.cms.localiser","@doctrine.orm.entity_manager","@jfxninja.cms.helperFunctions","@jfxninja.cms.content","@jfxninja.cms.block","@request_stack","@mailer","@templating"]
         scope: request
 
-    ssone.cms.form:
-        class: SSone\CMSBundle\Services\CMSFormService
-        arguments: ["@ssone.cms.localiser","@doctrine.orm.entity_manager","@ssone.cms.helperFunctions","@ssone.cms.content","@ssone.cms.block","@request_stack","@mailer","@templating"]
+    jfxninja.cms.form:
+        class: JfxNinja\CMSBundle\Services\CMSFormService
+        arguments: ["@jfxninja.cms.localiser","@doctrine.orm.entity_manager","@jfxninja.cms.helperFunctions","@jfxninja.cms.content","@jfxninja.cms.block","@request_stack","@mailer","@templating"]
         scope: request
 
-    ssone.cms.content:
-        class: SSone\CMSBundle\Services\ContentService
-        arguments: ["@ssone.cms.localiser","@doctrine.orm.entity_manager","@ssone.cms.block","@ssone.cms.recordauditor"]
+    jfxninja.cms.content:
+        class: JfxNinja\CMSBundle\Services\ContentService
+        arguments: ["@jfxninja.cms.localiser","@doctrine.orm.entity_manager","@jfxninja.cms.block","@jfxninja.cms.recordauditor"]
         scope: request
 
-    ssone.cms.block:
-        class: SSone\CMSBundle\Services\BlockService
-        arguments: ["@ssone.cms.localiser","@doctrine.orm.entity_manager","@ssone.cms.fileuploader","@ssone.cms.recordauditor"]
+    jfxninja.cms.block:
+        class: JfxNinja\CMSBundle\Services\BlockService
+        arguments: ["@jfxninja.cms.localiser","@doctrine.orm.entity_manager","@jfxninja.cms.fileuploader","@jfxninja.cms.recordauditor"]
         scope: request
 
 
-    ssone.cms.migration:
-        class: SSone\CMSBundle\Services\MigrationService
+    jfxninja.cms.migration:
+        class: JfxNinja\CMSBundle\Services\MigrationService
         arguments: ["@service_container","@doctrine.orm.entity_manager","%kernel.root_dir%"]
 
 
 
 
-    ssone_cms.type.multi_langue_text_field:
-        class: SSone\CMSBundle\Form\FieldType\MultiLanguageText
+    jfxninja_cms.type.multi_langue_text_field:
+        class: JfxNinja\CMSBundle\Form\FieldType\MultiLanguageText
         tags:
             - { name: form.type, alias: multiLanguageText }
 
-    ssone_cms.type.multi_langue_textarea_field:
-        class: SSone\CMSBundle\Form\FieldType\MultiLanguageTextarea
+    jfxninja_cms.type.multi_langue_textarea_field:
+        class: JfxNinja\CMSBundle\Form\FieldType\MultiLanguageTextarea
         tags:
             - { name: form.type, alias: multiLanguageTextarea }
 
-    ssone_cms.type.multi_langue_choice_field:
-        class: SSone\CMSBundle\Form\FieldType\MultiLanguageChoice
+    jfxninja_cms.type.multi_langue_choice_field:
+        class: JfxNinja\CMSBundle\Form\FieldType\MultiLanguageChoice
         tags:
             - { name: form.type, alias: multiLanguageChoice}
 
-    ssone_cms.type.cms_choice_field:
-        class: SSone\CMSBundle\Form\FieldType\CMSChoiceField
+    jfxninja_cms.type.cms_choice_field:
+        class: JfxNinja\CMSBundle\Form\FieldType\CMSChoiceField
         tags:
             - { name: form.type, alias:CMSChoice}
 
-    ssone_cms.type.CMSFieldFilePath:
-        class: SSone\CMSBundle\Form\FieldType\CMSFieldFilePath
+    jfxninja_cms.type.CMSFieldFilePath:
+        class: JfxNinja\CMSBundle\Form\FieldType\CMSFieldFilePath
         tags:
             - { name: form.type, alias: CMSFieldFilePath }
 
-    ssone_cms.type.textarea_extension:
-        class: SSone\CMSBundle\Form\Extension\TextareaTypeExtension
+    jfxninja_cms.type.textarea_extension:
+        class: JfxNinja\CMSBundle\Form\Extension\TextareaTypeExtension
         tags:
             - { name: form.type_extension, alias: textarea }
 
@@ -93,22 +93,22 @@ services:
 
 
     core.twig.to_array_extension:
-        class: SSone\CMSBundle\Twig\Extension\ToArrayExtension
+        class: JfxNinja\CMSBundle\Twig\Extension\ToArrayExtension
         tags:
             - { name: twig.extension }
 
-    core.twig.SSone_formatTextToHTML_extension:
-        class: SSone\CMSBundle\Twig\Extension\FormatTextToHTML
+    core.twig.jfxninja_formatTextToHTML_extension:
+        class: JfxNinja\CMSBundle\Twig\Extension\FormatTextToHTML
         tags:
             - { name: twig.extension }
 
-    core.twig.SSone_CrToBr_extension:
-        class: SSone\CMSBundle\Twig\Extension\CrToBr
+    core.twig.jfxninja_CrToBr_extension:
+        class: JfxNinja\CMSBundle\Twig\Extension\CrToBr
         tags:
             - { name: twig.extension }
 
-#    ssone.cms.language:
-#        class: SSone\CMSBundle\Services\SetDefaultLanguage
+#    JfxNinja.cms.language:
+#        class: JfxNinja\CMSBundle\Services\SetDefaultLanguage
 #        arguments: ["@doctrine.orm.entity_manager","@service_container"]
 #        tags:
 #            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 30 }

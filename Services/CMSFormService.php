@@ -1,12 +1,12 @@
 <?php
 
-namespace SSone\CMSBundle\Services;
+namespace JfxNinja\CMSBundle\Services;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 
-use SSone\CMSBundle\Entity\Content;
-use SSone\CMSBundle\Form\Type\ContentTYPEfrontend;
+use JfxNinja\CMSBundle\Entity\Content;
+use JfxNinja\CMSBundle\Form\Type\ContentTYPEfrontend;
 
 use Symfony\Bridge\Twig\TwigEngine;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -51,7 +51,7 @@ class CMSFormService extends EntityRepository
     {
         return $this->em
             ->createQuery(
-                'SELECT c FROM SSoneCMSBundle:CMSForm c WHERE c.securekey = :securekey'
+                'SELECT c FROM JfxNinjaCMSBundle:CMSForm c WHERE c.securekey = :securekey'
             )->setParameter('securekey', $securekey)
             ->getSingleResult();
     }
@@ -83,22 +83,22 @@ class CMSFormService extends EntityRepository
 
         $content = new Content();
 
-        $contentType = $this->em->getRepository('SSoneCMSBundle:ContentType')->find($CMSForm['contentTypeId']);
+        $contentType = $this->em->getRepository('JfxNinjaCMSBundle:ContentType')->find($CMSForm['contentTypeId']);
 
         $content->setContentType($contentType);
 
         $this->bs->contentBlockManager($content);
 
-        $fieldsRepository = $this->em->getRepository('SSoneCMSBundle:Field');
+        $fieldsRepository = $this->em->getRepository('JfxNinjaCMSBundle:Field');
 
 
         if($this->locale == $this->localiser->defaultLocale)
         {
-            $route = "ssone_cms_frontend_noloco_post";
+            $route = "jfxninja_cms_frontend_noloco_post";
         }
         else
         {
-            $route = "ssone_cms_frontend_post";
+            $route = "jfxninja_cms_frontend_post";
         }
 
         $formsService = $this;
@@ -147,7 +147,7 @@ class CMSFormService extends EntityRepository
                     {
                         $message->setBody(
                             $this->twigEngine->render(
-                            'SSoneCMSThemeBundle:'.$CMSForm['adminEmailHTML'],
+                            'jfxninjaCMSThemeBundle:'.$CMSForm['adminEmailHTML'],
                             array("content"=>$blocks)
                             )
                         )->setContentType("text/html");
@@ -173,7 +173,7 @@ class CMSFormService extends EntityRepository
 
     private function getCMSForm($formId,$localiser)
     {
-        $form = $this->em->getRepository('SSoneCMSBundle:CMSForm')->getCMSFormByFormId($formId,$localiser);
+        $form = $this->em->getRepository('JfxNinjaCMSBundle:CMSForm')->getCMSFormByFormId($formId,$localiser);
         return $form;
     }
 

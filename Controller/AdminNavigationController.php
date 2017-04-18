@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Controller;
+namespace JfxNinja\CMSBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,48 +15,48 @@ class AdminNavigationController extends Controller
 
             array(
                 "name"=>"Content",
-                "route"=>"ssone_cms_admin_content_list_default",
+                "route"=>"jfxninja_cms_admin_content_list_default",
                 "permission"=>"ROLE_ADMIN"
             ),
             array(
                 "name"=>"Content Types",
-                "route"=>"ssone_cms_admin_contentTypes_list",
+                "route"=>"jfxninja_cms_admin_contentTypes_list",
                 "permission"=>"ROLE_SUPER_ADMIN"
             ),
             array(
                 "name"=>"Menu Items",
-                "route"=>"ssone_cms_admin_menuItems_list",
+                "route"=>"jfxninja_cms_admin_menuItems_list",
                 "permission"=>"ROLE_ADMIN"
             ),
             array(
                 "name"=>"Menus",
-                "route"=>"ssone_cms_admin_menus_list",
+                "route"=>"jfxninja_cms_admin_menus_list",
                 "permission"=>"ROLE_SUPER_ADMIN"
             ),
 
             array(
                 "name"=>"Modules",
-                "route"=>"ssone_cms_admin_modules_list",
+                "route"=>"jfxninja_cms_admin_modules_list",
                 "permission"=>"ROLE_SUPER_ADMIN"
             ),
             array(
                 "name"=>"Forms",
-                "route"=>"ssone_cms_admin_cmsforms_list",
+                "route"=>"jfxninja_cms_admin_cmsforms_list",
                 "permission"=>"ROLE_ADMIN"
             ),
             array(
                 "name"=>"Domains",
-                "route"=>"ssone_cms_admin_domains_list",
+                "route"=>"jfxninja_cms_admin_domains_list",
                 "permission"=>"ROLE_SUPER_ADMIN"
             ),
             array(
                 "name"=>"Users",
-                "route"=>"ssone_cms_admin_users_list",
+                "route"=>"jfxninja_cms_admin_users_list",
                 "permission"=>"ROLE_ADMIN"
             ),
             array(
                 "name"=>"Languages",
-                "route"=>"ssone_cms_admin_languages_list",
+                "route"=>"jfxninja_cms_admin_languages_list",
                 "permission"=>"ROLE_ADMIN"
             ),
             array(
@@ -79,13 +79,13 @@ class AdminNavigationController extends Controller
 
         foreach($entities as $e)
         {
-            $en = str_replace("SSone\\CMSBundle\\Entity\\", '', $e);
-            $en = str_replace("SSone\\CMSBundle\\Entity\\", '', $en);
-            $emenu[] = str_replace("SSone\\CMSBundle\\Entity\\", '', $en);
+            $en = str_replace("JfxNinja\\CMSBundle\\Entity\\", '', $e);
+            $en = str_replace("JfxNinja\\CMSBundle\\Entity\\", '', $en);
+            $emenu[] = str_replace("JfxNinja\\CMSBundle\\Entity\\", '', $en);
         }
 
         return $this->render(
-            'SSoneCMSBundle:AdminTemplates:mainNavigation.html.twig',
+            'JfxNinjaCMSBundle:AdminTemplates:mainNavigation.html.twig',
             array("menus" => array('mmenus' => $menus, "emenus" => $emenu))
         );
     }

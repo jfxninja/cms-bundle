@@ -1,15 +1,15 @@
 <?php
 
-namespace SSone\CMSBundle\Controller;
+namespace JfxNinja\CMSBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-use SSone\CMSBundle\Entity\MenuItem;
-use SSone\CMSBundle\Entity\Menu;
-use SSone\CMSBundle\Entity\Content;
+use JfxNinja\CMSBundle\Entity\MenuItem;
+use JfxNinja\CMSBundle\Entity\Menu;
+use JfxNinja\CMSBundle\Entity\Content;
 
 
 class AjaxValueListsController extends Controller
@@ -26,7 +26,7 @@ class AjaxValueListsController extends Controller
             $ctId = (strpos($menuTypeParams[0],"list") !== false) ? $menuTypeParams[1] : 0;
 
 
-            $categories = $this->getDoctrine()->getRepository('SSoneCMSBundle:Field')->getContentTypeCategoryFields($ctId);
+            $categories = $this->getDoctrine()->getRepository('JfxNinjaCMSBundle:Field')->getContentTypeCategoryFields($ctId);
 
             $response = array("code" => 100, "success" => true, "menuType"=>$ctId, "data"=>$categories);
 
@@ -45,9 +45,9 @@ class AjaxValueListsController extends Controller
 
             $category2FieldId = $request->get('category2FieldId');
 
-            $fieldSettings = $this->getDoctrine()->getRepository('SSoneCMSBundle:Field')->fieldSettingsById($category2FieldId);
+            $fieldSettings = $this->getDoctrine()->getRepository('JfxNinjaCMSBundle:Field')->fieldSettingsById($category2FieldId);
 
-            $options = $this->getDoctrine()->getRepository('SSoneCMSBundle:Field')->getContentTypeCategoryFields($fieldSettings['fieldTypeSettings']['relatedcontent']['relatedcontent']);
+            $options = $this->getDoctrine()->getRepository('JfxNinjaCMSBundle:Field')->getContentTypeCategoryFields($fieldSettings['fieldTypeSettings']['relatedcontent']['relatedcontent']);
 
             $response = array("code" => 100, "success" => true, "data"=>$options);
         }
@@ -64,15 +64,15 @@ class AjaxValueListsController extends Controller
         if ($request->isXmlHttpRequest() && $request->getMethod() == 'POST') {
 
             $em = $this->getDoctrine();
-            $contentService = $this->get('ssone.cms.content');
+            $contentService = $this->get('jfxninja.cms.content');
 
             $contentTypeId = $request->get('contentTypeId');
 
             $contentItemChoices = $contentService->findContentByContentTypeId($contentTypeId);
 
-            $filterFieldOptions = $em->getRepository('SSoneCMSBundle:Field')->getContentTypeFields($contentTypeId,array("relatedcontent","text","date","checkbox","choice"));
+            $filterFieldOptions = $em->getRepository('JfxNinjaCMSBundle:Field')->getContentTypeFields($contentTypeId,array("relatedcontent","text","date","checkbox","choice"));
 
-            $orderbyFieldOptions = $em->getRepository('SSoneCMSBundle:Field')->getContentTypeFields($contentTypeId,array("relatedcontent","text","date"));
+            $orderbyFieldOptions = $em->getRepository('JfxNinjaCMSBundle:Field')->getContentTypeFields($contentTypeId,array("relatedcontent","text","date"));
 
             $response = array("code" => 100, "success" => true,
                 "contentItemChoices"=>$contentItemChoices,
@@ -94,13 +94,13 @@ class AjaxValueListsController extends Controller
 
             $em = $this->getDoctrine();
 
-            $contentService = $this->get('ssone.cms.content');
+            $contentService = $this->get('jfxninja.cms.content');
 
             $filterValueOptions = array();
 
             if($request->get('contentTypeId'))
             {
-                $filterField = $em->getRepository('SSoneCMSBundle:Field')->find($request->get('contentTypeId'));
+                $filterField = $em->getRepository('JfxNinjaCMSBundle:Field')->find($request->get('contentTypeId'));
 
                 if($filterField && $filterField->getFieldType()->getVariableName() == "relatedcontent")
                 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -17,7 +17,7 @@ class DomainsRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT c FROM SSoneCMSBundle:Domain c WHERE c.securekey = :securekey'
+                'SELECT c FROM JfxNinjaCMSBundle:Domain c WHERE c.securekey = :securekey'
             )->setParameter('securekey', $securekey)
             ->getSingleResult();
     }
@@ -26,7 +26,7 @@ class DomainsRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT c FROM SSoneCMSBundle:Domain c WHERE c.domain LIKE :host'
+                'SELECT c FROM JfxNinjaCMSBundle:Domain c WHERE c.domain LIKE :host'
             )->setParameter('host', "%".$host."%")
             ->getSingleResult();
     }
@@ -49,7 +49,7 @@ class DomainsRepository extends EntityRepository
                 c.securekey,
                 c.modifiedAt,
                 c.modifiedBy
-                FROM SSoneCMSBundle:Domain c ORDER BY c.name ASC'
+                FROM JfxNinjaCMSBundle:Domain c ORDER BY c.name ASC'
             )
             ->getResult();
         return $data;

@@ -1,16 +1,16 @@
 <?php
 
-namespace SSone\CMSBundle\Controller;
+namespace JfxNinja\CMSBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-use SSone\CMSBundle\Entity\BlockField;
-use SSone\CMSBundle\Entity\Block;
+use JfxNinja\CMSBundle\Entity\BlockField;
+use JfxNinja\CMSBundle\Entity\Block;
 
 
-use SSone\CMSBundle\Form\Type\ContentTypeAttributesTYPE;
+use JfxNinja\CMSBundle\Form\Type\ContentTypeAttributesTYPE;
 
 
 class ContentTypeAttributesController extends Controller
@@ -29,13 +29,13 @@ class ContentTypeAttributesController extends Controller
         $locale = $request->getLocale();
         $em = $this->getDoctrine()->getManager();
         $fieldsRepository = $this->getFieldsRepository();
-        $contentService = $this->get('ssone.cms.content');
-        $blockService = $this->get('ssone.cms.block');
-        $ls = $this->get('ssone.cms.Localiser');
+        $contentService = $this->get('jfxninja.cms.content');
+        $blockService = $this->get('jfxninja.cms.block');
+        $ls = $this->get('jfxninja.cms.Localiser');
 
         $altLinks = $ls->getAltAdminLangLinks($request->getUri());
 
-        $contentType = $this->getDoctrine()->getRepository('SSoneCMSBundle:ContentType')->findBySecurekey($securekey);
+        $contentType = $this->getDoctrine()->getRepository('JfxNinjaCMSBundle:ContentType')->findBySecurekey($securekey);
 
         //Add/Remove blocks as necessary
         $blockService->contentTypeBlockManager($contentType);
@@ -47,7 +47,7 @@ class ContentTypeAttributesController extends Controller
         $form->handleRequest($request);
         if ($form->isValid())
         {
-            $auditor = $this->get('ssone.cms.recordauditor');
+            $auditor = $this->get('jfxninja.cms.recordauditor');
             $auditor->auditRecord($contentType);
 
 
@@ -69,12 +69,12 @@ class ContentTypeAttributesController extends Controller
             $em->flush();
 
             return $this->redirect(
-                $this->generateUrl('ssone_cms_admin_content_list')
+                $this->generateUrl('jfxninja_cms_admin_content_list')
             );
         }
 
 
-        return $this->render('SSoneCMSBundle:Content:crud.html.twig', array(
+        return $this->render('JfxNinjaCMSBundle:Content:crud.html.twig', array(
             'form' => $form->createView(),
             'contentTitle' => $contentType->getName(),
             'mode' => $mode,
@@ -91,7 +91,7 @@ class ContentTypeAttributesController extends Controller
     private function getFieldsRepository()
     {
         return $this->getDoctrine()
-            ->getRepository('SSoneCMSBundle:Field');
+            ->getRepository('JfxNinjaCMSBundle:Field');
     }
 
 

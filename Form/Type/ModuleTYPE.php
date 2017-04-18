@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Form\Type;
+namespace JfxNinja\CMSBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -57,13 +57,13 @@ class ModuleTYPE extends AbstractType
                     "form"=>"Form")))
 
             ->add('form', 'entity', array(
-                    'class' => 'SSoneCMSBundle:CMSForm',
+                    'class' => 'JfxNinjaCMSBundle:CMSForm',
                     'property' => "name",
                     'required'=>false,
 
                     ))
             ->add('contentType', 'entity', array(
-                    'class' => 'SSoneCMSBundle:ContentType',
+                    'class' => 'JfxNinjaCMSBundle:ContentType',
                     'property' => "name",
                     'required'=>false,
                     'query_builder' => function(EntityRepository $er) {
@@ -92,7 +92,7 @@ class ModuleTYPE extends AbstractType
         if($contentType)
         {
 
-            $fieldsRepository = $this->em->getRepository('SSoneCMSBundle:Field');
+            $fieldsRepository = $this->em->getRepository('JfxNinjaCMSBundle:Field');
 
             //set fields
             $filterFields = $fieldsRepository->getContentTypeFields($contentType->getId(),array("relatedcontent","text","checkbox"));
@@ -108,7 +108,7 @@ class ModuleTYPE extends AbstractType
 
         if($contentFilterFieldID)
         {
-            $filterField = $this->em->getRepository('SSoneCMSBundle:Field')->find($contentFilterFieldID);
+            $filterField = $this->em->getRepository('JfxNinjaCMSBundle:Field')->find($contentFilterFieldID);
 
             if($filterField && $filterField->getFieldType()->getVariableName() == "relatedcontent")
             {
@@ -121,7 +121,7 @@ class ModuleTYPE extends AbstractType
 
         $form
             ->add('singleContentItem','entity',array(
-                'class' => 'SSoneCMSBundle:Content',
+                'class' => 'JfxNinjaCMSBundle:Content',
                 'property' => 'name',
                 'empty_value' => 'Choose an option',
                 'required' => false,
@@ -170,10 +170,10 @@ class ModuleTYPE extends AbstractType
         $data = $event->getData();
 
         // Note that the data is not yet hydrated into the entity.
-        $contentType = $this->em->getRepository('SSoneCMSBundle:ContentType')->find($data['contentType']);
+        $contentType = $this->em->getRepository('JfxNinjaCMSBundle:ContentType')->find($data['contentType']);
         if(isset($data['contentFilterField']))
         {
-            $contentFilterField = $this->em->getRepository('SSoneCMSBundle:Field')->find($data['contentFilterField']);
+            $contentFilterField = $this->em->getRepository('JfxNinjaCMSBundle:Field')->find($data['contentFilterField']);
         }
         else
         {
@@ -205,7 +205,7 @@ class ModuleTYPE extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'SSone\CMSBundle\Entity\Module'
+            'data_class' => 'jfxninja\CMSBundle\Entity\Module'
         ));
     }
 

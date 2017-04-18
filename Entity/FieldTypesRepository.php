@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -17,7 +17,7 @@ class FieldTypesRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT c FROM SSoneCMSBundle:FieldType c WHERE c.securekey = :securekey'
+                'SELECT c FROM JfxNinjaCMSBundle:FieldType c WHERE c.securekey = :securekey'
             )->setParameter('securekey', $securekey)
             ->getSingleResult();
     }
@@ -33,7 +33,7 @@ class FieldTypesRepository extends EntityRepository
         );
         $data['items'] = $this->getEntityManager()
             ->createQuery(
-                'SELECT c.name, c.id, c.variableName, c.securekey FROM SSoneCMSBundle:FieldType c ORDER BY c.name ASC'
+                'SELECT c.name, c.id, c.variableName, c.securekey FROM JfxNinjaCMSBundle:FieldType c ORDER BY c.name ASC'
             )
             ->getResult();
         return $data;

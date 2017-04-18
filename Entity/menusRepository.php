@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -13,7 +13,7 @@ class menusRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT c FROM SSoneCMSBundle:Menu c WHERE c.securekey = :securekey'
+                'SELECT c FROM JfxNinjaCMSBundle:Menu c WHERE c.securekey = :securekey'
             )->setParameter('securekey', $securekey)
             ->getSingleResult();
     }
@@ -37,7 +37,7 @@ class menusRepository extends EntityRepository
                 c.modifiedAt,
                 c.modifiedBy,
                 d.name AS domain
-                FROM SSoneCMSBundle:Menu c
+                FROM JfxNinjaCMSBundle:Menu c
                 LEFT JOIN c.domain d
                 ORDER BY d.name, c.name ASC'
             )

@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Controller;
+namespace JfxNinja\CMSBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,11 +17,11 @@ class EntityManagerController extends Controller
         if($mode=="list")
         {
             $items = $this->getDoctrine()
-                ->getRepository('SSoneCMSBundle:'.$entity)
+                ->getRepository('JfxNinjaCMSBundle:'.$entity)
                 ->getItemsForListTable();
 
             return $this->render(
-                'SSoneCMSBundle:AdminTemplates:list.html.twig',
+                'JfxNinjaCMSBundle:AdminTemplates:list.html.twig',
                 array("items" => $items)
             );
 
@@ -29,8 +29,8 @@ class EntityManagerController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $usr= $this->get('security.context')->getToken()->getUser();
-        $formPath = "SSone\\CMSBundle\\Form\\Type\\".$entity."TYPE";
-        $entityPath = "SSone\\CMSBundle\\Entity\\".$entity;
+        $formPath = "jfxninja\\CMSBundle\\Form\\Type\\".$entity."TYPE";
+        $entityPath = "jfxninja\\CMSBundle\\Entity\\".$entity;
         $entityObj = new $entityPath();
 
         if($mode=="new")
@@ -46,10 +46,10 @@ class EntityManagerController extends Controller
 
                 $em->persist($entityObj);
                 $em->flush();
-                return $this->redirect($this->generateUrl('ssone_cms_admin_entity_manager', array('entity'=>$entity)));
+                return $this->redirect($this->generateUrl('jfxninja_cms_admin_entity_manager', array('entity'=>$entity)));
             }
 
-            return $this->render('SSoneCMSBundle:AdminTemplates:crud.html.twig', array(
+            return $this->render('JfxNinjaCMSBundle:AdminTemplates:crud.html.twig', array(
                 'form' => $form->createView(),
                 'title' => $entity
             ));
@@ -57,7 +57,7 @@ class EntityManagerController extends Controller
         }
 
         $entityObj = $this->getDoctrine()
-            ->getRepository('SSoneCMSBundle:'.$entity)
+            ->getRepository('JfxNinjaCMSBundle:'.$entity)
             ->findBySecurekey($sid);
 
         if($mode == "edit")
@@ -69,7 +69,7 @@ class EntityManagerController extends Controller
             {
                 $entityObj->setModifiedBy($usr->getUsername());
                 $em->flush();
-                return $this->redirect($this->generateUrl('ssone_cms_admin_entity_manager', array('entity'=>$entity)));
+                return $this->redirect($this->generateUrl('jfxninja_cms_admin_entity_manager', array('entity'=>$entity)));
             }
 
 
@@ -87,13 +87,13 @@ class EntityManagerController extends Controller
             {
                 $em->remove($entityObj);
                 $em->flush();
-                return $this->redirect($this->generateUrl('ssone_cms_admin_entity_manager', array('entity'=>$entity)));
+                return $this->redirect($this->generateUrl('jfxninja_cms_admin_entity_manager', array('entity'=>$entity)));
             }
 
 
         }
 
-        return $this->render('SSoneCMSBundle:AdminTemplates:crud.html.twig', array(
+        return $this->render('JfxNinjaCMSBundle:AdminTemplates:crud.html.twig', array(
             'form' => $form->createView(),
             'title' => $entity
         ));

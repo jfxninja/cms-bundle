@@ -1,14 +1,14 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Util\SecureRandom;
 
 /**
- * @ORM\Entity(repositoryClass="SSone\CMSBundle\Entity\FieldSetupOptionsRepository")
+ * @ORM\Entity(repositoryClass="JfxNinja\CMSBundle\Entity\FieldSetupOptionsRepository")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="ssone_fieldSetupOptions")
+ * @ORM\Table(name="ninjacms_fieldSetupOptions")
  */
 class FieldSetupOptions {
 
@@ -308,10 +308,10 @@ class FieldSetupOptions {
     /**
      * Set fieldType
      *
-     * @param \SSone\CMSBundle\Entity\FieldType $fieldType
+     * @param \jfxninja\CMSBundle\Entity\FieldType $fieldType
      * @return FieldSetupOptions
      */
-    public function setFieldType(\SSone\CMSBundle\Entity\FieldType $fieldType = null)
+    public function setFieldType(\jfxninja\CMSBundle\Entity\FieldType $fieldType = null)
     {
         $this->fieldType = $fieldType;
 
@@ -321,7 +321,7 @@ class FieldSetupOptions {
     /**
      * Get fieldType
      *
-     * @return \SSone\CMSBundle\Entity\FieldType
+     * @return \jfxninja\CMSBundle\Entity\FieldType
      */
     public function getFieldType()
     {

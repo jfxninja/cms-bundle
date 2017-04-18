@@ -1,13 +1,13 @@
 <?php
 
-namespace SSone\CMSBundle\Controller;
+namespace JfxNinja\CMSBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-use SSone\CMSBundle\Entity\Domain;
-use SSone\CMSBundle\Form\Type\DomainTYPE;
+use JfxNinja\CMSBundle\Entity\Domain;
+use JfxNinja\CMSBundle\Form\Type\DomainTYPE;
 
 
 
@@ -18,12 +18,12 @@ class DomainsController extends Controller
     {
 
         $domains = $this->getDoctrine()
-            ->getRepository('SSoneCMSBundle:Domain')
+            ->getRepository('JfxNinjaCMSBundle:Domain')
             ->getItemsForListTable();
 
 
         return $this->render(
-            'SSoneCMSBundle:AdminTemplates:standardList.html.twig',
+            'JfxNinjaCMSBundle:AdminTemplates:standardList.html.twig',
             array(
                 "items" => $domains,
                 "title" => "Domains"
@@ -66,7 +66,7 @@ class DomainsController extends Controller
         }
         else
         {
-            $domain = $this->getDoctrine()->getRepository('SSoneCMSBundle:Domain')->findBySecurekey($securekey);
+            $domain = $this->getDoctrine()->getRepository('JfxNinjaCMSBundle:Domain')->findBySecurekey($securekey);
         }
 
         $form = $this->createForm(new DomainTYPE($mode,$locale), $domain);
@@ -75,9 +75,9 @@ class DomainsController extends Controller
         if ($form->isValid())
         {
 
-            $this->get('ssone.cms.recordauditor')->auditRecord($domain);
+            $this->get('jfxninja.cms.recordauditor')->auditRecord($domain);
 
-            $uploader = $this->get('ssone.cms.fileuploader');
+            $uploader = $this->get('jfxninja.cms.fileuploader');
 
             if($fp = $uploader->templateUpload($form['file_domainHTMLTemplate']->getData(), "domain"))
             {
@@ -100,12 +100,12 @@ class DomainsController extends Controller
             $em->flush();
 
             return $this->redirect(
-                $this->generateUrl('ssone_cms_admin_domains_list')
+                $this->generateUrl('jfxninja_cms_admin_domains_list')
             );
         }
 
 
-        return $this->render('SSoneCMSBundle:Domain:crud.html.twig', array(
+        return $this->render('JfxNinjaCMSBundle:Domain:crud.html.twig', array(
             'form' => $form->createView(),
             'domainTitle' => $domain->getName(),
             'mode' => $mode,

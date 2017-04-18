@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>{% block title %}{% endblock %}| SSone CMS Admin</title>
+    <title>{% block title %}{% endblock %}| Ninja CMS Admin</title>
     {% block stylesheets %}{% endblock %}
 
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -12,9 +12,9 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
 
     {% stylesheets
-        '@SSoneCMSBundle/Resources/public/css/foundation_app.css' filter='cssrewrite'
-        '@SSoneCMSBundle/Resources/public/css/admin.css' filter='cssrewrite'
-        '@SSoneCMSBundle/Resources/public/css/redactor.css' filter='cssrewrite'
+        '@JfxNinjaCMSBundle/Resources/public/css/foundation_app.css' filter='cssrewrite'
+        '@JfxNinjaCMSBundle/Resources/public/css/admin.css' filter='cssrewrite'
+        '@JfxNinjaCMSBundle/Resources/public/css/redactor.css' filter='cssrewrite'
     %}
     <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
@@ -36,14 +36,14 @@
 <nav class="top-bar fixed" data-topbar>
     <ul class="title-area">
         <li class="name">
-            <h1><a class="noclick">SSone cms</a></h1>
+            <h1><a class="noclick">Ninja CMS</a></h1>
         </li>
         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
         <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
     </ul>
     {% if app.user %}
         {% set routeName = app.request.get('_route') %}
-        {% render(controller("SSoneCMSBundle:AdminNavigation:drawAdminNavigation", {'route': routeName})) %}
+        {% render(controller("JfxNinjaCMSBundle:AdminNavigation:drawAdminNavigation", {'route': routeName})) %}
     {% endif %}
 </nav>
 {% block login %}{% endblock %}
@@ -53,7 +53,7 @@
 </div>
 <div id="footer">
     <div class="row">
-        <p class="small-10 large-6 columns">SSone cms technology, copyright of SSone digital  {{ "now"|date("Y") }}</p>
+        <p class="small-10 large-6 columns">Ninja CMS &copy; jfxweb.ninja  {{ "now"|date("Y") }}</p>
         <p class="small-10 large-6 columns right-align text-right"><em>Designed to build organised, necessary and engaging websites!</em></p>
 
     </div>
@@ -65,7 +65,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
 {% javascripts
-'@SSoneCMSBundle/Resources/public/js/*'
+'@JfxNinjaCMSBundle/Resources/public/js/*'
 %}
 <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}

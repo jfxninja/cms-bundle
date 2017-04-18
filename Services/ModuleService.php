@@ -1,12 +1,12 @@
 <?php
 
-namespace SSone\CMSBundle\Services;
+namespace JfxNinja\CMSBundle\Services;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 
-use SSone\CMSBundle\Entity\Content;
-use SSone\CMSBundle\Form\Type\ContentTYPEfrontend;
+use JfxNinja\CMSBundle\Entity\Content;
+use JfxNinja\CMSBundle\Form\Type\ContentTYPEfrontend;
 
 use Symfony\Bridge\Twig\TwigEngine;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -57,7 +57,7 @@ class ModuleService extends EntityRepository
     {
         return $this->em
             ->createQuery(
-                'SELECT c FROM SSoneCMSBundle:Module c WHERE c.securekey = :securekey'
+                'SELECT c FROM JfxNinjaCMSBundle:Module c WHERE c.securekey = :securekey'
             )->setParameter('securekey', $securekey)
             ->getSingleResult();
     }
@@ -81,7 +81,7 @@ class ModuleService extends EntityRepository
                 c.urlMatchExpression,
                 c.modifiedAt,
                 c.modifiedBy
-                FROM SSoneCMSBundle:Module c
+                FROM JfxNinjaCMSBundle:Module c
                 ORDER BY c.name ASC'
             )
             ->getResult();
@@ -129,7 +129,7 @@ class ModuleService extends EntityRepository
                 m.contentFilterValue,
                 m.contentOrderByField,
                 m.contentOrderByValue
-                FROM SSoneCMSBundle:Module m
+                FROM JfxNinjaCMSBundle:Module m
                 LEFT JOIN m.contentType ct
                 LEFT JOIN m.form f
                 LEFT JOIN m.singleContentItem c'
@@ -238,22 +238,22 @@ class ModuleService extends EntityRepository
 
         $content = new Content();
 
-        $contentType = $this->em->getRepository('SSoneCMSBundle:ContentType')->find($CMSForm['contentTypeId']);
+        $contentType = $this->em->getRepository('JfxNinjaCMSBundle:ContentType')->find($CMSForm['contentTypeId']);
 
         $content->setContentType($contentType);
 
         $this->bs->contentBlockManager($content);
 
-        $fieldsRepository = $this->em->getRepository('SSoneCMSBundle:Field');
+        $fieldsRepository = $this->em->getRepository('JfxNinjaCMSBundle:Field');
 
 
         if($this->locale == $this->localiser->defaultLocale)
         {
-            $route = "ssone_cms_frontend_noloco_post";
+            $route = "jfxninja_cms_frontend_noloco_post";
         }
         else
         {
-            $route = "ssone_cms_frontend_post";
+            $route = "jfxninja_cms_frontend_post";
         }
 
         $form = $frontController->createForm(
@@ -299,7 +299,7 @@ class ModuleService extends EntityRepository
                     {
                         $message->setBody(
                             $this->twigEngine->render(
-                            'SSoneCMSBundle:AppData:'.$CMSForm['adminEmailHTML'],
+                            'JfxNinjaCMSBundle:AppData:'.$CMSForm['adminEmailHTML'],
                             array("content"=>$blocks)
                             )
                         );
@@ -328,7 +328,7 @@ class ModuleService extends EntityRepository
 
     private function getCMSForm($formId,$localiser)
     {
-        $form = $this->em->getRepository('SSoneCMSBundle:CMSForm')->getCMSFormByFormId($formId,$localiser);
+        $form = $this->em->getRepository('JfxNinjaCMSBundle:CMSForm')->getCMSFormByFormId($formId,$localiser);
         return $form;
     }
 

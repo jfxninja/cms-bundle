@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Form\Type\Field;
+namespace JfxNinja\CMSBundle\Form\Type\Field;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -30,7 +30,7 @@ class FieldTypeNested extends AbstractType
             ->add('isRequired', 'checkbox',array("required"=>false))
             ->add('requiredText', 'text',array("required"=>false))
             ->add('fieldType','entity',array(
-                'class' => 'SSoneCMSBundle:FieldType',
+                'class' => 'JfxNinjaCMSBundle:FieldType',
                 'property' => 'name',
                 'label' => 'Associated Field Type',
                 'attr' => array('class' => 'field-type'),
@@ -54,7 +54,7 @@ class FieldTypeNested extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'SSone\CMSBundle\Entity\Field'
+            'data_class' => 'jfxninja\CMSBundle\Entity\Field'
         ));
     }
 

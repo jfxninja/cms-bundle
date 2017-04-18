@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Form\Type;
+namespace JfxNinja\CMSBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -143,7 +143,7 @@ class MenuItemTYPE extends AbstractType
 
                 $form
                     ->add('contentCategory1','entity',array(
-                        'class' => 'SSoneCMSBundle:Field',
+                        'class' => 'JfxNinjaCMSBundle:Field',
                         'property' => 'name',
                         'required' => false,
                         'empty_value' => 'Choose an option',
@@ -152,7 +152,7 @@ class MenuItemTYPE extends AbstractType
                     ))
 
                     ->add('contentCategory2','entity',array(
-                        'class' => 'SSoneCMSBundle:Field',
+                        'class' => 'JfxNinjaCMSBundle:Field',
                         'property' => 'name',
                         'empty_value' => 'Choose an option',
                         'required' => false,
@@ -161,7 +161,7 @@ class MenuItemTYPE extends AbstractType
                     ))
 
                     ->add('contentCategoryRelationship','entity',array(
-                        'class' => 'SSoneCMSBundle:Field',
+                        'class' => 'JfxNinjaCMSBundle:Field',
                         'property' => 'name',
                         'empty_value' => $emptyValue,
                         'required' => false,
@@ -205,7 +205,7 @@ class MenuItemTYPE extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'SSone\CMSBundle\Entity\MenuItem'
+            'data_class' => 'jfxninja\CMSBundle\Entity\MenuItem'
         ));
     }
 

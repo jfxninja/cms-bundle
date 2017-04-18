@@ -1,14 +1,14 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Util\SecureRandom;
 
 /**
- * @ORM\Entity(repositoryClass="SSone\CMSBundle\Entity\CMSFormRepository")
+ * @ORM\Entity(repositoryClass="JfxNinja\CMSBundle\Entity\CMSFormRepository")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="ssone_cmsforms")
+ * @ORM\Table(name="ninjacms_cmsforms")
  */
 class CMSForm {
 
@@ -324,10 +324,10 @@ class CMSForm {
     /**
      * Set contentType
      *
-     * @param \SSone\CMSBundle\Entity\ContentType $contentType
+     * @param \jfxninja\CMSBundle\Entity\ContentType $contentType
      * @return Form
      */
-    public function setContentType(\SSone\CMSBundle\Entity\ContentType $contentType = null)
+    public function setContentType(\jfxninja\CMSBundle\Entity\ContentType $contentType = null)
     {
         $this->contentType = $contentType;
 
@@ -337,7 +337,7 @@ class CMSForm {
     /**
      * Get contentType
      *
-     * @return \SSone\CMSBundle\Entity\ContentType
+     * @return \jfxninja\CMSBundle\Entity\ContentType
      */
     public function getContentType()
     {

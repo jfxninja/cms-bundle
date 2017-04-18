@@ -1,14 +1,14 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Util\SecureRandom;
 
 /**
- * @ORM\Entity(repositoryClass="SSone\CMSBundle\Entity\menusRepository")
+ * @ORM\Entity(repositoryClass="JfxNinja\CMSBundle\Entity\menusRepository")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="ssone_menus")
+ * @ORM\Table(name="ninjacms_menus")
  */
 class Menu {
 
@@ -328,10 +328,10 @@ class Menu {
     /**
      * Set domain
      *
-     * @param \SSone\CMSBundle\Entity\Domain $domain
+     * @param \jfxninja\CMSBundle\Entity\Domain $domain
      * @return Menu
      */
-    public function setDomain(\SSone\CMSBundle\Entity\Domain $domain = null)
+    public function setDomain(\jfxninja\CMSBundle\Entity\Domain $domain = null)
     {
         $this->domain = $domain;
 
@@ -341,7 +341,7 @@ class Menu {
     /**
      * Get domain
      *
-     * @return \SSone\CMSBundle\Entity\Domain
+     * @return \jfxninja\CMSBundle\Entity\Domain
      */
     public function getDomain()
     {
@@ -351,10 +351,10 @@ class Menu {
     /**
      * Add menusItems
      *
-     * @param \SSone\CMSBundle\Entity\MenuItem $menuItem
+     * @param \jfxninja\CMSBundle\Entity\MenuItem $menuItem
      * @return Menu
      */
-    public function addMenusItem(\SSone\CMSBundle\Entity\MenuItem $menuItem)
+    public function addMenusItem(\jfxninja\CMSBundle\Entity\MenuItem $menuItem)
     {
         $this->menuItems[] = $menuItem;
 
@@ -364,9 +364,9 @@ class Menu {
     /**
      * Remove menusItems
      *
-     * @param \SSone\CMSBundle\Entity\MenuItem $menuItem
+     * @param \jfxninja\CMSBundle\Entity\MenuItem $menuItem
      */
-    public function removeMenusItem(\SSone\CMSBundle\Entity\MenuItem $menuItem)
+    public function removeMenusItem(\jfxninja\CMSBundle\Entity\MenuItem $menuItem)
     {
         $this->menuItems->removeElement($menuItem);
     }
@@ -407,10 +407,10 @@ class Menu {
     /**
      * Add menuItems
      *
-     * @param \SSone\CMSBundle\Entity\MenuItem $menuItems
+     * @param \jfxninja\CMSBundle\Entity\MenuItem $menuItems
      * @return Menu
      */
-    public function addMenuItem(\SSone\CMSBundle\Entity\MenuItem $menuItems)
+    public function addMenuItem(\jfxninja\CMSBundle\Entity\MenuItem $menuItems)
     {
         $this->menuItems[] = $menuItems;
 
@@ -420,9 +420,9 @@ class Menu {
     /**
      * Remove menuItems
      *
-     * @param \SSone\CMSBundle\Entity\MenuItem $menuItems
+     * @param \jfxninja\CMSBundle\Entity\MenuItem $menuItems
      */
-    public function removeMenuItem(\SSone\CMSBundle\Entity\MenuItem $menuItems)
+    public function removeMenuItem(\jfxninja\CMSBundle\Entity\MenuItem $menuItems)
     {
         $this->menuItems->removeElement($menuItems);
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Form\Type\Block;
+namespace JfxNinja\CMSBundle\Form\Type\Block;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -59,7 +59,7 @@ class BlockTYPE extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'SSone\CMSBundle\Entity\Block'
+            'data_class' => 'jfxninja\CMSBundle\Entity\Block'
         ));
     }
 

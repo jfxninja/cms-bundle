@@ -1,13 +1,13 @@
 <?php
 
-namespace SSone\CMSBundle\Controller;
+namespace JfxNinja\CMSBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-use SSone\CMSBundle\Entity\Module;
-use SSone\CMSBundle\Form\Type\ModuleTYPE;
+use JfxNinja\CMSBundle\Entity\Module;
+use JfxNinja\CMSBundle\Form\Type\ModuleTYPE;
 
 
 
@@ -18,13 +18,13 @@ class ModulesController extends Controller
     public function indexAction()
     {
 
-        $ms = $this->get('ssone.cms.module');
+        $ms = $this->get('jfxninja.cms.module');
 
         $menuItems = $ms->getItemsForListTable();
 
 
         return $this->render(
-            'SSoneCMSBundle:AdminTemplates:standardList.html.twig',
+            'JfxNinjaCMSBundle:AdminTemplates:standardList.html.twig',
             array(
                 "items" => $menuItems,
                 "title" => "Modules"
@@ -59,10 +59,10 @@ class ModulesController extends Controller
     {
 
         $locale = $request->getLocale();
-        $defaultLocale = $this->container->getParameter("SSone.default_locale");
+        $defaultLocale = $this->container->getParameter("jfxninja.default_locale");
         $em = $this->getDoctrine()->getManager();
 
-        $ls = $this->get('ssone.cms.Localiser');
+        $ls = $this->get('jfxninja.cms.Localiser');
         $altLinks = $ls->getAltAdminLangLinks($request->getUri());
 
 
@@ -72,11 +72,11 @@ class ModulesController extends Controller
         }
         else
         {
-            $module = $this->getDoctrine()->getRepository('SSoneCMSBundle:Module')->findBySecurekey($securekey);
+            $module = $this->getDoctrine()->getRepository('JfxNinjaCMSBundle:Module')->findBySecurekey($securekey);
         }
 
 
-        $contentService = $this->get('ssone.cms.content');
+        $contentService = $this->get('jfxninja.cms.content');
 
         $form = $this->createForm(new ModuleTYPE($em,$contentService,$locale),$module);
 
@@ -84,9 +84,9 @@ class ModulesController extends Controller
         if ($form->isValid())
         {
 
-            $this->get('ssone.cms.recordauditor')->auditRecord($module);
+            $this->get('jfxninja.cms.recordauditor')->auditRecord($module);
 
-            $uploader = $this->get('ssone.cms.fileuploader');
+            $uploader = $this->get('jfxninja.cms.fileuploader');
 
             if($form['file_templatePath']->getData() && $fp = $uploader->templateUpload($form['file_templatePath']->getData(), "module"))
             {
@@ -109,11 +109,11 @@ class ModulesController extends Controller
             $em->flush();
 
             return $this->redirect(
-                $this->generateUrl('ssone_cms_admin_modules_list')
+                $this->generateUrl('jfxninja_cms_admin_modules_list')
             );
         }
 
-        return $this->render('SSoneCMSBundle:Module:crud.html.twig', array(
+        return $this->render('JfxNinjaCMSBundle:Module:crud.html.twig', array(
             'form' => $form->createView(),
             'menuItemTitle' => $module->getName($defaultLocale),
             'mode' => $mode,

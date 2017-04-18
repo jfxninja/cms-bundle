@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Form\Type\Block;
+namespace JfxNinja\CMSBundle\Form\Type\Block;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

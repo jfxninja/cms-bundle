@@ -2,7 +2,7 @@
 
 //php app/console doctrine:fixtures:load --append
 
-namespace SSone\CMSBundle\DataFixtures\ORM;
+namespace JfxNinja\CMSBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -10,10 +10,10 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-use SSone\CMSBundle\Entity\User;
-use SSone\CMSBundle\Entity\Role;
-use SSone\CMSBundle\Entity\FieldType;
-use SSone\CMSBundle\Entity\FieldSetupOptions;
+use JfxNinja\CMSBundle\Entity\User;
+use JfxNinja\CMSBundle\Entity\Role;
+use JfxNinja\CMSBundle\Entity\FieldType;
+use JfxNinja\CMSBundle\Entity\FieldSetupOptions;
 
 class LoadCMSExampleeData implements FixtureInterface, ContainerAwareInterface
 {

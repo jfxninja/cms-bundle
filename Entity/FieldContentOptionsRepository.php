@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -18,7 +18,7 @@ class FieldContentOptionsRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT c FROM SSoneCMSBundle:FieldContentOptions c WHERE c.securekey = :securekey'
+                'SELECT c FROM JfxNinjaCMSBundle:FieldContentOptions c WHERE c.securekey = :securekey'
             )->setParameter('securekey', $securekey)
             ->getSingleResult();
     }
@@ -40,7 +40,7 @@ class FieldContentOptionsRepository extends EntityRepository
         $data['items'] = $this->getEntityManager()
             ->createQuery(
                 'SELECT fs.name, fs.id, fs.securekey, fs.label, fs.variableName, fs.inputType, fs.inputTypeVar, ft.name AS fieldType
-                FROM SSoneCMSBundle:FieldContentOptions fs
+                FROM JfxNinjaCMSBundle:FieldContentOptions fs
                 LEFT JOIN fs.fieldType ft
                 ORDER BY ft.name ASC, fs.fieldVar ASC, fs.name ASC'
             )
@@ -55,7 +55,7 @@ class FieldContentOptionsRepository extends EntityRepository
         $data = $this->getEntityManager()
             ->createQuery(
                 'SELECT fs.name, fs.id, fs.label, fs.variableName, fs.inputType, fs.inputTypeVar, ft.name AS fieldType, ft.id AS fieldTypeId
-                FROM SSoneCMSBundle:FieldContentOptions fs
+                FROM JfxNinjaCMSBundle:FieldContentOptions fs
                 LEFT JOIN fs.fieldType ft
                 ORDER BY ft.name ASC, fs.fieldVar ASC, fs.name ASC'
             )

@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Form\Extension;
+namespace JfxNinja\CMSBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;

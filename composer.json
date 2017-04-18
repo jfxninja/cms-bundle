@@ -1,14 +1,14 @@
 {
-  "name": "ssone/cms-bundle",
+  "name": "jfxninja/cms-bundle",
   "type": "library",
-  "description": "A content construction and management system CMMS for symfony by SSone.",
-  "homepage": "https://github.com/SSone/onecms",
+  "description": "A content construction and management system CMMS for symfony by JfxNinja.",
+  "homepage": "https://github.com/jfxninja/onecms",
   "license": "MIT",
   "authors": [
     {
       "name": "Jon Williams",
-      "email": "jon@SSone.co",
-      "homepage": "http://SSone.co",
+      "email": "jon@jfxninja.co",
+      "homepage": "http://jfxninja.co",
       "role": "Developer"
     }
   ],
@@ -26,6 +26,6 @@
     "symfony/assetic-bundle": "~2.8"
   },
   "autoload": {
-    "psr-4": { "SSone\\CMSBundle\\": "" }
+    "psr-4": { "jfxninja\\CMSBundle\\": "" }
   }
 }

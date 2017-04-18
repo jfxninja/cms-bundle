@@ -1,14 +1,14 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Symfony\Component\Security\Core\Role\RoleInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="ssone_roles")
- * @ORM\Entity(repositoryClass="SSone\CMSBundle\Entity\RolesRepository")
+ * @ORM\Table(name="ninjacms_roles")
+ * @ORM\Entity(repositoryClass="JfxNinja\CMSBundle\Entity\RolesRepository")
  */
 class Role implements RoleInterface
 {
@@ -98,10 +98,10 @@ class Role implements RoleInterface
     /**
      * Add users
      *
-     * @param \SSone\CMSBundle\Entity\User $users
+     * @param \jfxninja\CMSBundle\Entity\User $users
      * @return Role
      */
-    public function addUser(\SSone\CMSBundle\Entity\User $users)
+    public function addUser(\jfxninja\CMSBundle\Entity\User $users)
     {
         $this->users[] = $users;
 
@@ -111,9 +111,9 @@ class Role implements RoleInterface
     /**
      * Remove users
      *
-     * @param \SSone\CMSBundle\Entity\User $users
+     * @param \jfxninja\CMSBundle\Entity\User $users
      */
-    public function removeUser(\SSone\CMSBundle\Entity\User $users)
+    public function removeUser(\jfxninja\CMSBundle\Entity\User $users)
     {
         $this->users->removeElement($users);
     }

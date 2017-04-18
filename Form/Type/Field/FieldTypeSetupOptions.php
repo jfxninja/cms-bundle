@@ -1,11 +1,11 @@
 <?php
 
-namespace SSone\CMSBundle\Form\Type\Field;
+namespace JfxNinja\CMSBundle\Form\Type\Field;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use SSone\CMSBundle\Form\DataTransformer\CMSFieldSettingsToArray;
+use JfxNinja\CMSBundle\Form\DataTransformer\CMSFieldSettingsToArray;
 
 
 class FieldTypeSetupOptions extends AbstractType
@@ -14,7 +14,9 @@ class FieldTypeSetupOptions extends AbstractType
     private $fieldSetupOptions;
 
     public function __construct($fieldSetupOptions){
+
         $this->fieldSetupOptions = $fieldSetupOptions;
+
     }
 
 

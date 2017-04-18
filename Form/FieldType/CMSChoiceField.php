@@ -1,11 +1,11 @@
 <?php
 
-namespace SSone\CMSBundle\Form\FieldType;
+namespace JfxNinja\CMSBundle\Form\FieldType;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use SSone\CMSBundle\Form\DataTransformer\CMSChoiceFieldTransformer;
+use JfxNinja\CMSBundle\Form\DataTransformer\CMSChoiceFieldTransformer;
 
 
 

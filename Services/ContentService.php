@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Services;
+namespace JfxNinja\CMSBundle\Services;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\EntityManager;
@@ -108,7 +108,7 @@ class ContentService extends EntityRepository
     {
         return $this->em
             ->createQuery(
-                'SELECT c FROM SSoneCMSBundle:Content c WHERE c.securekey = :securekey'
+                'SELECT c FROM JfxNinjaCMSBundle:Content c WHERE c.securekey = :securekey'
             )->setParameter('securekey', $securekey)
             ->getSingleResult();
     }
@@ -121,7 +121,7 @@ class ContentService extends EntityRepository
     {
         return $this->em
             ->createQuery(
-                'SELECT c.securekey FROM SSoneCMSBundle:Content c WHERE c.id = :id'
+                'SELECT c.securekey FROM JfxNinjaCMSBundle:Content c WHERE c.id = :id'
             )->setParameter('id', $id)
             ->getSingleResult();
     }
@@ -139,7 +139,7 @@ class ContentService extends EntityRepository
             $firstCt = $this->em
                 ->createQuery(
                     'SELECT ct.securekey
-                    FROM SSoneCMSBundle:ContentType ct
+                    FROM JfxNinjaCMSBundle:ContentType ct
                     ORDER BY ct.name ASC'
                 )
                 ->setMaxResults(1)
@@ -162,7 +162,7 @@ class ContentService extends EntityRepository
         $data['items'] = $this->em
             ->createQuery(
                 'SELECT c.name, c.slug, c.modifiedBy,  c.modifiedAt, c.securekey, ct.securekey AS ctSecurekey
-                FROM SSoneCMSBundle:Content c
+                FROM JfxNinjaCMSBundle:Content c
                 Left JOIN c.contentType ct
                 WHERE ct.securekey = :securekey
                 ORDER BY c.name ASC'
@@ -194,7 +194,7 @@ class ContentService extends EntityRepository
                   c.content,
                   c.createdBy,
                   ct.contentTemplatePath AS template
-                  FROM SSoneCMSBundle:Content c
+                  FROM JfxNinjaCMSBundle:Content c
                   LEFT JOIN c.contentType ct
                   WHERE c.id = :id'
             )
@@ -235,7 +235,7 @@ class ContentService extends EntityRepository
                   c.id,
                   c.name,
                   c.listTemplatePath AS template
-                  FROM SSoneCMSBundle:ContentType c
+                  FROM JfxNinjaCMSBundle:ContentType c
                   WHERE c.id = :id'
             )
             ->setParameter('id', $contentTypeId)
@@ -254,7 +254,7 @@ class ContentService extends EntityRepository
                   c.slug,
                   c.content,
                   ct.id AS contentTypeId
-                  FROM SSoneCMSBundle:content c
+                  FROM JfxNinjaCMSBundle:content c
                   LEFT JOIN c.contentType ct
                   WHERE ct.id = :id
                   ORDER BY c.name ASC' //TODO:JW implement configurable sort option
@@ -300,7 +300,7 @@ class ContentService extends EntityRepository
                   c.content,
                   ct.id AS contentTypeId,
                   ct.contentTemplatePath AS template
-                  FROM SSoneCMSBundle:content c
+                  FROM JfxNinjaCMSBundle:content c
                   LEFT JOIN c.contentType ct
                   WHERE ct.id = :id AND c.slug LIKE :slug'
             )
@@ -358,7 +358,7 @@ class ContentService extends EntityRepository
                        f.variableName,
                        bf.fieldContent,
                        c.id AS contentId
-                     FROM SSoneCMSBundle:Block b
+                     FROM JfxNinjaCMSBundle:Block b
                      LEFT JOIN b.blockFields bf
                      LEFT JOIN b.content c
                      LEFT JOIN b.field f
@@ -385,7 +385,7 @@ class ContentService extends EntityRepository
                       c.slug,
                       c.content,
                       ct.id AS contentTypeId
-                      FROM SSoneCMSBundle:content c
+                      FROM JfxNinjaCMSBundle:content c
                       LEFT JOIN c.contentType ct
                       WHERE ct.id = :id
                       ORDER BY c.name ASC' //TODO:JW implement configurable sort option
@@ -416,7 +416,7 @@ class ContentService extends EntityRepository
         if($SortByFieldId)
         {
 
-            $field = $this->em->getRepository('SSoneCMSBundle:Field')->find($SortByFieldId);
+            $field = $this->em->getRepository('JfxNinjaCMSBundle:Field')->find($SortByFieldId);
 
             $listItems = $this->arraySort($listItems,$field->getVariableName(),$contentOrderByValue);
         }
@@ -524,7 +524,7 @@ class ContentService extends EntityRepository
                       f.id,
                       f.variableName,
                       ft.variableName as fieldType
-                      FROM SSoneCMSBundle:Field f
+                      FROM JfxNinjaCMSBundle:Field f
                       LEFT JOIN f.fieldType ft
                       WHERE f.id = :id'
                 )
@@ -544,7 +544,7 @@ class ContentService extends EntityRepository
                       f.id,
                       f.variableName,
                       ft.variableName as fieldType
-                      FROM SSoneCMSBundle:Field f
+                      FROM JfxNinjaCMSBundle:Field f
                       LEFT JOIN f.fieldType ft
                       WHERE f.id = :id'
                 )
@@ -679,7 +679,7 @@ class ContentService extends EntityRepository
                   e.id AS contentId,
                   e.name AS contentName,
                   e.slug AS contentSlug
-                FROM SSoneCMSBundle:{$entityName} e
+                FROM JfxNinjaCMSBundle:{$entityName} e
                 LEFT JOIN e.blocks b
                 LEFT JOIN b.field f
                 WHERE e.id = :id
@@ -704,7 +704,7 @@ class ContentService extends EntityRepository
                   f.fieldTypeSettings,
                   ft.variableName as fieldType,
                   bf.fieldContent
-                FROM SSoneCMSBundle:Block b
+                FROM JfxNinjaCMSBundle:Block b
                 LEFT JOIN b.blockFields bf
                 LEFT JOIN b.field f
                 LEFT JOIN f.fieldType ft
@@ -803,7 +803,7 @@ class ContentService extends EntityRepository
         $contentTypes = $this->em
             ->createQuery(
                 'SELECT ct.name, ct.id, ct.hideFromMenus
-                FROM SSoneCMSBundle:ContentType ct
+                FROM JfxNinjaCMSBundle:ContentType ct
                 WHERE ct.hideFromMenus != 1
                 ORDER BY ct.name ASC'
             )
@@ -815,7 +815,7 @@ class ContentService extends EntityRepository
             $items = $this->em
                 ->createQuery(
                     'SELECT c.name, c.id, ct.id as ctId
-                    FROM SSoneCMSBundle:Content c
+                    FROM JfxNinjaCMSBundle:Content c
                     LEFT JOIN c.contentType ct
                     WHERE ct.id = :ctId
                     ORDER BY c.name ASC'
@@ -843,7 +843,7 @@ class ContentService extends EntityRepository
         $data = $this->em
             ->createQuery(
                 'SELECT f.name, f.variableName f.id, f.securekey, f.content
-                FROM SSoneCMSBundle:Fields f
+                FROM JfxNinjaCMSBundle:Fields f
                 WHERE f.fk_contentType_id = :contentTypeID
                 ORDER BY c.name ASC'
             )
@@ -862,7 +862,7 @@ class ContentService extends EntityRepository
             ->createQuery(
                 'SELECT
                 f.id, f.name
-                FROM SSoneCMSBundle:CMSForm f'
+                FROM JfxNinjaCMSBundle:CMSForm f'
             )
             ->getResult();
 
@@ -887,7 +887,7 @@ class ContentService extends EntityRepository
         $items = $this->em
             ->createQuery(
                 'SELECT c.name, c.id, ct.id as ctId
-                FROM SSoneCMSBundle:Content c
+                FROM JfxNinjaCMSBundle:Content c
                 LEFT JOIN c.contentType ct
                 WHERE ct.id = :ctId
                 ORDER BY c.name ASC'
@@ -914,7 +914,7 @@ class ContentService extends EntityRepository
         $results = $this->em
             ->createQuery(
                 'SELECT c.name, c.id, ct.id as ctId
-                FROM SSoneCMSBundle:Content c
+                FROM JfxNinjaCMSBundle:Content c
                 LEFT JOIN c.contentType ct
                 WHERE ct.id = :ctId
                 ORDER BY c.name ASC'
@@ -986,7 +986,7 @@ class ContentService extends EntityRepository
     private function cacheContent($id)
     {
 
-        $languages = $this->em->getRepository('SSoneCMSBundle:Language')->findAll();
+        $languages = $this->em->getRepository('JfxNinjaCMSBundle:Language')->findAll();
 
         foreach($languages as $l)
         {
@@ -994,7 +994,7 @@ class ContentService extends EntityRepository
             $blocks[$lc] = $this->getBlocks("content",$id,$lc);
         }
 
-        $content = $this->em->getRepository('SSoneCMSBundle:Content')->find($id);
+        $content = $this->em->getRepository('JfxNinjaCMSBundle:Content')->find($id);
 
         $content->setContent($blocks);
 

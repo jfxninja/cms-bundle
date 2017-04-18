@@ -1,14 +1,14 @@
 <?php
 
-namespace SSone\CMSBundle\Entity;
+namespace JfxNinja\CMSBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Util\SecureRandom;
 
 /**
- * @ORM\Entity(repositoryClass="SSone\CMSBundle\Entity\BlockFieldsRepository")
+ * @ORM\Entity(repositoryClass="JfxNinja\CMSBundle\Entity\BlockFieldsRepository")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="ssone_blockFields")
+ * @ORM\Table(name="ninjacms_blockFields")
  */
 class BlockField {
 
@@ -220,10 +220,10 @@ class BlockField {
     /**
      * Set block
      *
-     * @param \SSone\CMSBundle\Entity\Block $block
+     * @param \jfxninja\CMSBundle\Entity\Block $block
      * @return BlockField
      */
-    public function setBlock(\SSone\CMSBundle\Entity\Block $block = null)
+    public function setBlock(\jfxninja\CMSBundle\Entity\Block $block = null)
     {
 
         $this->block = $block;
@@ -234,7 +234,7 @@ class BlockField {
     /**
      * Get block
      *
-     * @return \SSone\CMSBundle\Entity\Block
+     * @return \jfxninja\CMSBundle\Entity\Block
      */
     public function getBlock()
     {

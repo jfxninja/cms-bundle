@@ -1,6 +1,6 @@
 <?php
 
-namespace SSone\CMSBundle\Migrations;
+namespace JfxNinja\CMSBundle\Migrations;
 
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
@@ -8,8 +8,8 @@ use Doctrine\DBAL\Schema\Schema;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-use SSone\CMSBundle\Entity\FieldType;
-use SSone\CMSBundle\Entity\FieldSetupOptions;
+use JfxNinja\CMSBundle\Entity\FieldType;
+use JfxNinja\CMSBundle\Entity\FieldSetupOptions;
 
 /**
  * Auto-generated Migration: Please modify to your needs!
