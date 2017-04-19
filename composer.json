@@ -2,13 +2,13 @@
   "name": "jfxninja/cms-bundle",
   "type": "library",
   "description": "A content construction and management system CMMS for symfony by JfxNinja.",
-  "homepage": "https://github.com/jfxninja/onecms",
+  "homepage": "https://github.com/jfxninja/cms-bundle",
   "license": "MIT",
   "authors": [
     {
       "name": "Jon Williams",
-      "email": "jon@jfxninja.co",
-      "homepage": "http://jfxninja.co",
+      "email": "jon@jfxweb.ninja",
+      "homepage": "http://www.jfxweb.ninja",
       "role": "Developer"
     }
   ],
