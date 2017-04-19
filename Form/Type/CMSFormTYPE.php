@@ -72,7 +72,7 @@ class CMSFormTYPE extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'jfxninja\CMSBundle\Entity\CMSForm'
+            'data_class' => 'JfxNinja\CMSBundle\Entity\CMSForm'
         ));
     }
 

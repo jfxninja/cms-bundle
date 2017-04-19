@@ -256,10 +256,10 @@ class Block {
     /**
      * Set field
      *
-     * @param \jfxninja\CMSBundle\Entity\field $field
+     * @param \JfxNinja\CMSBundle\Entity\field $field
      * @return Block
      */
-    public function setField(\jfxninja\CMSBundle\Entity\field $field = null)
+    public function setField(\JfxNinja\CMSBundle\Entity\field $field = null)
     {
         $this->field = $field;
 
@@ -269,7 +269,7 @@ class Block {
     /**
      * Get field
      *
-     * @return \jfxninja\CMSBundle\Entity\field
+     * @return \JfxNinja\CMSBundle\Entity\field
      */
     public function getField()
     {
@@ -279,10 +279,10 @@ class Block {
     /**
      * Set contentType
      *
-     * @param \jfxninja\CMSBundle\Entity\ContentType $contentType
+     * @param \JfxNinja\CMSBundle\Entity\ContentType $contentType
      * @return Block
      */
-    public function setContentType(\jfxninja\CMSBundle\Entity\ContentType $contentType = null)
+    public function setContentType(\JfxNinja\CMSBundle\Entity\ContentType $contentType = null)
     {
         $this->contentType = $contentType;
 
@@ -292,7 +292,7 @@ class Block {
     /**
      * Get contentType
      *
-     * @return \jfxninja\CMSBundle\Entity\ContentType
+     * @return \JfxNinja\CMSBundle\Entity\ContentType
      */
     public function getContentType()
     {
@@ -310,10 +310,10 @@ class Block {
     /**
      * Add blockField
      *
-     * @param \jfxninja\CMSBundle\Entity\BlockField $blockField
+     * @param \JfxNinja\CMSBundle\Entity\BlockField $blockField
      * @return Block
      */
-    public function addBlockField(\jfxninja\CMSBundle\Entity\BlockField $blockField)
+    public function addBlockField(\JfxNinja\CMSBundle\Entity\BlockField $blockField)
     {
 
         $blockField->setBlock($this);
@@ -326,9 +326,9 @@ class Block {
     /**
      * Remove blockField
      *
-     * @param \jfxninja\CMSBundle\Entity\BlockField $blockFields
+     * @param \JfxNinja\CMSBundle\Entity\BlockField $blockFields
      */
-    public function removeBlockField(\jfxninja\CMSBundle\Entity\BlockField $blockFields)
+    public function removeBlockField(\JfxNinja\CMSBundle\Entity\BlockField $blockFields)
     {
         $this->blockFields->removeElement($blockFields);
     }
@@ -369,10 +369,10 @@ class Block {
     /**
      * Set content
      *
-     * @param \jfxninja\CMSBundle\Entity\Content $content
+     * @param \JfxNinja\CMSBundle\Entity\Content $content
      * @return Block
      */
-    public function setContent(\jfxninja\CMSBundle\Entity\Content $content = null)
+    public function setContent(\JfxNinja\CMSBundle\Entity\Content $content = null)
     {
         $this->content = $content;
 
@@ -382,7 +382,7 @@ class Block {
     /**
      * Get content
      *
-     * @return \jfxninja\CMSBundle\Entity\Content
+     * @return \JfxNinja\CMSBundle\Entity\Content
      */
     public function getContent()
     {

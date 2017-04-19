@@ -137,7 +137,7 @@ class MenuItemsController extends Controller
             //If a parent has been chosen and its not set to root set the parent menu
             if(isset($parent[1]) && $parent[1] != "root")
             {
-                $menuItem->setParent($em->getReference('jfxninja\CMSBundle\Entity\MenuItem', $parent[1]));
+                $menuItem->setParent($em->getReference('JfxNinja\CMSBundle\Entity\MenuItem', $parent[1]));
             }
             elseif(isset($parent[1]) && $parent[1] == "root")
             {
@@ -148,7 +148,7 @@ class MenuItemsController extends Controller
             //TODO:JW test this should always be set
             if($parent[0])
             {
-                $menuItem->setRoot($em->getReference('jfxninja\CMSBundle\Entity\Menu', $parent[0]));
+                $menuItem->setRoot($em->getReference('JfxNinja\CMSBundle\Entity\Menu', $parent[0]));
             }
     }
 
@@ -161,12 +161,12 @@ class MenuItemsController extends Controller
         $content = explode("_",$menuItem->getMapContent());
         if($content[0] == "single")
         {
-            $menuItem->setContent($em->getReference('jfxninja\CMSBundle\Entity\Content', $content[1]));
+            $menuItem->setContent($em->getReference('JfxNinja\CMSBundle\Entity\Content', $content[1]));
             $menuItem->setMode('single');
         }
         elseif($content[0] == "list")
         {
-            $menuItem->setContentType($em->getReference('jfxninja\CMSBundle\Entity\ContentType', $content[1]));
+            $menuItem->setContentType($em->getReference('JfxNinja\CMSBundle\Entity\ContentType', $content[1]));
             $menuItem->setMode('list');
         }
         elseif(count($content)<2)

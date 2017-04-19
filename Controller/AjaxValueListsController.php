@@ -47,7 +47,7 @@ class AjaxValueListsController extends Controller
 
             $fieldSettings = $this->getDoctrine()->getRepository('JfxNinjaCMSBundle:Field')->fieldSettingsById($category2FieldId);
 
-            $options = $this->getDoctrine()->getRepository('JfxNinjaCMSBundle:Field')->getContentTypeCategoryFields($fieldSettings['fieldTypeSettings']['relatedcontent']['relatedcontent']);
+            $options = $this->getDoctrine()->getRepository('JfxNinjaCMSBundle:Field')->getContentTypeCategoryFields($fieldSettings['fieldTypeSettings']['related_content__content_type']);
 
             $response = array("code" => 100, "success" => true, "data"=>$options);
         }
@@ -70,9 +70,9 @@ class AjaxValueListsController extends Controller
 
             $contentItemChoices = $contentService->findContentByContentTypeId($contentTypeId);
 
-            $filterFieldOptions = $em->getRepository('JfxNinjaCMSBundle:Field')->getContentTypeFields($contentTypeId,array("relatedcontent","text","date","checkbox","choice"));
+            $filterFieldOptions = $em->getRepository('JfxNinjaCMSBundle:Field')->getContentTypeFields($contentTypeId,array("related_content","text","date","checkbox","choice"));
 
-            $orderbyFieldOptions = $em->getRepository('JfxNinjaCMSBundle:Field')->getContentTypeFields($contentTypeId,array("relatedcontent","text","date"));
+            $orderbyFieldOptions = $em->getRepository('JfxNinjaCMSBundle:Field')->getContentTypeFields($contentTypeId,array("related_content","text","date"));
 
             $response = array("code" => 100, "success" => true,
                 "contentItemChoices"=>$contentItemChoices,
@@ -102,10 +102,10 @@ class AjaxValueListsController extends Controller
             {
                 $filterField = $em->getRepository('JfxNinjaCMSBundle:Field')->find($request->get('contentTypeId'));
 
-                if($filterField && $filterField->getFieldType()->getVariableName() == "relatedcontent")
+                if($filterField && $filterField->getFieldType()->getVariableName() == "related_content")
                 {
                     $settings = $filterField->getFieldTypeSettings();
-                    $filterValueOptions = $contentService->findContentByContentTypeIdChoiceFormatted($settings['relatedcontent']['relatedcontent']);
+                    $filterValueOptions = $contentService->findContentByContentTypeIdChoiceFormatted($settings['related_content__content_type']);
 
                 }
                 else

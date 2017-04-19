@@ -133,15 +133,29 @@ class ContentTypesRepository extends EntityRepository
                 $menus[$k."list"] = array("name"=>"Edit " . $k . " list page", "link"=>"/admin/content/attributes/".$ct['securekey']);
             }
 
-
-
-
-
         }
 
         return $menus;
 
+    }
 
+
+    public function getContentTypeChoiceOptions()
+    {
+        $query = 'SELECT i.name, i.id FROM JfxNinjaCMSBundle:ContentType i ORDER BY i.name ASC';
+        $items = $this->getEntityManager()
+            ->createQuery($query)
+            ->getResult();
+
+        $entityItems = array();
+        foreach($items as $i)
+        {
+            $entityItems[$i['id']] = $i['name'];
+        }
+
+        return $entityItems;
 
     }
+
+
 }

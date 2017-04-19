@@ -66,7 +66,7 @@ class BlockService extends EntityRepository
             }
             if($found == false)
             {
-                $bfToRemove = $this->em->getReference('jfxninja\CMSBundle\Entity\BlockField', $obf['id']);
+                $bfToRemove = $this->em->getReference('JfxNinja\CMSBundle\Entity\BlockField', $obf['id']);
                 $this->em->remove($bfToRemove);
             }
 
@@ -227,7 +227,7 @@ class BlockService extends EntityRepository
 
                         $file = array();
 
-                        if($fp = $this->fu->contentFileUpload($input->getData(), $fieldSettings['fileupload']['fileuploadfolder']."/".$this->makeURLSafe($form['name']->getData())))
+                        if($fp = $this->fu->contentFileUpload($input->getData(), $fieldSettings['file_upload__file_upload_folder']."/".$this->makeURLSafe($form['name']->getData())))
                         {
 
                             $file['filePath'] = $fp;
@@ -263,10 +263,10 @@ class BlockService extends EntityRepository
                     }
                 }
 
-
             }
 
         }
+
     }
 
 

@@ -453,10 +453,10 @@ class Module {
     /**
      * Set contentType
      *
-     * @param \jfxninja\CMSBundle\Entity\ContentType $contentType
+     * @param \JfxNinja\CMSBundle\Entity\ContentType $contentType
      * @return Module
      */
-    public function setContentType(\jfxninja\CMSBundle\Entity\ContentType $contentType = null)
+    public function setContentType(\JfxNinja\CMSBundle\Entity\ContentType $contentType = null)
     {
         $this->contentType = $contentType;
 
@@ -466,7 +466,7 @@ class Module {
     /**
      * Get contentType
      *
-     * @return \jfxninja\CMSBundle\Entity\Content
+     * @return \JfxNinja\CMSBundle\Entity\Content
      */
     public function getContentType()
     {
@@ -638,10 +638,10 @@ class Module {
     /**
      * Set singleContentItem
      *
-     * @param \jfxninja\CMSBundle\Entity\Content $singleContentItem
+     * @param \JfxNinja\CMSBundle\Entity\Content $singleContentItem
      * @return Module
      */
-    public function setSingleContentItem(\jfxninja\CMSBundle\Entity\Content $singleContentItem = null)
+    public function setSingleContentItem(\JfxNinja\CMSBundle\Entity\Content $singleContentItem = null)
     {
         $this->singleContentItem = $singleContentItem;
 
@@ -651,7 +651,7 @@ class Module {
     /**
      * Get singleContentItem
      *
-     * @return \jfxninja\CMSBundle\Entity\Content
+     * @return \JfxNinja\CMSBundle\Entity\Content
      */
     public function getSingleContentItem()
     {
@@ -684,10 +684,10 @@ class Module {
     /**
      * Set form
      *
-     * @param \jfxninja\CMSBundle\Entity\CMSForm $form
+     * @param \JfxNinja\CMSBundle\Entity\CMSForm $form
      * @return Module
      */
-    public function setForm(\jfxninja\CMSBundle\Entity\CMSForm $form = null)
+    public function setForm(\JfxNinja\CMSBundle\Entity\CMSForm $form = null)
     {
         $this->form = $form;
 
@@ -697,7 +697,7 @@ class Module {
     /**
      * Get form
      *
-     * @return \jfxninja\CMSBundle\Entity\CMSForm
+     * @return \JfxNinja\CMSBundle\Entity\CMSForm
      */
     public function getForm()
     {

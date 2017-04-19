@@ -525,7 +525,6 @@ class ContentService extends EntityRepository
                       f.variableName,
                       ft.variableName as fieldType
                       FROM JfxNinjaCMSBundle:Field f
-                      LEFT JOIN f.fieldType ft
                       WHERE f.id = :id'
                 )
                 ->setParameter('id', $activeMenu['ctc1FieldId'])
@@ -545,7 +544,6 @@ class ContentService extends EntityRepository
                       f.variableName,
                       ft.variableName as fieldType
                       FROM JfxNinjaCMSBundle:Field f
-                      LEFT JOIN f.fieldType ft
                       WHERE f.id = :id'
                 )
                 ->setParameter('id', $activeMenu['ctc2FieldId'])
@@ -625,7 +623,7 @@ class ContentService extends EntityRepository
     {
         $match = false;
 
-        if($field['fieldType'] == "relatedcontent")
+        if($field['fieldType'] == "related_content")
         {
             //print($this->urlSafe($v['contentSlug']) ." = ". $filterValue);
             if($this->urlSafe($v['contentSlug']) == $filterValue)
@@ -707,7 +705,6 @@ class ContentService extends EntityRepository
                 FROM JfxNinjaCMSBundle:Block b
                 LEFT JOIN b.blockFields bf
                 LEFT JOIN b.field f
-                LEFT JOIN f.fieldType ft
                 WHERE b.id = :id
                 ORDER BY bf.sort"
                 )
@@ -724,7 +721,7 @@ class ContentService extends EntityRepository
                 if(isset($bf['fieldContent']))
                 {
 
-                    if($bf['fieldType'] == "relatedcontent")
+                    if($bf['fieldType'] == "related_content")
                     {
 
                         $content[$bf['variableName']][$bfk] = $this->getBlocks($entityName,$bf['fieldContent'][$bf['variableName']],$locale);
@@ -736,10 +733,10 @@ class ContentService extends EntityRepository
                     foreach($bf['fieldContent'] as $k=>$input)
                     {
                         $fieldIsTranslatable = false;
-                        if(($bf['fieldType'] == "text" && $bf['fieldTypeSettings']['text']['texttrans'])) $fieldIsTranslatable = true;
-                        if(($bf['fieldType'] == "textarea" && $bf['fieldTypeSettings']['textarea']['textareatrans'])) $fieldIsTranslatable = true;
-                        if(($bf['fieldType'] == "wysiwyg" && $bf['fieldTypeSettings']['wysiwyg']['wysiwygtrans'])) $fieldIsTranslatable = true;
-                        if(($bf['fieldType'] == "form" && $bf['fieldTypeSettings']['form']['multilanguageform'])) $fieldIsTranslatable = true;
+                        if(($bf['fieldType'] == "text" && $bf['fieldTypeSettings']['text__translatable'])) $fieldIsTranslatable = true;
+                        if(($bf['fieldType'] == "textarea" && $bf['fieldTypeSettings']['textarea__translatable'])) $fieldIsTranslatable = true;
+                        if(($bf['fieldType'] == "wysiwyg_editor" && $bf['fieldTypeSettings']['wysiwyg_editor__translatable'])) $fieldIsTranslatable = true;
+                        if(($bf['fieldType'] == "cms_form" && $bf['fieldTypeSettings']['cms_form__translatable'])) $fieldIsTranslatable = true;
 
 
                         //If this is a multi-language field
@@ -768,7 +765,7 @@ class ContentService extends EntityRepository
 
 
                     //If field is not repeatable set the value as a string not array
-                    if(!$bf['isRepeatable'] && $bf['fieldType'] != "embeded")
+                    if(!$bf['isRepeatable'] && $bf['fieldType'] != "embedded_content_model")
                     {
                         $value = $content[$bf['variableName']][$bfk][$k];
 

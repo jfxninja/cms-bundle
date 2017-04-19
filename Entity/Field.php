@@ -105,6 +105,11 @@ class Field  {
     private $label;
 
     /**
+     * @ORM\Column(name="type", type="string", length=120)
+     */
+    private $type;
+
+    /**
      * @ORM\Column(name="settings", type="array", length=3000, nullable=true)
      */
     private $fieldTypeSettings;
@@ -338,10 +343,10 @@ class Field  {
     /**
      * Set fieldType
      *
-     * @param \jfxninja\CMSBundle\Entity\FieldType $fieldType
+     * @param \JfxNinja\CMSBundle\Entity\FieldType $fieldType
      * @return Field
      */
-    public function setFieldType(\jfxninja\CMSBundle\Entity\FieldType $fieldType = null)
+    public function setFieldType(\JfxNinja\CMSBundle\Entity\FieldType $fieldType = null)
     {
         $this->fieldType = $fieldType;
 
@@ -351,7 +356,7 @@ class Field  {
     /**
      * Get fieldType
      *
-     * @return \jfxninja\CMSBundle\Entity\FieldType
+     * @return \JfxNinja\CMSBundle\Entity\FieldType
      */
     public function getFieldType()
     {
@@ -411,10 +416,10 @@ class Field  {
     /**
      * Set contentTypeByVariable
      *
-     * @param \jfxninja\CMSBundle\Entity\ContentType $contentTypeByVariable
+     * @param \JfxNinja\CMSBundle\Entity\ContentType $contentTypeByVariable
      * @return Field
      */
-    public function setContentTypeByVariable(\jfxninja\CMSBundle\Entity\ContentType $contentTypeByVariable = null)
+    public function setContentTypeByVariable(\JfxNinja\CMSBundle\Entity\ContentType $contentTypeByVariable = null)
     {
         $this->contentTypeByVariable = $contentTypeByVariable;
 
@@ -424,7 +429,7 @@ class Field  {
     /**
      * Get contentTypeByVariable
      *
-     * @return \jfxninja\CMSBundle\Entity\ContentType
+     * @return \JfxNinja\CMSBundle\Entity\ContentType
      */
     public function getContentTypeByVariable()
     {
@@ -434,10 +439,10 @@ class Field  {
     /**
      * Set contentTypeByAttribute
      *
-     * @param \jfxninja\CMSBundle\Entity\ContentType $contentTypeByAttribute
+     * @param \JfxNinja\CMSBundle\Entity\ContentType $contentTypeByAttribute
      * @return Field
      */
-    public function setContentTypeByAttribute(\jfxninja\CMSBundle\Entity\ContentType $contentTypeByAttribute = null)
+    public function setContentTypeByAttribute(\JfxNinja\CMSBundle\Entity\ContentType $contentTypeByAttribute = null)
     {
         $this->contentTypeByAttribute = $contentTypeByAttribute;
 
@@ -447,7 +452,7 @@ class Field  {
     /**
      * Get contentTypeByAttribute
      *
-     * @return \jfxninja\CMSBundle\Entity\ContentType
+     * @return \JfxNinja\CMSBundle\Entity\ContentType
      */
     public function getContentTypeByAttribute()
     {
@@ -533,10 +538,10 @@ class Field  {
     /**
      * Add blocks
      *
-     * @param \jfxninja\CMSBundle\Entity\Block $blocks
+     * @param \JfxNinja\CMSBundle\Entity\Block $blocks
      * @return Field
      */
-    public function addBlock(\jfxninja\CMSBundle\Entity\Block $blocks)
+    public function addBlock(\JfxNinja\CMSBundle\Entity\Block $blocks)
     {
         $this->blocks[] = $blocks;
 
@@ -546,9 +551,9 @@ class Field  {
     /**
      * Remove blocks
      *
-     * @param \jfxninja\CMSBundle\Entity\Block $blocks
+     * @param \JfxNinja\CMSBundle\Entity\Block $blocks
      */
-    public function removeBlock(\jfxninja\CMSBundle\Entity\Block $blocks)
+    public function removeBlock(\JfxNinja\CMSBundle\Entity\Block $blocks)
     {
         $this->blocks->removeElement($blocks);
     }
@@ -699,5 +704,29 @@ class Field  {
     public function getGridColsLarge()
     {
         return $this->gridColsLarge;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Field
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

@@ -54,7 +54,7 @@ class ContentTypeAttributesTYPE extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'jfxninja\CMSBundle\Entity\ContentType'
+            'data_class' => 'JfxNinja\CMSBundle\Entity\ContentType'
         ));
     }
 

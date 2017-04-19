@@ -15,13 +15,15 @@ class ContentTYPE extends AbstractType
 {
 
     private $mode;
+    private $cmsInputTypeService;
     private $locale;
     private $cs;
     private $CMSFormService;
     private $fieldsRepository;
 
-    public function __construct($mode,$fieldsRepository,$cs,$CMSFormService,$locale){
+    public function __construct($mode,$cmsInputTypeService,$fieldsRepository,$cs,$CMSFormService,$locale){
         $this->mode = $mode;
+        $this->cmsInputTypeService = $cmsInputTypeService;
         $this->locale = $locale;
         $this->cs = $cs;
         $this->CMSFormService = $CMSFormService;
@@ -64,7 +66,7 @@ class ContentTYPE extends AbstractType
         {
             $form
             ->add('blocks', 'collection', array(
-            'type' => new BlockTYPE($this->locale, $this->fieldsRepository, $this->cs, $this->CMSFormService),
+            'type' => new BlockTYPE($this->locale, $this->cmsInputTypeService, $this->fieldsRepository, $this->cs, $this->CMSFormService),
         ));
 
         }
@@ -76,7 +78,7 @@ class ContentTYPE extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'jfxninja\CMSBundle\Entity\Content'
+            'data_class' => 'JfxNinja\CMSBundle\Entity\Content'
         ));
     }
 

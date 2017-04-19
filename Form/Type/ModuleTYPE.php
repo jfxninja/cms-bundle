@@ -95,12 +95,12 @@ class ModuleTYPE extends AbstractType
             $fieldsRepository = $this->em->getRepository('JfxNinjaCMSBundle:Field');
 
             //set fields
-            $filterFields = $fieldsRepository->getContentTypeFields($contentType->getId(),array("relatedcontent","text","checkbox"));
+            $filterFields = $fieldsRepository->getContentTypeFields($contentType->getId(),array("related_content","text","checkbox"));
 
             //set fields
             $contentItems = $contentType->getContent();
 
-            $sortFields =  $fieldsRepository->getContentTypeFields($contentType->getId(),array("relatedcontent","text","date"));
+            $sortFields =  $fieldsRepository->getContentTypeFields($contentType->getId(),array("related_content","text","date"));
 
         }
 
@@ -110,10 +110,10 @@ class ModuleTYPE extends AbstractType
         {
             $filterField = $this->em->getRepository('JfxNinjaCMSBundle:Field')->find($contentFilterFieldID);
 
-            if($filterField && $filterField->getFieldType()->getVariableName() == "relatedcontent")
+            if($filterField && $filterField->getType()->getVariableName() == "related_content")
             {
                 $settings = $filterField->getFieldTypeSettings();
-                $filterValueOptions = $this->contentService->findContentByContentTypeIdChoiceFormatted($settings['relatedcontent']['relatedcontent']);
+                $filterValueOptions = $this->contentService->findContentByContentTypeIdChoiceFormatted($settings['related_content__content_type']);
 
             }
 
@@ -136,7 +136,7 @@ class ModuleTYPE extends AbstractType
                     'label' => 'Filter list by field')
             );
 
-        if($filterField && $filterField->getFieldType()->getVariableName() == "relatedcontent")
+        if($filterField && $filterField->geType() == "related_content")
         {
             $form
                 ->add('contentFilterValue', 'choice',
@@ -205,7 +205,7 @@ class ModuleTYPE extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'jfxninja\CMSBundle\Entity\Module'
+            'data_class' => 'JfxNinja\CMSBundle\Entity\Module'
         ));
     }
 

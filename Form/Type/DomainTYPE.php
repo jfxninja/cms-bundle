@@ -37,7 +37,7 @@ class DomainTYPE extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'jfxninja\CMSBundle\Entity\Domain'
+            'data_class' => 'JfxNinja\CMSBundle\Entity\Domain'
         ));
     }
 

@@ -47,7 +47,7 @@ class fieldSetupOptionsTYPE extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'jfxninja\CMSBundle\Entity\FieldSetupOptions'
+            'data_class' => 'JfxNinja\CMSBundle\Entity\FieldSetupOptions'
         ));
     }
 

@@ -129,7 +129,7 @@ class MenuItemTYPE extends AbstractType
 
                 if($ctcf2)
                 {
-                    $category2ContentTypeId = $ctcf2['fieldTypeSettings']['relatedcontent']['relatedcontent'];
+                    $category2ContentTypeId = $ctcf2['fieldTypeSettings']['related_content__content_type'];
                     $category2RelatedChoices = $fieldsRepository->getContentTypeCategoryFieldsAsObjects($category2ContentTypeId);
                     $emptyValue = "Choose an option" ;
                 }
@@ -205,7 +205,7 @@ class MenuItemTYPE extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'jfxninja\CMSBundle\Entity\MenuItem'
+            'data_class' => 'JfxNinja\CMSBundle\Entity\MenuItem'
         ));
     }
 

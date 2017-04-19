@@ -98,10 +98,10 @@ class Role implements RoleInterface
     /**
      * Add users
      *
-     * @param \jfxninja\CMSBundle\Entity\User $users
+     * @param \JfxNinja\CMSBundle\Entity\User $users
      * @return Role
      */
-    public function addUser(\jfxninja\CMSBundle\Entity\User $users)
+    public function addUser(\JfxNinja\CMSBundle\Entity\User $users)
     {
         $this->users[] = $users;
 
@@ -111,9 +111,9 @@ class Role implements RoleInterface
     /**
      * Remove users
      *
-     * @param \jfxninja\CMSBundle\Entity\User $users
+     * @param \JfxNinja\CMSBundle\Entity\User $users
      */
-    public function removeUser(\jfxninja\CMSBundle\Entity\User $users)
+    public function removeUser(\JfxNinja\CMSBundle\Entity\User $users)
     {
         $this->users->removeElement($users);
     }

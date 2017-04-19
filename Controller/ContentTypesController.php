@@ -57,9 +57,11 @@ class ContentTypesController extends Controller
     private function crud(Request $request, $mode,  $securekey = null)
     {
 
-        $locale = $request->getLocale();
-        $em = $this->getDoctrine()->getManager();
-        $fieldSetupOptions = $this->getAllFieldSetupOptions();
+        $locale                 = $request->getLocale();
+        $em                     = $this->getDoctrine()->getManager();
+        $cmsInputTypeService    = $this->get('jfxninja.cms.input_type');
+        $inputTypeSetupOptions  = $cmsInputTypeService->getInputTypeSetupOptions();
+        $inputTypes             = $cmsInputTypeService->getInputTypes();
 
         if($mode == "new")
         {
@@ -88,7 +90,7 @@ class ContentTypesController extends Controller
         }
 
 
-        $form = $this->createForm(new ContentTypeTYPE($mode, $fieldSetupOptions, $locale), $contentType);
+        $form = $this->createForm(new ContentTypeTYPE($mode, $inputTypes, $inputTypeSetupOptions, $locale), $contentType);
 
 
         $form->handleRequest($request);
@@ -165,7 +167,6 @@ class ContentTypesController extends Controller
 
             $em->flush();
 
-
             return $this->redirect(
                 $this->generateUrl('jfxninja_cms_admin_contentTypes_list')
             );
@@ -175,7 +176,7 @@ class ContentTypesController extends Controller
         return $this->render('JfxNinjaCMSBundle:ContentTypes:crud.html.twig', array(
             'form' => $form->createView(),
             'mode' => $mode,
-            'fieldOptions' => $fieldSetupOptions,
+            'inputTypeSetupOptions' => $inputTypeSetupOptions,
             'contentType' => $contentType->getName(),
             'locale' => $locale,
 

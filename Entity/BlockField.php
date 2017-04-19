@@ -220,10 +220,10 @@ class BlockField {
     /**
      * Set block
      *
-     * @param \jfxninja\CMSBundle\Entity\Block $block
+     * @param \JfxNinja\CMSBundle\Entity\Block $block
      * @return BlockField
      */
-    public function setBlock(\jfxninja\CMSBundle\Entity\Block $block = null)
+    public function setBlock(\JfxNinja\CMSBundle\Entity\Block $block = null)
     {
 
         $this->block = $block;
@@ -234,7 +234,7 @@ class BlockField {
     /**
      * Get block
      *
-     * @return \jfxninja\CMSBundle\Entity\Block
+     * @return \JfxNinja\CMSBundle\Entity\Block
      */
     public function getBlock()
     {

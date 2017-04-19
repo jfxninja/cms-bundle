@@ -309,10 +309,10 @@ class Domain {
     /**
      * Add menus
      *
-     * @param \jfxninja\CMSBundle\Entity\Menu $menus
+     * @param \JfxNinja\CMSBundle\Entity\Menu $menus
      * @return Domain
      */
-    public function addMenu(\jfxninja\CMSBundle\Entity\Menu $menus)
+    public function addMenu(\JfxNinja\CMSBundle\Entity\Menu $menus)
     {
         $this->menus[] = $menus;
 
@@ -322,9 +322,9 @@ class Domain {
     /**
      * Remove menus
      *
-     * @param \jfxninja\CMSBundle\Entity\Menu $menus
+     * @param \JfxNinja\CMSBundle\Entity\Menu $menus
      */
-    public function removeMenu(\jfxninja\CMSBundle\Entity\Menu $menus)
+    public function removeMenu(\JfxNinja\CMSBundle\Entity\Menu $menus)
     {
         $this->menus->removeElement($menus);
     }

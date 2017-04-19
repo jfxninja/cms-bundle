@@ -39,11 +39,11 @@ class BlockFieldInputsBuilder extends AbstractType
 
         $form = $event->getForm();
 
-        if($this->field->getFieldType()->getVariableName() == "embeded")
+        if($this->field->getType() == "embedded_content_model")
         {
             $fieldSettings = $this->field->getFieldTypeSettings();
 
-            $id = $fieldSettings['embeded']['contenttype'];
+            $id = $fieldSettings['embedded_content_model__content_type'];
 
             $fields = $this->fieldsRepository->findByContentTypeId($id);
 
@@ -89,7 +89,7 @@ class BlockFieldInputsBuilder extends AbstractType
 
             if(trim($arrayOption[0]))
             {
-                $options[trim($arrayOption[1])] = trim($arrayOption[0]);
+                $options[trim($arrayOption[0])] = trim($arrayOption[1]);
             }
 
 
@@ -121,10 +121,10 @@ class BlockFieldInputsBuilder extends AbstractType
 
         $securekey = $field->getSecurekey();
 
-        switch($field->getFieldType()->getVariableName())
+        switch($field->getType())
         {
             case "text":
-                if($fieldSettings['text']['texttrans'])
+                if($fieldSettings['text__translatable'])
                 {
                     $form->add($variableName, 'multiLanguageText',
                         array(
@@ -150,7 +150,7 @@ class BlockFieldInputsBuilder extends AbstractType
 
             case "textarea":
 
-                if($fieldSettings['textarea']['textareatrans'])
+                if($fieldSettings['textarea__translatable'])
                 {
 
                     $form->add($variableName, 'multiLanguageTextarea',
@@ -159,8 +159,8 @@ class BlockFieldInputsBuilder extends AbstractType
                             "locale"=>$this->locale,
                             "required"=>false,
                             'constraints' => $constraints,
-                            "rows"=>$fieldSettings['textarea']['textareaRows'],
-                            "cols"=>$fieldSettings['textarea']['textareaCols'],
+                            "rows"=>$fieldSettings['textarea__rows'],
+                            "cols"=>$fieldSettings['textarea__cols'],
 
                         ));
                 }
@@ -171,8 +171,8 @@ class BlockFieldInputsBuilder extends AbstractType
                             'label'=>$label,
                             "required"=>false,
                             'constraints' => $constraints,
-                            "rows"=>$fieldSettings['textarea']['textareaRows'],
-                            "cols"=>$fieldSettings['textarea']['textareaCols']
+                            "rows"=>$fieldSettings['textarea__cols'],
+                            "cols"=>$fieldSettings['textarea__rows']
                         ));
                 }
                 break;
@@ -187,7 +187,7 @@ class BlockFieldInputsBuilder extends AbstractType
                         ));
                 break;
 
-            case "fileupload":
+            case "file_upload":
                 $form
                     ->add($variableName, 'CMSFieldFilePath',
                         array(
@@ -206,14 +206,14 @@ class BlockFieldInputsBuilder extends AbstractType
                 break;
 
             case "choice":
-                $options = $this->convertChoiceOptionsStringToArray($fieldSettings['choice']['choiceoptions']);
+                $options = $this->convertChoiceOptionsStringToArray($fieldSettings['choice__options']);
                 $form
                     ->add($variableName, 'CMSChoice',
                         array(
                             'choices'=>$options,
                             'label'=>$label,
-                            'expanded'=>$fieldSettings['choice']['choiceexp'],
-                            'multiple'=>$fieldSettings['choice']['choicemulti'],
+                            'expanded'=>$fieldSettings['choice__choice_expanded'],
+                            'multiple'=>$fieldSettings['choice__choice_multi'],
                             "required"=>false,
                             'constraints' => $constraints,
                         )
@@ -243,10 +243,10 @@ class BlockFieldInputsBuilder extends AbstractType
                         ));
                 break;
 
-            case "relatedcontent":
+            case "related_content":
 
                 $options = array(""=>"-");
-                foreach($this->cs->findContentByContentTypeId($fieldSettings['relatedcontent']['relatedcontent']) as $content)
+                foreach($this->cs->findContentByContentTypeId($fieldSettings['related_content__content_type']) as $content)
                 {
                     $options[$content['id']] = $content['name'];
                 }
@@ -265,26 +265,9 @@ class BlockFieldInputsBuilder extends AbstractType
                     );
                 break;
 
-            case "wysiwyg":
-/*
-                $form->add($variableName, 'textarea',
-                    array(
-                        'label'=>$label,
-                        'attr' => array(
-                            'class'=>'wysiwyg-field',
-                            'data-options'=> $fieldSettings['wysiwyg']['wysiwygsetupoptions'],
-                            'sfid'=> $securekey
-                        ),
-                        "required"=>false,
-                        "constraints"=>$constraints
-                    )
-                );
+            case "wysiwyg_editor":
 
-
-                break;
-*/
-
-                if(isset($fieldSettings['wysiwyg']['wysiwygtrans']) && $fieldSettings['wysiwyg']['wysiwygtrans'])
+                if(isset($fieldSettings['wysiwyg_editor__translatable']) && $fieldSettings['wysiwyg_editor__translatable'])
                 {
                     $form->add($variableName, 'multiLanguageTextarea',
                         array(
@@ -293,7 +276,7 @@ class BlockFieldInputsBuilder extends AbstractType
                             "required"=>false,
                             'attr' => array(
                                 'class'=>'wysiwyg-field',
-                                'data-options'=> $fieldSettings['wysiwyg']['wysiwygsetupoptions'],
+                                'data-options'=> $fieldSettings['wysiwyg_editor__options'],
                                 'sfid'=> $securekey
                             ),
                             'constraints' => $constraints,
@@ -307,7 +290,7 @@ class BlockFieldInputsBuilder extends AbstractType
                             'label'=>$label,
                             'attr' => array(
                                 'class'=>'wysiwyg-field',
-                                'data-options'=> $fieldSettings['wysiwyg']['wysiwygsetupoptions'],
+                                'data-options'=> $fieldSettings['wysiwyg_editor__options'],
                                 'sfid'=> $securekey
                             ),
                             "required"=>false,
@@ -317,10 +300,10 @@ class BlockFieldInputsBuilder extends AbstractType
                 }
                 break;
 
-            case "form":
+            case "cms_form":
 
                 $options = $this->cs->getFormsAsChoiceOptions();
-                if($fieldSettings['form']['multilanguageform'])
+                if($fieldSettings['cms_form__translatable'])
                 {
                 $form
                     ->add($variableName, 'multiLanguageChoice',

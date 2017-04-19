@@ -14,12 +14,14 @@ class BlockFieldBuilder extends AbstractType
     private $field;
     private $options;
     private $fieldsRepository;
+    private $cmsInputTypeService;
     private $cs;
     private $locale;
 
-    public function __construct($field, $fieldsRepository, $cs, $locale){
+    public function __construct($field, $cmsInputTypeService, $fieldsRepository, $cs, $locale){
 
         $this->field = $field;
+        $this->cmsInputTypeService = $cmsInputTypeService;
         $this->fieldsRepository = $fieldsRepository;
         $this->cs = $cs;
         $this->locale = $locale;
@@ -42,7 +44,6 @@ class BlockFieldBuilder extends AbstractType
         $form
             ->add("fieldContent", new BlockFieldInputsBuilder($field,$this->fieldsRepository,$this->cs,$this->locale), array(
                 'label' => false,
-                'fieldType' => $field->getFieldType()->getVariableName(),
             ))
             ->add('sort', 'hidden',array(
                 "required"=>false,
@@ -55,7 +56,7 @@ class BlockFieldBuilder extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'jfxninja\CMSBundle\Entity\BlockField',
+            'data_class' => 'JfxNinja\CMSBundle\Entity\BlockField',
             'fieldType' => '' )
         );
     }

@@ -283,7 +283,7 @@ class FieldType {
     /**
      * Add fieldSetupOptions
      *
-     * @param \jfxninja\CMSBundle\Entity\FieldSetupOptions $fieldSetupOptions
+     * @param \JfxNinja\CMSBundle\Entity\FieldSetupOptions $fieldSetupOptions
      * @return FieldType
      */
     public function addFieldSetupOption(FieldSetupOptions $fieldSetupOptions)
@@ -296,7 +296,7 @@ class FieldType {
     /**
      * Remove fieldSetupOptions
      *
-     * @param \jfxninja\CMSBundle\Entity\FieldSetupOptions $fieldSetupOptions
+     * @param \JfxNinja\CMSBundle\Entity\FieldSetupOptions $fieldSetupOptions
      */
     public function removeFieldSetupOption(FieldSetupOptions $fieldSetupOptions)
     {
@@ -316,10 +316,10 @@ class FieldType {
     /**
      * Add fields
      *
-     * @param \jfxninja\CMSBundle\Entity\Field $fields
+     * @param \JfxNinja\CMSBundle\Entity\Field $fields
      * @return FieldType
      */
-    public function addField(\jfxninja\CMSBundle\Entity\Field $fields)
+    public function addField(\JfxNinja\CMSBundle\Entity\Field $fields)
     {
         $this->fields[] = $fields;
 
@@ -329,9 +329,9 @@ class FieldType {
     /**
      * Remove fields
      *
-     * @param \jfxninja\CMSBundle\Entity\Field $fields
+     * @param \JfxNinja\CMSBundle\Entity\Field $fields
      */
-    public function removeField(\jfxninja\CMSBundle\Entity\Field $fields)
+    public function removeField(\JfxNinja\CMSBundle\Entity\Field $fields)
     {
         $this->fields->removeElement($fields);
     }

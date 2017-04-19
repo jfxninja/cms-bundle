@@ -11,14 +11,21 @@ use Doctrine\ORM\EntityRepository;
 class FieldTypeNested extends AbstractType
 {
 
-    private $fieldSetupOptions = array();
+    private $inputSetupOptions;
+    private $inputTypes;
 
-    public function __construct($fieldSetupOptions){
-        $this->fieldSetupOptions = $fieldSetupOptions;
+    public function __construct($inputTypes,$inputSetupOptions){
+        $this->inputSetupOptions = $inputSetupOptions;
+        $this->inputTypes = $inputTypes;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+        foreach($this->inputTypes as $type)
+        {
+            $inputTypeChoices[$type->getVariableName()] = $type->getName();
+        }
 
 
         $builder
@@ -29,17 +36,15 @@ class FieldTypeNested extends AbstractType
             ->add('repeatableGroupLabel', 'text',array("required"=>false))
             ->add('isRequired', 'checkbox',array("required"=>false))
             ->add('requiredText', 'text',array("required"=>false))
-            ->add('fieldType','entity',array(
-                'class' => 'JfxNinjaCMSBundle:FieldType',
-                'property' => 'name',
-                'label' => 'Associated Field Type',
-                'attr' => array('class' => 'field-type'),
-                'query_builder' => function(EntityRepository $er) {
-                        return $er->createQueryBuilder('ft')
-                            ->orderBy('ft.name', 'ASC');
-                    }
-            ))
-            ->add('fieldTypeSettings', new FieldTypeSetupOptions($this->fieldSetupOptions), array(
+            ->add('type', 'choice',array(
+                    'required' => false,
+                    'expanded' => false,
+                    'multiple' => false,
+                    'attr' => array('class' => 'field-type'),
+                    'choices' => $inputTypeChoices
+                )
+            )
+            ->add('fieldTypeSettings', new FieldTypeSetupOptions($this->inputSetupOptions), array(
                 'label' => '',
                 'attr' => array('class' => 'fieldTypeSettings')))
             ->add('sort', 'hidden',array(
@@ -54,7 +59,7 @@ class FieldTypeNested extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'jfxninja\CMSBundle\Entity\Field'
+            'data_class' => 'JfxNinja\CMSBundle\Entity\Field'
         ));
     }
 

@@ -95,7 +95,9 @@ class ContentController extends Controller
 
         }
 
-        $form = $this->createForm(new ContentTYPE($mode,$fieldsRepository,$cs,$CMSFormService,$locale), $content);
+        $cmsInputTypeService    = $this->get('jfxninja.cms.input_type');
+
+        $form = $this->createForm(new ContentTYPE($mode,$cmsInputTypeService,$fieldsRepository,$cs,$CMSFormService,$locale), $content);
 
 
         $form->handleRequest($request);

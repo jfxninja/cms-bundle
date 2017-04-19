@@ -324,10 +324,10 @@ class CMSForm {
     /**
      * Set contentType
      *
-     * @param \jfxninja\CMSBundle\Entity\ContentType $contentType
+     * @param \JfxNinja\CMSBundle\Entity\ContentType $contentType
      * @return Form
      */
-    public function setContentType(\jfxninja\CMSBundle\Entity\ContentType $contentType = null)
+    public function setContentType(\JfxNinja\CMSBundle\Entity\ContentType $contentType = null)
     {
         $this->contentType = $contentType;
 
@@ -337,7 +337,7 @@ class CMSForm {
     /**
      * Get contentType
      *
-     * @return \jfxninja\CMSBundle\Entity\ContentType
+     * @return \JfxNinja\CMSBundle\Entity\ContentType
      */
     public function getContentType()
     {

@@ -18,7 +18,7 @@ class WYSIWYGImageUploadController extends Controller
         //get the upload folder
 
         $fieldSettings = $fieldsRepository->findBySecurekey($sfid)->getFieldTypeSettings();
-        $folder = $fieldSettings['wysiwyg']['wysiwygUploadPath'];
+        $folder = $fieldSettings['wysiwyg_editor__file_upload_folder'];
 
         $savedFile = array();
         foreach($request->files as $file) {

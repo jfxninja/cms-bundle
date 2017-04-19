@@ -14,9 +14,11 @@ class BlockTYPE extends AbstractType
 
     private $locale;
     private $fieldsRepository;
+    private $cmsInputTypeService;
     private $CMSFormService;
 
-    public function __construct($locale,$fieldsRepository,$cs){
+    public function __construct($locale,$cmsInputTypeService,$fieldsRepository,$cs){
+        $this->cmsInputTypeService = $cmsInputTypeService;
         $this->locale = $locale;
         $this->fieldsRepository = $fieldsRepository;
         $this->cs = $cs;
@@ -27,10 +29,11 @@ class BlockTYPE extends AbstractType
     {
         $locale = $this->locale;
         $fieldsRepository = $this->fieldsRepository;
+        $cmsInputTypeService = $this->cmsInputTypeService;
         $cs = $this->cs;
         $CMSFormService = $this->CMSFormService;
 
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) use ($locale,$fieldsRepository,$cs,$CMSFormService) {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) use ($locale,$cmsInputTypeService,$fieldsRepository,$cs,$CMSFormService) {
 
             $form = $event->getForm();
 
@@ -45,7 +48,7 @@ class BlockTYPE extends AbstractType
             $form
                 ->add('blockFields','collection', array(
                     'label' => $label,
-                    'type' => new BlockFieldBuilder($field, $fieldsRepository, $cs, $locale),
+                    'type' => new BlockFieldBuilder($field, $cmsInputTypeService, $fieldsRepository, $cs, $locale),
                     'allow_add' => $isRepeatable,
                     'allow_delete' => $isRepeatable,
                     'by_reference' => false,
@@ -59,7 +62,7 @@ class BlockTYPE extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'jfxninja\CMSBundle\Entity\Block'
+            'data_class' => 'JfxNinja\CMSBundle\Entity\Block'
         ));
     }
 

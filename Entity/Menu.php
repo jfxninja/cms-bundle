@@ -328,10 +328,10 @@ class Menu {
     /**
      * Set domain
      *
-     * @param \jfxninja\CMSBundle\Entity\Domain $domain
+     * @param \JfxNinja\CMSBundle\Entity\Domain $domain
      * @return Menu
      */
-    public function setDomain(\jfxninja\CMSBundle\Entity\Domain $domain = null)
+    public function setDomain(\JfxNinja\CMSBundle\Entity\Domain $domain = null)
     {
         $this->domain = $domain;
 
@@ -341,7 +341,7 @@ class Menu {
     /**
      * Get domain
      *
-     * @return \jfxninja\CMSBundle\Entity\Domain
+     * @return \JfxNinja\CMSBundle\Entity\Domain
      */
     public function getDomain()
     {
@@ -351,10 +351,10 @@ class Menu {
     /**
      * Add menusItems
      *
-     * @param \jfxninja\CMSBundle\Entity\MenuItem $menuItem
+     * @param \JfxNinja\CMSBundle\Entity\MenuItem $menuItem
      * @return Menu
      */
-    public function addMenusItem(\jfxninja\CMSBundle\Entity\MenuItem $menuItem)
+    public function addMenusItem(\JfxNinja\CMSBundle\Entity\MenuItem $menuItem)
     {
         $this->menuItems[] = $menuItem;
 
@@ -364,9 +364,9 @@ class Menu {
     /**
      * Remove menusItems
      *
-     * @param \jfxninja\CMSBundle\Entity\MenuItem $menuItem
+     * @param \JfxNinja\CMSBundle\Entity\MenuItem $menuItem
      */
-    public function removeMenusItem(\jfxninja\CMSBundle\Entity\MenuItem $menuItem)
+    public function removeMenusItem(\JfxNinja\CMSBundle\Entity\MenuItem $menuItem)
     {
         $this->menuItems->removeElement($menuItem);
     }
@@ -407,10 +407,10 @@ class Menu {
     /**
      * Add menuItems
      *
-     * @param \jfxninja\CMSBundle\Entity\MenuItem $menuItems
+     * @param \JfxNinja\CMSBundle\Entity\MenuItem $menuItems
      * @return Menu
      */
-    public function addMenuItem(\jfxninja\CMSBundle\Entity\MenuItem $menuItems)
+    public function addMenuItem(\JfxNinja\CMSBundle\Entity\MenuItem $menuItems)
     {
         $this->menuItems[] = $menuItems;
 
@@ -420,9 +420,9 @@ class Menu {
     /**
      * Remove menuItems
      *
-     * @param \jfxninja\CMSBundle\Entity\MenuItem $menuItems
+     * @param \JfxNinja\CMSBundle\Entity\MenuItem $menuItems
      */
-    public function removeMenuItem(\jfxninja\CMSBundle\Entity\MenuItem $menuItems)
+    public function removeMenuItem(\JfxNinja\CMSBundle\Entity\MenuItem $menuItems)
     {
         $this->menuItems->removeElement($menuItems);
     }

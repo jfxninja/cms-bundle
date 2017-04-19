@@ -300,10 +300,10 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * Add roles
      *
-     * @param \jfxninja\CMSBundle\Entity\Role $roles
+     * @param \JfxNinja\CMSBundle\Entity\Role $roles
      * @return User
      */
-    public function addRole(\jfxninja\CMSBundle\Entity\Role $roles)
+    public function addRole(\JfxNinja\CMSBundle\Entity\Role $roles)
     {
         $this->roles[] = $roles;
 
@@ -313,9 +313,9 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * Remove roles
      *
-     * @param \jfxninja\CMSBundle\Entity\Role $roles
+     * @param \JfxNinja\CMSBundle\Entity\Role $roles
      */
-    public function removeRole(\jfxninja\CMSBundle\Entity\Role $roles)
+    public function removeRole(\JfxNinja\CMSBundle\Entity\Role $roles)
     {
         $this->roles->removeElement($roles);
     }

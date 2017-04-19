@@ -221,7 +221,7 @@ class Version20140512174301 extends AbstractMigration implements ContainerAwareI
         $embeded
             ->setCreatedBy("migration")
             ->setModifiedBy("migration")
-            ->setVariableName("embeded")
+            ->setVariableName("embedded_content_model")
             ->setName("Embeded Content Type");
         $contenttype = new FieldSetupOptions();
         $contenttype
@@ -240,7 +240,7 @@ class Version20140512174301 extends AbstractMigration implements ContainerAwareI
         $relatedContent
             ->setCreatedBy("migration")
             ->setModifiedBy("migration")
-            ->setVariableName("relatedcontent")
+            ->setVariableName("related_content")
             ->setName("Related Content");
         $relatedcontentType = new FieldSetupOptions();
         $relatedcontentType
@@ -250,7 +250,7 @@ class Version20140512174301 extends AbstractMigration implements ContainerAwareI
             ->setLabel("Related content")
             ->setInputType("entity")
             ->setInputTypeVar("ContentType")
-            ->setVariableName("relatedcontent")
+            ->setVariableName("related_content")
             ->setFieldType($relatedContent);
 
 

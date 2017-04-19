@@ -91,7 +91,7 @@ class ModuleContentSubmissionController extends Controller
                                     $fieldSettings = $fieldsRepository->findBySecurekey($params[2])->getFieldTypeSettings();
 
 
-                                    if($fp = $uploader->contentFileUpload($input->getData(), $fieldSettings['fileupload']['fileuploadfolder']))
+                                    if($fp = $uploader->contentFileUpload($input->getData(), $fieldSettings['file_upload__file_upload_folder']))
                                     {
 
                                         //Get current field content

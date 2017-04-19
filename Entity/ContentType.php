@@ -388,10 +388,10 @@ class ContentType
     /**
      * Add menuItems
      *
-     * @param \jfxninja\CMSBundle\Entity\MenuItem $menuItems
+     * @param \JfxNinja\CMSBundle\Entity\MenuItem $menuItems
      * @return ContentType
      */
-    public function addMenuItem(\jfxninja\CMSBundle\Entity\MenuItem $menuItems)
+    public function addMenuItem(\JfxNinja\CMSBundle\Entity\MenuItem $menuItems)
     {
         $this->menuItems[] = $menuItems;
 
@@ -401,9 +401,9 @@ class ContentType
     /**
      * Remove menuItems
      *
-     * @param \jfxninja\CMSBundle\Entity\MenuItem $menuItems
+     * @param \JfxNinja\CMSBundle\Entity\MenuItem $menuItems
      */
-    public function removeMenuItem(\jfxninja\CMSBundle\Entity\MenuItem $menuItems)
+    public function removeMenuItem(\JfxNinja\CMSBundle\Entity\MenuItem $menuItems)
     {
         $this->menuItems->removeElement($menuItems);
     }
@@ -421,10 +421,10 @@ class ContentType
     /**
      * Add content
      *
-     * @param \jfxninja\CMSBundle\Entity\Content $content
+     * @param \JfxNinja\CMSBundle\Entity\Content $content
      * @return ContentType
      */
-    public function addContent(\jfxninja\CMSBundle\Entity\Content $content)
+    public function addContent(\JfxNinja\CMSBundle\Entity\Content $content)
     {
         $this->content[] = $content;
 
@@ -434,9 +434,9 @@ class ContentType
     /**
      * Remove content
      *
-     * @param \jfxninja\CMSBundle\Entity\Content $content
+     * @param \JfxNinja\CMSBundle\Entity\Content $content
      */
-    public function removeContent(\jfxninja\CMSBundle\Entity\Content $content)
+    public function removeContent(\JfxNinja\CMSBundle\Entity\Content $content)
     {
         $this->content->removeElement($content);
     }
@@ -491,10 +491,10 @@ class ContentType
     /**
      * Add variableFields
      *
-     * @param \jfxninja\CMSBundle\Entity\Field $variableField
+     * @param \JfxNinja\CMSBundle\Entity\Field $variableField
      * @return ContentType
      */
-    public function addVariableField(\jfxninja\CMSBundle\Entity\Field $variableField)
+    public function addVariableField(\JfxNinja\CMSBundle\Entity\Field $variableField)
     {
         $variableField->setContentTypeByVariable($this);
 
@@ -506,9 +506,9 @@ class ContentType
     /**
      * Remove variableFields
      *
-     * @param \jfxninja\CMSBundle\Entity\Field $variableFields
+     * @param \JfxNinja\CMSBundle\Entity\Field $variableFields
      */
-    public function removeVariableField(\jfxninja\CMSBundle\Entity\Field $variableFields)
+    public function removeVariableField(\JfxNinja\CMSBundle\Entity\Field $variableFields)
     {
         $this->variableFields->removeElement($variableFields);
     }
@@ -526,10 +526,10 @@ class ContentType
     /**
      * Add attributeFields
      *
-     * @param \jfxninja\CMSBundle\Entity\Field $attributeField
+     * @param \JfxNinja\CMSBundle\Entity\Field $attributeField
      * @return ContentType
      */
-    public function addAttributeField(\jfxninja\CMSBundle\Entity\Field $attributeField)
+    public function addAttributeField(\JfxNinja\CMSBundle\Entity\Field $attributeField)
     {
         $attributeField->setContentTypeByAttribute($this);
 
@@ -541,9 +541,9 @@ class ContentType
     /**
      * Remove attributeFields
      *
-     * @param \jfxninja\CMSBundle\Entity\Field $attributeFields
+     * @param \JfxNinja\CMSBundle\Entity\Field $attributeFields
      */
-    public function removeAttributeField(\jfxninja\CMSBundle\Entity\Field $attributeFields)
+    public function removeAttributeField(\JfxNinja\CMSBundle\Entity\Field $attributeFields)
     {
         $this->attributeFields->removeElement($attributeFields);
     }
@@ -561,10 +561,10 @@ class ContentType
     /**
      * Add blocks
      *
-     * @param \jfxninja\CMSBundle\Entity\Block $blocks
+     * @param \JfxNinja\CMSBundle\Entity\Block $blocks
      * @return ContentType
      */
-    public function addBlock(\jfxninja\CMSBundle\Entity\Block $blocks)
+    public function addBlock(\JfxNinja\CMSBundle\Entity\Block $blocks)
     {
         $this->blocks[] = $blocks;
 
@@ -574,9 +574,9 @@ class ContentType
     /**
      * Remove blocks
      *
-     * @param \jfxninja\CMSBundle\Entity\Block $blocks
+     * @param \JfxNinja\CMSBundle\Entity\Block $blocks
      */
-    public function removeBlock(\jfxninja\CMSBundle\Entity\Block $blocks)
+    public function removeBlock(\JfxNinja\CMSBundle\Entity\Block $blocks)
     {
         $this->blocks->removeElement($blocks);
     }

@@ -11,11 +11,11 @@ use JfxNinja\CMSBundle\Form\DataTransformer\CMSFieldSettingsToArray;
 class FieldTypeSetupOptions extends AbstractType
 {
 
-    private $fieldSetupOptions;
+    private $inputSetupOptions;
 
-    public function __construct($fieldSetupOptions){
+    public function __construct($inputSetupOptions){
 
-        $this->fieldSetupOptions = $fieldSetupOptions;
+        $this->inputSetupOptions = $inputSetupOptions;
 
     }
 
@@ -23,48 +23,50 @@ class FieldTypeSetupOptions extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
-        foreach($this->fieldSetupOptions as $groupKey => $optionGroup)
+        foreach($this->inputSetupOptions as $groupKey => $optionsGroup)
         {
 
-            foreach($optionGroup['options'] as $option)
+            foreach($optionsGroup as $option)
             {
-                if($option['inputType'] == "choice")
+
+                $variableName = $groupKey . "__" . $option->getVariableName();
+
+                if($option->getInputType() == "choice")
                 {
-                    $builder->add($option['variableName'], $option['inputType'], array(
-                        'choices'=>$option['inputTypeVar'],
+                    $builder->add($variableName, $option->getInputType(), array(
+                        'choices'=>$option->getInputTypeVar(),
                         'required'=>false,
-                        'label'=>$option['label'],
+                        'label'=>$option->getLabel(),
                         'label_attr' => array('class' => 'group-'.$groupKey.' field-type-setting'),
-                        'attr' => array('class' => 'group-'.$groupKey.' field-type-setting ' . $option['variableName']),
+                        'attr' => array('class' => 'group-'.$groupKey.' field-type-setting ' . $option->getVariableName()),
                         )
                     );
 
-                } elseif($option['inputType'] == "entity") {
+                } elseif($option->getInputType() == "entity") {
 
-                    $builder->add($option['variableName'], "choice", array(
-                            'choices'=>$option['inputTypeVar'],
+                    $builder->add($variableName, "choice", array(
+                            'choices'=>$option->getInputTypeVar(),
 
                             'required'=>false,
-                            'label'=>$option['label'],
+                            'label'=>$option->getLabel(),
                             'label_attr' => array('class' => 'group-'.$groupKey.' field-type-setting'),
-                            'attr' => array('class' => 'group-'.$groupKey.' field-type-setting ' . $option['variableName']),
+                            'attr' => array('class' => 'group-'.$groupKey.' field-type-setting ' . $option->getVariableName()),
                         )
                     );
 
                 } else {
 
-                    $builder->add($option['variableName'], $option['inputType'], array(
+                    $builder->add($variableName, $option->getInputType(), array(
                         'required'=>false,
-                        'label'=>$option['label'],
+                        'label'=>$option->getLabel(),
                         'label_attr' => array('class' => 'group-'.$groupKey.' field-type-setting'),
-                        'attr' => array('class' => 'group-'.$groupKey.' field-type-setting ' . $option['variableName']),
+                        'attr' => array('class' => 'group-'.$groupKey.' field-type-setting ' . $option->getVariableName()),
                     ));
                 }
             }
 
         }
 
-        $builder->addViewTransformer(new CMSFieldSettingsToArray($this->fieldSetupOptions));
 
     }
 

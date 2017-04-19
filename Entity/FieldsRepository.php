@@ -71,9 +71,8 @@ class FieldsRepository extends EntityRepository
                 'SELECT f.id, f.name
                 FROM JfxNinjaCMSBundle:Field f
                 LEFT JOIN f.contentTypeByVariable ct
-                LEFT JOIN f.fieldType ft
                 WHERE ct.id = :id
-                AND ft.variableName IN (:fieldTypes)'
+                AND f.type IN (:fieldTypes)'
             )
             ->setParameter('fieldTypes', $fieldTypes)
             ->setParameter('id', $id)
@@ -90,9 +89,8 @@ class FieldsRepository extends EntityRepository
                 'SELECT f
                 FROM JfxNinjaCMSBundle:Field f
                 LEFT JOIN f.contentTypeByVariable ct
-                LEFT JOIN f.fieldType ft
                 WHERE ct.id = :id
-                AND ft.variableName IN (:fieldTypes)'
+                AND f.type IN (:fieldTypes)'
             )
             ->setParameter('fieldTypes', $fieldTypes)
             ->setParameter('id', $id)
@@ -101,7 +99,7 @@ class FieldsRepository extends EntityRepository
 
     private function getAllowedCategoryFilterFieldTypes()
     {
-        return array("choice","relatedcontent");
+        return array("choice","related_content");
 
     }
 
@@ -117,9 +115,8 @@ class FieldsRepository extends EntityRepository
                 'SELECT f.id, f.name
                 FROM JfxNinjaCMSBundle:Field f INDEX BY f.id
                 LEFT JOIN f.contentTypeByVariable ct
-                LEFT JOIN f.fieldType ft
                 WHERE ct.id = :id
-                AND ft.variableName IN (:fieldTypes)'
+                AND f.type IN (:fieldTypes)'
             )
             ->setParameter('fieldTypes', $fieldTypes)
             ->setParameter('id', $contentTypeId)

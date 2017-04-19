@@ -13,12 +13,14 @@ class ContentTypeTYPE extends AbstractType
 
     private $mode;
     private $locale;
-    private $fieldSetupOptions;
+    private $inputTypes;
+    private $inputSetupOptions;
 
-    public function __construct($mode,$fieldSetupOptions,$locale){
+    public function __construct($mode,$inputTypes,$inputSetupOptions,$locale){
         $this->mode = $mode;
         $this->locale = $locale;
-        $this->fieldSetupOptions = $fieldSetupOptions;
+        $this->inputTypes = $inputTypes;
+        $this->inputSetupOptions = $inputSetupOptions;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -49,14 +51,14 @@ class ContentTypeTYPE extends AbstractType
             ->add('categoryPageTemplatePath', 'text',array('required'=>false))
 
             ->add('attributeFields', 'collection', array(
-                'type' => new FieldTypeNested($this->fieldSetupOptions),
+                'type' => new FieldTypeNested($this->inputTypes,$this->inputSetupOptions),
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
                 'label' => false
             ))
             ->add('variableFields', 'collection', array(
-                'type' => new FieldTypeNested($this->fieldSetupOptions),
+                'type' => new FieldTypeNested($this->inputTypes,$this->inputSetupOptions),
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
@@ -69,7 +71,7 @@ class ContentTypeTYPE extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'jfxninja\CMSBundle\Entity\ContentType'
+            'data_class' => 'JfxNinja\CMSBundle\Entity\ContentType'
         ));
     }
 

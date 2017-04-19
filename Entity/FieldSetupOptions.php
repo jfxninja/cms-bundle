@@ -308,10 +308,10 @@ class FieldSetupOptions {
     /**
      * Set fieldType
      *
-     * @param \jfxninja\CMSBundle\Entity\FieldType $fieldType
+     * @param \JfxNinja\CMSBundle\Entity\FieldType $fieldType
      * @return FieldSetupOptions
      */
-    public function setFieldType(\jfxninja\CMSBundle\Entity\FieldType $fieldType = null)
+    public function setFieldType(\JfxNinja\CMSBundle\Entity\FieldType $fieldType = null)
     {
         $this->fieldType = $fieldType;
 
@@ -321,7 +321,7 @@ class FieldSetupOptions {
     /**
      * Get fieldType
      *
-     * @return \jfxninja\CMSBundle\Entity\FieldType
+     * @return \JfxNinja\CMSBundle\Entity\FieldType
      */
     public function getFieldType()
     {

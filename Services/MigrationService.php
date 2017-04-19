@@ -39,7 +39,7 @@ class MigrationService
         $dir = $jfxninjaCMSbundle->getPath() . "/Migrations";
 
         $configuration = new Configuration($conn);
-        $configuration->setMigrationsNamespace('jfxninja\CMSBundle\Migrations');
+        $configuration->setMigrationsNamespace('JfxNinja\CMSBundle\Migrations');
         $configuration->setMigrationsDirectory($dir);
         $configuration->registerMigrationsFromDirectory($dir);
         $configuration->setName('One CMS Migrations');

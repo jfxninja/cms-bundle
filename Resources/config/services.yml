@@ -8,6 +8,14 @@ services:
           - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
 
 
+    jfxninja.cms.content_type_repo:
+          class: Doctrine\ORM\EntityRepository
+          factory: ["@doctrine.orm.entity_manager", getRepository]
+          arguments:
+              - JfxNinja\CMSBundle\Entity\ContentType
+
+
+
 
 
     jfxninja.cms.fileuploader:
@@ -50,6 +58,11 @@ services:
         class: JfxNinja\CMSBundle\Services\BlockService
         arguments: ["@jfxninja.cms.localiser","@doctrine.orm.entity_manager","@jfxninja.cms.fileuploader","@jfxninja.cms.recordauditor"]
         scope: request
+
+    jfxninja.cms.input_type:
+        class: JfxNinja\CMSBundle\Services\CmsInputTypeService
+        arguments: ["@jfxninja.cms.content_type_repo"]
+
 
 
     jfxninja.cms.migration:

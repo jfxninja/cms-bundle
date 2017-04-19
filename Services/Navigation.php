@@ -986,9 +986,8 @@ class Navigation extends EntityRepository
                   f.id,
                   f.variableName,
                   f.fieldTypeSettings,
-                  ft.variableName as fieldType
+                  f.type,
                   FROM JfxNinjaCMSBundle:Field f
-                  LEFT JOIN f.fieldType ft
                   WHERE f.id = :id'
             )
             ->setParameter('id', $fieldId)
@@ -996,9 +995,9 @@ class Navigation extends EntityRepository
 
         //get teh categories
         //print_r($field['fieldTypeSettings']);
-        if($field['fieldType'] == "choice")
+        if($field['type'] == "choice")
         {
-            $options = $this->cs->convertChoiceOptionsStringToArray($field['fieldTypeSettings']['choice']['choiceoptions']);
+            $options = $this->cs->convertChoiceOptionsStringToArray($field['fieldTypeSettings']['choice__options']);
             $index = 1;
             foreach($options as $k=>$v)
             {
@@ -1009,7 +1008,7 @@ class Navigation extends EntityRepository
             }
 
         }
-        elseif($field['fieldType'] == "relatedcontent")
+        elseif($field['type'] == "related_content")
         {
             $options
                 = $this->em
@@ -1022,7 +1021,7 @@ class Navigation extends EntityRepository
                       LEFT JOIN c.contentType ct
                       WHERE ct.id = :id'
                 )
-                ->setParameter('id', $field['fieldTypeSettings']['relatedcontent']['relatedcontent'])
+                ->setParameter('id', $field['fieldTypeSettings']['related_content__content_type'])
                 ->getResult();
 
             foreach($options as $k=>$o)
