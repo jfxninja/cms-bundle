@@ -37,7 +37,7 @@ class FieldTypeNested extends AbstractType
             ->add('isRequired', 'checkbox',array("required"=>false))
             ->add('requiredText', 'text',array("required"=>false))
             ->add('type', 'choice',array(
-                    'required' => false,
+                    'required' => true,
                     'expanded' => false,
                     'multiple' => false,
                     'attr' => array('class' => 'field-type'),

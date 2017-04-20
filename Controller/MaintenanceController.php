@@ -5,6 +5,7 @@ namespace JfxNinja\CMSBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Finder\Finder;
 
 use JfxNinja\CMSBundle\Form\Type\InstallTYPE;
 use JfxNinja\CMSBundle\Entity\Domain;
@@ -49,12 +50,15 @@ class MaintenanceController extends Controller
             $cmsMigrationService->migrate();
 
             $this->createAdminUser($formData,$em);
-
-            $domain = $this->createDomain($formData,$em);
-
-            $this->createDefaultContent($domain,$em);
+            $this->createDomain($formData,$em);
 
             $em->flush();
+
+
+            $content = file_get_contents(__DIR__.'/../DataFixtures/Sql/install.sql');
+
+            $this->getDoctrine()->getManager()->getConnection()->query($content);
+
 
             return new RedirectResponse($this->generateUrl('login'));
 

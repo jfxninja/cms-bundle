@@ -4,6 +4,7 @@ namespace JfxNinja\CMSBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 
 class FrontController extends Controller
@@ -37,9 +38,13 @@ class FrontController extends Controller
         $localiser = $this->get('jfxninja.cms.localiser');
         $em = $this->getDoctrine()->getManager();
 
+        $json = $this->getIsJsonRequest($uri);
+        $uri = $this->trimFileExtension($uri);
+
         //2)Resolve navigation request
         $navService->handleURL($request->getHost(),$uri,$stopwatch);
         $activeMenuItem = $navService->activeMenuItem;
+        $requestType = $navService->requestType;
 
         //4) Retrive URL Content
         $content = $contentService->retrieveMenuContent($activeMenuItem,$uri);
@@ -100,19 +105,69 @@ class FrontController extends Controller
             $domainTemplate = 'JfxNinjaCMSBundle:Default:domain.html.twig';
         }
 
-        return $this->render(
-            $domainTemplate,
-            array(
-                'navigation'=>$navService->templateNavigationMap,
-                'pageClass'=>$navService->pageClass,
-                'pageTitle'=>$navService->pageTitle,
-                'metaDescription'=>$navService->metaDescription,
-                'content'=>$content,
-                'modules'=>$modules,
-                'multiLanguageLinks'=>$mlLinks
-            )
 
+
+        $requestContent =  array(
+            'navigation'=>$navService->templateNavigationMap,
+            'pageClass'=>$navService->pageClass,
+            'pageTitle'=>$navService->pageTitle,
+            'metaDescription'=>$navService->metaDescription,
+            'content'=>$content,
+            'modules'=>$modules,
+            'multiLanguageLinks'=>$mlLinks
         );
+
+        //Return the response
+        if($json)
+        {
+            return new JsonResponse($requestContent);
+        }
+        else
+        {
+            return $this->render(
+                $domainTemplate,
+                array(
+                    'navigation'=>$navService->templateNavigationMap,
+                    'pageClass'=>$navService->pageClass,
+                    'pageTitle'=>$navService->pageTitle,
+                    'metaDescription'=>$navService->metaDescription,
+                    'content'=>$content,
+                    'modules'=>$modules,
+                    'multiLanguageLinks'=>$mlLinks
+                )
+
+            );
+        }
+
+
+
+    }
+
+
+
+    /**
+     * @param $uri
+     * @return string
+     */
+    private function getIsJsonRequest($uri)
+    {
+
+        $parts = explode(".", $uri);
+
+        return (end($parts) == 'json') ? true : false;
+
+    }
+
+    /**
+     * @param $uri
+     * @return string
+     */
+    private function trimFileExtension($uri)
+    {
+
+        $parts = explode(".", $uri);
+
+        return (count($parts) > 1) ? current($parts) : $uri;
 
     }
 

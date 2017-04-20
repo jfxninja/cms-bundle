@@ -523,7 +523,7 @@ class ContentService extends EntityRepository
                     'SELECT
                       f.id,
                       f.variableName,
-                      ft.variableName as fieldType
+                      f.type as fieldType
                       FROM JfxNinjaCMSBundle:Field f
                       WHERE f.id = :id'
                 )
@@ -542,7 +542,7 @@ class ContentService extends EntityRepository
                     'SELECT
                       f.id,
                       f.variableName,
-                      ft.variableName as fieldType
+                      f.type as fieldType
                       FROM JfxNinjaCMSBundle:Field f
                       WHERE f.id = :id'
                 )
@@ -577,7 +577,7 @@ class ContentService extends EntityRepository
                 continue;
             }
 
-            //handle repeatable fields
+            //handle repeatable fields and related content
             if(is_array($c[$field['variableName']]))
             {
                 $found = false;
@@ -700,7 +700,7 @@ class ContentService extends EntityRepository
                   f.isRepeatable,
                   f.variableName,
                   f.fieldTypeSettings,
-                  ft.variableName as fieldType,
+                  f.type as fieldType,
                   bf.fieldContent
                 FROM JfxNinjaCMSBundle:Block b
                 LEFT JOIN b.blockFields bf

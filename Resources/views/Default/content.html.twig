@@ -2,17 +2,32 @@
 
 
 {% if content is defined %}
-<p>
+
+    <p>
     {% for key, field in content %}
         {% if key not in ['contentSlug','attributes'] %}
-            {{ field|raw }}
+
+            {% if field is iterable %}
+                {% for k, var in field %}
+                    Field is an array {{ key }}
+                    (
+                    {% for k, var in var %}
+                        {% if k is iterable %}[]{% else %}{{ k }}.{% endif %}
+                    {% endfor %}
+                    )
+                    <br>
+                {% endfor %}
+            {% else %}
+                {{ field|raw }}<br>
+            {% endif %}
+
         {% endif %}
     {% endfor %}
 </p>
 {% endif %}
 
-{% if content.items is defined %}
+{% if content.listItems is defined %}
     <p>
-list the items
+        There are {{ content.listItems|length }} items in the collection.
     </p>
 {% endif %}

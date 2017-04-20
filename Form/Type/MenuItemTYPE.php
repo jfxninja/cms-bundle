@@ -43,7 +43,7 @@ class MenuItemTYPE extends AbstractType
             ->add('domain_template_override', 'text',array('required'=>false))
             ->add('hide', 'checkbox', array('label' => 'Hide from menus','required'=>false))
             ->add('slug', 'multiLanguageText', array("locale"=>$this->locale))
-            ->add('pageClass', 'text', array('required'=>false))
+            ->add('pageClass', 'text', array('required'=>true))
             ->add('pageTitle', 'multiLanguageText', array("locale"=>$this->locale))
             ->add('metaDescription', 'multiLanguageTextarea', array("locale"=>$this->locale,'required'=>false))
             ->add('grandChildrenRelativePosition', 'choice',

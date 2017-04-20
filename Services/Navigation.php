@@ -26,6 +26,7 @@ class Navigation extends EntityRepository
     private $cs;
 
     public $host;
+    public $requestType;
     public $activeMenuItem;
     public $activeRoot;
     public $mappedActiveMenuItem;
@@ -60,16 +61,19 @@ class Navigation extends EntityRepository
 
     /**
      * @param $host
-     * @param $stopwatch
      * @param $uri
+     * @param $stopwatch
+     * @return bool
      */
     public function handleURL($host,$uri,$stopwatch)
     {
 
         $this->host = $host;
 
+
         if($stopwatch)
         {
+
             $stopwatch->start('jfxninja::handleURL::getDomainMenuItems');
             $this->domainMenusItems = $this->getDomainMenuItems($host);
             $stopwatch->stop('jfxninja::handleURL::getDomainMenuItems');
@@ -180,7 +184,7 @@ class Navigation extends EntityRepository
             $mi['urlFilter2'] = "";
 
             //handle home page requests
-            if($urlParts[0] == "")
+            if($urlParts[0] == "" || strpos($urlParts[0],'index') !== false)
             {
                 //TODO:JW Handle multiple menu groups
                 //The first menu item without a parent should be the home page
@@ -986,7 +990,7 @@ class Navigation extends EntityRepository
                   f.id,
                   f.variableName,
                   f.fieldTypeSettings,
-                  f.type,
+                  f.type
                   FROM JfxNinjaCMSBundle:Field f
                   WHERE f.id = :id'
             )
@@ -1133,7 +1137,7 @@ class Navigation extends EntityRepository
                         "id"=>$menuItem['id'],
                         'parentId' => $parentId,
                         "pageClass"=>$menuItem['pageClass'],
-                        "hide"=>$menuItem['hide'],
+                        "hide"=>isset($menuItem['hide']) ? $menuItem['hide'] : false,
                         "cSlug"=>$menuItem['cSlug'],
                         "ctSlug"=>$menuItem['ctSlug'],
                         "mlSlug"=>$menuItem['mlSlug'],
