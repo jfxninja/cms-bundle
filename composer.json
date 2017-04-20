@@ -26,6 +26,6 @@
     "symfony/assetic-bundle": "~2.8"
   },
   "autoload": {
-    "psr-4": { "jfxninja\\CMSBundle\\": "" }
+    "psr-4": { "JfxNinja\\CMSBundle\\": "" }
   }
 }
