@@ -1572,7 +1572,7 @@ class Navigation extends EntityRepository
             $domain = $this->em
                 ->getRepository('JfxNinjaCMSBundle:Domain')->getDomain($host);
             if($domain->getThemeBundleName() && $domain->getDomainHTMLTemplate()) {
-                return $domain->getThemeBundleName() . ':' . $domain->getDomainHTMLTemplate();
+                return $domain->getThemeBundleName() . '::' . $domain->getDomainHTMLTemplate();
             }
         }
 
